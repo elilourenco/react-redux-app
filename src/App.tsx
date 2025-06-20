@@ -4,7 +4,10 @@ import { Header } from './components/Header';
 import { Typography } from '@mui/material';
 import Layout from './components/Layout';
 import { appTheme } from './config/theme';
-import {Routes,Route,Link} from "react-router-dom"
+import {Routes,Route} from "react-router-dom"
+import { CategoryList } from './features/categories/ListCategory';
+import { CategoryEdit } from './features/categories/EditCategory';
+import { CategoryCreate } from './features/categories/CreateCategory';
 
 
 
@@ -19,17 +22,21 @@ export default function ButtonUsage() {
     <Header />
     <Layout>
     <h1>Welcome to react Router</h1>
-    <Routes>
-      <Route path='/' element={}/>
+    <Routes> 
+      <Route path="/" element={<CategoryList />} />
 
-        <Route path="/about" element={} />
+      <Route path="/categories" element={<CategoryList />} />
+      <Route path ="/categories/create" element={<CategoryCreate />} />
+      <Route path ="/categories/edit/:id" element={<CategoryEdit />} />
         
 
         {/* You can also add a 404 page */}
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-      
-      
+        <Route path="*" element={
+          <Box sx={{color: white}}>
 
+        </Box>} />
+      
+    
     </Routes>
     </Layout>
     </Box>
