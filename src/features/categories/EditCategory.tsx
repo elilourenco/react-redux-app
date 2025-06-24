@@ -1,6 +1,6 @@
 import { Box, Typography } from "@mui/material"
 
- export function CategoryEdit() {
+  function CategoryEdit() {
     <Box>
         <Typography variant="h3" component= "h1">
             CategoryEdit Page
@@ -8,3 +8,5 @@ import { Box, Typography } from "@mui/material"
         </Typography>
     </Box>
 } 
+
+export default CategoryEdit;
