@@ -1,13 +1,12 @@
 
-import { Box,ThemeProvider } from '@mui/system';
-import { Header } from './components/Header';
+import {Box,ThemeProvider } from '@mui/system';
+import {Header} from './components/Header';
 import Layout from './components/Layout';
 import { appTheme } from './config/theme';
 import {Routes,Route} from "react-router-dom";
-
 import {CategoryList} from './features/categories/ListCategory';
-import {CategoryEdit } from './features/categories/EditCategory';
-import {CategoryCreate } from './features/categories/CreateCategory';
+import {CategoryEdit} from './features/categories/EditCategory';
+import {CategoryCreate} from './features/categories/CreateCategory';
 
 
 
@@ -24,16 +23,16 @@ export default function ButtonUsage() {
     <h1>Welcome to react Router</h1>
 
     <Routes> 
-      <Route path="/" element={<CategoryList />} />
+      <Route path="/" element={<CategoryList/>} />
 
-      <Route path="/categories" element={<CategoryList />} />
+      <Route path="/categories" element={<CategoryList/>}/>
       <Route path ="/categories/create" element={<CategoryCreate/>} />
       <Route path ="/categories/edit/:id" element={<CategoryEdit/>} />
         
 
         {/* You can also add a 404 page */}
         <Route path="*" element={
-          <Box sx={{color: "white "}}></Box>
+          <Box sx={{color: "white"}}></Box>
            } 
         />
       

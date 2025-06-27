@@ -1,12 +1,11 @@
 import { Box, Typography } from "@mui/material"
 
- function CategoryList (){
+ export const CategoryList = () => (
     <Box>
         <Typography variant="h3" component= "h1">
-            CategoryList Page
+            CategoryList List
 
         </Typography>
     </Box>
-}
+)
 
-export default CategoryList;
