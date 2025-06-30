@@ -9,18 +9,26 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
+<<<<<<< HEAD
     animation: App-logo-spin infinite 20s linear;
+=======
+    animation: App-logo-float infinite 3s ease-in-out;
+>>>>>>> 7399151b308ab314c7fb4a18e4ec90e96d2bf30d
   }
 }
 
 .App-header {
+<<<<<<< HEAD
   background-color: #282c34;
+=======
+>>>>>>> 7399151b308ab314c7fb4a18e4ec90e96d2bf30d
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+<<<<<<< HEAD
   color: white;
 }
 
@@ -34,5 +42,22 @@
   }
   to {
     transform: rotate(360deg);
+=======
+}
+
+.App-link {
+  color: rgb(112, 76, 182);
+}
+
+@keyframes App-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+>>>>>>> 7399151b308ab314c7fb4a18e4ec90e96d2bf30d
   }
 }
