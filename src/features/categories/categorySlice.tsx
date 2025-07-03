@@ -3,16 +3,16 @@ import { RootState } from "../../redux/store";
 
 interface Category{
     id:string;
-    name: string,
-    is_active:boolean,
-    created_at: Date,
-    update_at:Date,
-    deleted_at:null | string
-    description:null |string,
+    name: string;
+    is_active:boolean;
+    created_at: Date;
+    update_at:Date;
+    deleted_at:null|string;
+    description:null|string;
 }
 
 
-const category:Category ={
+const category:Category={
     id:"O",
     name :"Olive",
     description: "Olive is a versatle fruit that is used to make olive oil",
@@ -29,11 +29,11 @@ const categories =[
     category,
     { ...category, id:"A", name:"Apple"},
     { ...category, id:"B", name:"Patch"},
-    {  ...category, id:"C",name:"Banana"},
+    { ...category, id:"C",name:"Banana"},
 ];
 
 
-export  const InicialState = {
+export const InitialState = {
     categories:[category]
 
 }
@@ -41,15 +41,24 @@ export  const InicialState = {
 
 
 const categoriesSlice = createSlice({
-  name: 'categories',
-  initialState: InicialState,
+  name: "categories",
+  initialState: InitialState,
   reducers: {
     createCategory(state, action) {},
-    updateCategory(state, action) {},
-    deleteCategory(state, action) {},
+    updateCcreateCategory(state, action) {},
+    deleteCcreateCategory(state, action) {},
   },
-})
+});
 
-export const selectcategories= (state:RootState) => state.categories
+
+
+// selectores
+
+
+
+export const selectCategories= (state:RootState) => state.categories;
 
 export default categoriesSlice.reducer;
+
+
+

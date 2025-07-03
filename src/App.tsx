@@ -1,55 +1,5 @@
-<<<<<<< HEAD
-
-import {Box,ThemeProvider } from '@mui/system';
-import {Header} from './components/Header';
-import Layout from './components/Layout';
-import { appTheme } from './config/theme';
-import {Routes,Route} from "react-router-dom";
-import {CategoryList} from './features/categories/ListCategory';
-import {CategoryEdit} from './features/categories/EditCategory';
-import {CategoryCreate} from './features/categories/CreateCategory';
-
-
-
-
-export default function ButtonUsage() {
-  return(
-  <ThemeProvider theme={appTheme}>
-    <Box component="main"
-    sx={{height:"100vh",
-      backgroundColor:(theme) => theme.palette.grey[900],
-    }}>
-    <Header />
-    <Layout>
-    <h1>Welcome to react Router</h1>
-
-    <Routes> 
-      <Route path="/" element={<CategoryList/>} />
-
-      <Route path="/categories" element={<CategoryList/>}/>
-      <Route path ="/categories/create" element={<CategoryCreate/>} />
-      <Route path ="/categories/edit/:id" element={<CategoryEdit/>} />
-        
-
-        {/* You can also add a 404 page */}
-        <Route path="*" element={
-          <Box sx={{color: "white"}}></Box>
-           } 
-        />
-      
-    
-    </Routes>
-    </Layout>
-    </Box>
-  </ThemeProvider>
-   )
-}
-
-
-=======
-import React from 'react';
 import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import {Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
@@ -105,4 +55,3 @@ function App() {
 }
 
 export default App;
->>>>>>> 7399151b308ab314c7fb4a18e4ec90e96d2bf30d
