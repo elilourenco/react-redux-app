@@ -20,7 +20,7 @@ export default function ButtonUsage() {
     <Layout>
     <h1>Welcome to react Router</h1>
     <Routes>
-      <Route path="/" element={<CategoryList/>} />
+      <Route path="/" element={<CategoryCreate/>} />
 
       <Route path="/categories" element={<CategoryList/>} />
       <Route path ="/categories/create" element={<CategoryCreate/>} />
