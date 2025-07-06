@@ -1,9 +1,6 @@
 import { AppBar, Box, Button,IconButton, Toolbar,Typography }from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-
-
-
 export function Header(){
     return (
         <Box sx={{ flexGrow: 1 }}>
