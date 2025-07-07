@@ -34,9 +34,9 @@ const categories =[
 
 
 export const InitialState = {
-    categories:[category]
+    categories:[categories],
 
-}
+};
 
 
 
