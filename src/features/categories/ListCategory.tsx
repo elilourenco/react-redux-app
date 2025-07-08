@@ -1,8 +1,11 @@
-import { Box,Button,Typography } from "@mui/material"
+import { Box,Button,IconButton,Typography } from "@mui/material"
+import DeleteIcon from '@mui/icons-material/Delete';
 import { selectCategories } from "./categorySlice";
 import { useAppSelector } from "../../app/hooks";
 import { Link } from "react-router-dom";
-import { DataGrid, GridActionsColDef, GridColDef, GridRenderCellParams, GridRowsProp } from '@mui/x-data-grid';
+import { DataGrid,  GridColDef, 
+    GridRenderCellParams, GridRowsProp
+    } from '@mui/x-data-grid';
 
 
 
@@ -24,9 +27,9 @@ function CategoryList(){
     
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', flex:1 },
+  
   { field: 'name', headerName: 'Name', width: 300 },
-  {field:"description", headerName:"Description", flex:1},
+  
 
   {field:"isActive",
      headerName:"Active ", 
@@ -38,10 +41,30 @@ const columns: GridColDef[] = [
     field: "createdAt",
     headerName: "Created At",
     flex:1
+   },
+
+   {
+    field:"id", headerName:"Actions", flex:1 , renderCell:renderActionsCell
    }
 ];
 
- function renderIsActiveCell(rowData:GridRenderCellParams){
+
+function renderActionsCell(params:GridRenderCellParams){
+
+    return( 
+
+        <IconButton
+            color="secondary"
+            onClick={() => console.log("clicked")}
+            aria-label="delete"
+        >
+            <DeleteIcon />
+
+        </IconButton>
+    )
+}
+
+function renderIsActiveCell(rowData:GridRenderCellParams){
    
     return(
         <Typography color ={rowData.value ? "primary" :"secondary"}> 
