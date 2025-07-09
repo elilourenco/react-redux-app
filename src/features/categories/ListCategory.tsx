@@ -4,7 +4,7 @@ import { selectCategories } from "./categorySlice";
 import { useAppSelector } from "../../app/hooks";
 import { Link } from "react-router-dom";
 import { DataGrid,  GridColDef, 
-    GridRenderCellParams, GridRowsProp
+    GridRenderCellParams, GridRowsProp,GridToolbar
     } from '@mui/x-data-grid';
 
 
@@ -98,11 +98,19 @@ return (
 
         <div style={{ height: 300, width: '100%' }}>
             <DataGrid 
-
-              
-
+               showToolbar={true}
+            disableColumnSelector={true}
+            disableColumnFilter={true}
+            disableDensitySelector={true}
             rows={rows} 
-            columns={columns} />
+            columns={columns}
+            slotProps={{toolbar:{
+                showQuickFilter:true,
+                quickFilterProps:{debounceMs:500}
+                
+            }}}
+            
+            />
         </div>
 
         
