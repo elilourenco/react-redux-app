@@ -28,7 +28,16 @@ function CategoryList(){
 
 const columns: GridColDef[] = [
   
-  { field: 'name', headerName: 'Name', width: 300 },
+  { field: 'name', headerName: 'Name', flex:1,
+    renderer: (params: GridRenderCellParams) => (
+        <Link 
+        style={{textDecoration:"none"}}
+        to={`/categories/edit/${params.row.id}`}
+        >
+          {params.value}
+        </Link>
+    )
+   },
   
 
   {field:"isActive",
@@ -102,6 +111,7 @@ return (
             disableColumnSelector={true}
             disableColumnFilter={true}
             disableDensitySelector={true}
+            disableRowSelectionOnClick={true}
             rows={rows} 
             columns={columns}
             slotProps={{toolbar:{
