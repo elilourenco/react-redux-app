@@ -26,7 +26,7 @@ function CategoryList(){
         createdAt: new Date(category.created_at).toLocaleDateString("en-US")
     }));
 
-     const componentsProps={toolbar:{
+     const componentProps={toolbar:{
                 showQuickFilter:true,
                 quickFilterProps:{debounceMs:500}
                 
@@ -117,7 +117,7 @@ return (
         */}
 
 
-        <div style={{ height: 300, width: '100%' }}>
+        <Box style={{ height: 300, width: '100%' }}>
             <DataGrid 
                showToolbar={true}
             disableColumnSelector={true}
@@ -126,11 +126,11 @@ return (
             disableRowSelectionOnClick={true}
             rows={rows} 
             columns={columns}
-            slotProps={componentsProps}
+            slotProps={componentProps}
                 
             
             />
-        </div>
+        </Box>
 
         
     </Box>
