@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSelector, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
 interface Category{
@@ -34,7 +34,7 @@ const categories =[
 
 
 export const InitialState = {
-    categories:[categories],
+    categories: categories,
 
 };
 
@@ -54,14 +54,22 @@ const categoriesSlice = createSlice({
 
 // selectores
 
-
-
 export  const selectCategories= (state:RootState) => state.categories;
 
 //selectiores
-export const  selectCategoryById = (state: RootState, id: string) =>
+export const selectCategoryById = (state: RootState,id: string) =>{
+
+ const category = state.categories.find((category) => category.id ===id)
+ return  (category  || {
+  id: "",
+  name:"",
+  description:"",
+  is_active:false,
+  deleted_at: null,
+  created_at: "",
+  update_at:"",
+})};
   
-  state.categories.find((category) =>category.id === id);
 
 export default categoriesSlice.reducer;
 
