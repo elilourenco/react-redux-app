@@ -67,7 +67,7 @@ import { Link } from "@mui/icons-material";
 
                         </Grid>
 
-                        <Grid size={{xs: 12}} >
+                        <Grid size={{xs:12}} >
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -81,18 +81,17 @@ import { Link } from "@mui/icons-material";
                             }
                              
                             label="Active"
-                            />
+                            />                      
                             
                             </FormGroup>
 
                         </Grid>
 
-
-
-                        <Grid size={{xs: 12}} >
+                        <Grid size={{xs:12}} >
                             <Box display="flex" gap={2}>
-                                <Button variant ="contained" component={Link} to="/categories">
-                                 <p>Back</p>
+                                <Button  variant="contained" component={Link} to="/categories">
+                                   Back
+                                 
                                 </Button>
 
                                 <Button 
@@ -121,4 +120,3 @@ import { Link } from "@mui/icons-material";
 
 export default CategoryEdit;
 
- 
