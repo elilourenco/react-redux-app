@@ -59,7 +59,8 @@ export  const selectCategories= (state:RootState) => state.categories;
 //selectiores
 export const selectCategoryById = (state: RootState,id: string) =>{
 
- const category = state.categories.find((category) => category.id ===id)
+ const category = state.categories.find((category) => category.id ===id) ;
+ 
  return  (category  || {
   id: "",
   name:"",

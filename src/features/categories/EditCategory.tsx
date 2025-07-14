@@ -1,15 +1,21 @@
-import { Category } from "@mui/icons-material";
+
 import { Box, FormControl, Grid, Paper, TextField, Typography } from "@mui/material"
-import { isDisabled } from "@testing-library/user-event/dist/utils";
+
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../app/hooks";
 import { selectCategoryById } from "./categorySlice";
+import { useState } from "react";
 
 
  const CategoryEdit =() =>{
 
     const id = useParams().id || "";
+    const  [isdisabled, setIsdisabled] = useState(false)
     const category= useAppSelector((state)=>selectCategoryById(state,id))
+
+    const handleChange =(e: any) => {
+
+    }
     return(
 
     
@@ -37,7 +43,23 @@ import { selectCategoryById } from "./categorySlice";
                                 />
                             </FormControl>
 
+                        </Grid> 
+
+                        <Grid item xs={12}>
+                            <FormControl fullWidth>
+                                <TextField
+                                required
+                                name="name"
+                                label="Name"
+                                value={category.name}
+                                disabled={isdisabled}
+                                onChange={handleChange}
+                                 />
+                            </FormControl>
+
                         </Grid>
+                        
+
 
                     </Grid>
                 </form>
