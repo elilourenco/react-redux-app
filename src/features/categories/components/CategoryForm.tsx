@@ -1,37 +1,12 @@
 import { Box, Button, FormControl, FormControlLabel, 
     FormGroup, Grid, Paper, Switch, TextField,Typography } from "@mui/material"
 
-import { Category, selectCategoryById } from "./categorySlice";
+import { Category, } from "../categorySlice";
 import { useState } from "react";
 import { Link } from "@mui/icons-material";
-
-
-
- export  const CategoryCreate =() =>{
-
-    const [isdisabled, setIsdisabled] = useState(false)
-    const [category, setCategory]= useState<Category>({
-  
-    id: "",
-    name: "",
-    is_active:false,
-    created_at: new Date(),
-    update_at: new Date(),
-    deleted_at:"",
-    description:"",
-});
-
-    const handleChange =(e: any) => {
-    }
-
-    const handleToggle= (e:any) =>{
-
-    }
-    return(
-
     
-    <Box>
-        <Paper>
+    
+    <Paper>
             <Box p={2}>
                 <Box mb={2}>
                     <Typography variant="h4">Create Category</Typography>
@@ -120,11 +95,3 @@ import { Link } from "@mui/icons-material";
  
             </Box>
         </Paper>
-    </Box>
-    )
-}
-
-export default CategoryCreate;
-
-
-
