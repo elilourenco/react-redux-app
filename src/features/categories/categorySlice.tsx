@@ -6,7 +6,7 @@ export interface Category{
     name: string;
     is_active:boolean;
     created_at: Date;
-    update_at:Date;
+    updated_at:Date;
     deleted_at:null|string;
     description:null|string;
 }
@@ -19,7 +19,7 @@ const category:Category={
     is_active:true,
     deleted_at:null,
     created_at:new Date(),
-    update_at:new Date(),
+    updated_at:new Date(),
 
 
 };

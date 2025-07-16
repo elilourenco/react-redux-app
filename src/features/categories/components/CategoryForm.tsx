@@ -1,11 +1,30 @@
 import { Box, Button, FormControl, FormControlLabel, 
-    FormGroup, Grid, Paper, Switch, TextField,Typography } from "@mui/material"
-
+FormGroup, Grid, Paper, Switch, TextField,Typography } from "@mui/material"
 import { Category, } from "../categorySlice";
-import { useState } from "react";
 import { Link } from "@mui/icons-material";
-    
-    
+
+
+type Props = {
+    category:Category;
+    isdisabled?:boolean;
+    isLoading?:boolean;
+    onSubmit:(e:React.FormEvent<HTMLFormElement>) => void;
+    handleChange:(e:React.ChangeEvent<HTMLInputElement>) => void;
+    handleToggle:(e:React.ChangeEvent<HTMLInputElement>) => void;
+
+}
+
+
+export  function CategoryForm ({
+    category,
+    isdisabled=false,
+    isLoading=false,
+    onSubmit,
+    handleChange,
+    handleToggle,
+
+}:Props) {
+ return(
     <Paper>
             <Box p={2}>
                 <Box mb={2}>
@@ -95,3 +114,4 @@ import { Link } from "@mui/icons-material";
  
             </Box>
         </Paper>
+)}
