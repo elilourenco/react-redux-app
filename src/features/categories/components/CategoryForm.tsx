@@ -1,5 +1,5 @@
 import { Box, Button, FormControl, FormControlLabel, 
-FormGroup, Grid, Paper, Switch, TextField,Typography } from "@mui/material"
+FormGroup, Grid, Paper, Switch, TextField} from "@mui/material"
 import { Category, } from "../categorySlice";
 import { Link } from "@mui/icons-material";
 
@@ -26,11 +26,6 @@ export  function CategoryForm ({
 }:Props) {
  return(
     <Paper>
-            <Box p={2}>
-                <Box mb={2}>
-                    <Typography variant="h4">Create Category</Typography>
-                </Box>
-            </Box>
 
 
             <Box p={2}>  

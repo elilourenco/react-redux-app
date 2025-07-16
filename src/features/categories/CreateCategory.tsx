@@ -12,9 +12,9 @@ import { CategoryForm } from "./components/CategoryForm";
     id: "",
     name: "",
     is_active:false,
-    created_at: "",
-    updated_at: "",
-    deleted_at:"",
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
     description:"",
 });
 

@@ -1,8 +1,8 @@
 
 import { Box, Paper,Typography } from "@mui/material"
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../app/hooks";
-import { selectCategoryById } from "./categorySlice";
+
+import { Category } from "./categorySlice";
 import { useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
 
@@ -11,9 +11,17 @@ import { CategoryForm } from "./components/CategoryForm";
  const CategoryEdit =()=>{
 
     const id = useParams().id || "";
-    const  [isdisabled, setIsdisabled] = useState(false)
-    const category= useAppSelector((state)=>selectCategoryById(state,id))
-
+    const  [isdisabled, setIsdisabled] = useState(false);
+const [category, setCategory]= useState<Category>({
+  
+    id: "",
+    name: "",
+    is_active:false,
+    created_at: new Date(),
+    updated_at: new Date(),
+    deleted_at: null,
+    description:"",
+});
     const handleChange =(e: any) => {}
 
     const handleToggle= (e:any) =>{}

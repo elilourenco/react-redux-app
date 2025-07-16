@@ -1,4 +1,4 @@
-import { Box,Button,IconButton,Toolbar,Typography } from "@mui/material"
+import { Box,Button,IconButton,Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
 import { selectCategories } from "./categorySlice";
 import { useAppSelector } from "../../app/hooks";
