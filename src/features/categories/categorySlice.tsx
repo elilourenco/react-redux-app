@@ -7,7 +7,7 @@ export interface Category{
     is_active:boolean;
     created_at: Date;
     updated_at:Date;
-    deleted_at:null|string;
+    deleted_at:null| Date;
     description:null|string;
 }
 

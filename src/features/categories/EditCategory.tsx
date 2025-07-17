@@ -1,30 +1,53 @@
 
 import { Box, Paper,Typography } from "@mui/material"
-import { useParams } from "react-router-dom";
-
-import { Category } from "./categorySlice";
-import { useState } from "react";
+import { useParams }from "react-router-dom";
+import { Category, selectCategoryById } from "./categorySlice";
+import React, { useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
+import { useAppSelector } from "../../app/hooks";
 
 
 
  const CategoryEdit =()=>{
 
     const id = useParams().id || "";
-    const  [isdisabled, setIsdisabled] = useState(false);
-const [category, setCategory]= useState<Category>({
-  
-    id: "",
-    name: "",
-    is_active:false,
-    created_at: new Date(),
-    updated_at: new Date(),
-    deleted_at: null,
-    description:"",
-});
-    const handleChange =(e: any) => {}
+    const [isdisabled, setIsdisabled] = useState(false);
+    const category = useAppSelector((state) => selectCategoryById(state,id ))
 
-    const handleToggle= (e:any) =>{}
+    const [categoryState, setCategoryState]=useState<Category>(()=>{
+        if (!category) {
+    
+    return {
+      id: "",
+      name: "",
+      description: "",
+      is_active: false,
+      deleted_at: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+ }
+
+ return {
+    ...category,
+    created_at: new Date(category.created_at),
+    updated_at: new Date(category.updated_at),
+    deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
+  };
+});
+    
+
+
+
+    const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target;
+    setCategoryState({ ...categoryState,[name]:value})
+
+    }
+
+    const handleToggle= (e: React.ChangeEvent<HTMLInputElement>) =>{
+        const {name, checked} = e.target
+    }
     return(
 
     
@@ -36,7 +59,7 @@ const [category, setCategory]= useState<Category>({
                 </Box>
             </Box>
             <CategoryForm
-                category={category}
+                category={categoryState}
                 isdisabled={isdisabled}
                 isLoading={false}
                 onSubmit={()=>{}}
