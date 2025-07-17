@@ -40,7 +40,7 @@ import { CategoryForm } from "./components/CategoryForm";
                     category={category}
                     isdisabled={isdisabled}
                     isLoading={false}
-                    onSubmit={()=> {}}
+                    handleSubmit={()=> {}}
                     handleChange={handleChange}
                     handleToggle={handleToggle}
                 />              

@@ -1,10 +1,10 @@
 
 import { Box, Paper,Typography } from "@mui/material"
 import { useParams }from "react-router-dom";
-import { Category, selectCategoryById } from "./categorySlice";
+import { Category, selectCategoryById, updateCategory } from "./categorySlice";
 import React, { useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
-import { useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 
 
 
@@ -35,10 +35,16 @@ import { useAppSelector } from "../../app/hooks";
     deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
   };
 });
+
+const dispatch = useAppDispatch();
+
+
+async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    dispatch(updateCategory(categoryState));
+  
+}
     
-
-
-
     const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
     setCategoryState({ ...categoryState,[name]:value})
@@ -46,7 +52,8 @@ import { useAppSelector } from "../../app/hooks";
     }
 
     const handleToggle= (e: React.ChangeEvent<HTMLInputElement>) =>{
-        const {name, checked} = e.target
+        const {name, checked} = e.target;
+        setCategoryState({ ...categoryState,[name]:checked})
     }
     return(
 
@@ -62,7 +69,7 @@ import { useAppSelector } from "../../app/hooks";
                 category={categoryState}
                 isdisabled={isdisabled}
                 isLoading={false}
-                onSubmit={()=>{}}
+                handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 handleToggle={handleToggle}
             />
