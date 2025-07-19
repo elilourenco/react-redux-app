@@ -18,7 +18,7 @@ export default function ButtonUsage() {
     }}>
     <Header />
     <Layout>
-    <h1>Welcome to react Router</h1>
+    <h1>Welcome to React Router</h1>
     <Routes>
       <Route path="/" element={<CategoryCreate/>} />
 

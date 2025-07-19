@@ -47,6 +47,7 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     
     const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = e.target;
+    console.log(name,value)
     setCategoryState({ ...categoryState,[name]:value})
 
     }
