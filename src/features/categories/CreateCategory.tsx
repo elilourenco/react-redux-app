@@ -1,22 +1,36 @@
 import { Box,Paper,Typography } from "@mui/material"
-import { Category, createCategory,  } from "./categorySlice";
+import { Category, createCategory, selectCategoryById,  } from "./categorySlice";
 import React, { useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useParams } from "react-router-dom";
 
 
  export  const CategoryCreate =() =>{
-
+    const id= useParams().id || "";
     const [isdisabled, setIsdisabled] = useState(false)
-    const [categoryState, setCategoryState]= useState<Category>({
-  
-    id: "",
-    name: "",
-    is_active:false,
-    created_at: new Date(),
-    updated_at: new Date(),
-    deleted_at: null,
-    description:"",
+    const  category= useAppSelector((state) => selectCategoryById(state,id))
+
+   const [categoryState, setCategoryState]=useState<Category>(()=>{
+        if (!category) {
+    
+    return {
+      id: "",
+      name: "",
+      description: "",
+      is_active: false,
+      deleted_at: null,
+      created_at: new Date(),
+      updated_at: new Date(),
+    };
+ }
+
+ return {
+    ...category,
+    created_at: new Date(category.created_at),
+    updated_at: new Date(category.updated_at),
+    deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
+  };
 });
 
 const dispatch = useAppDispatch();

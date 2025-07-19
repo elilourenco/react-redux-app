@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, FormControlLabel, 
 FormGroup, Grid, Paper, Switch, TextField} from "@mui/material"
 import { Category, } from "../categorySlice";
-import { Link } from "@mui/icons-material";
+import { Link as RouterLink} from "react-router-dom";
 
 
 type Props = {
@@ -52,9 +52,9 @@ export  function CategoryForm ({
                             <FormControl fullWidth>
                                 <TextField
                                 required
-                                name="Descrition"
+                                name="descrition"
                                 label="Description"
-                                value={category.name}
+                                value={category.description}
                                 disabled={isdisabled}
                                 onChange={handleChange}
                                  />
@@ -70,6 +70,8 @@ export  function CategoryForm ({
                                         name="is_active"
                                         color="secondary"
                                         checked ={category.is_active}
+                                        onChange={handleChange}
+                                        disabled={isdisabled}
                                         aria-label="Toggle switch"
                                     
                                     />
@@ -84,7 +86,8 @@ export  function CategoryForm ({
 
                         <Grid size={{xs:12}} >
                             <Box display="flex" gap={2}>
-                                <Button  variant="contained" component={Link} to="/categories">
+                                <Button  variant="contained" 
+                                component={RouterLink} to="/categories">
                                    Back
                                  
                                 </Button>
@@ -93,10 +96,10 @@ export  function CategoryForm ({
                                 type="submit"
                                 variant="contained"
                                 color="secondary"
-                                disabled={isdisabled}
+                                disabled={isdisabled || isLoading}
                                 >
                                 
-                                Save
+                                {isLoading ?  "Saving..." : "Save"}
                                     
                                 </Button>
                             </Box>
