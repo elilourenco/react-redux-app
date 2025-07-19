@@ -6,46 +6,44 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useParams } from "react-router-dom";
 
 
- export  const CategoryCreate =() =>{
+export const CategoryCreate =() =>{
     const id= useParams().id || "";
     const [isdisabled, setIsdisabled] = useState(false)
+    const [isLoading,setIsLoanding] =useState(false)
     const  category= useAppSelector((state) => selectCategoryById(state,id))
 
-   const [categoryState, setCategoryState]=useState<Category>(()=>{
+    const [categoryState, setCategoryState]=useState<Category>(()=>{
         if (!category) {
     
+        return {
+            id: "",
+            name: "",
+            description: "",
+            is_active: false,
+            deleted_at: null,
+            created_at: new Date(),
+            updated_at: new Date(),
+       };
+   }
+
     return {
-      id: "",
-      name: "",
-      description: "",
-      is_active: false,
-      deleted_at: null,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
- }
+        ...category,
+        created_at: new Date(category.created_at),
+        updated_at: new Date(category.updated_at),
+         deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
+    };});
 
- return {
-    ...category,
-    created_at: new Date(category.created_at),
-    updated_at: new Date(category.updated_at),
-    deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
-  };
-});
+    const dispatch = useAppDispatch();
 
-const dispatch = useAppDispatch();
-
-async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
-    e.preventDefault();
-    dispatch(createCategory(categoryState))
-}
-    const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    setCategoryState({ ...categoryState,[name]:value})
-
+    async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        dispatch(createCategory(categoryState))
     }
+    const handleChange =(e: React.ChangeEvent<HTMLInputElement>)=> {
+    const {name, value} = e.target;
+    setCategoryState({ ...categoryState,[name]:value})}
 
-    const handleToggle= (e: React.ChangeEvent<HTMLInputElement>) =>{
+    const handleToggle=(e: React.ChangeEvent<HTMLInputElement>)=>{
         const {name, checked} = e.target;
         setCategoryState({ ...categoryState,[name]:checked})
     }
@@ -61,17 +59,14 @@ async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
             </Box>
 
 
-              <CategoryForm
-                    category={categoryState}
-                    isdisabled={isdisabled}
-                    isLoading={false}
-                    handleSubmit={handleSubmit}
-                    handleChange={handleChange}
-                    handleToggle={handleToggle}
-                />              
-                
-
-            
+            <CategoryForm
+                category={categoryState}
+                isdisabled={isdisabled}
+                isLoading={isLoading}
+                handleSubmit={handleSubmit}
+                handleChange={handleChange}
+                handleToggle={handleToggle}
+            />              
         </Paper>
     </Box>
     )

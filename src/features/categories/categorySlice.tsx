@@ -1,4 +1,4 @@
-import {  createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
 
 export interface Category{
@@ -56,7 +56,12 @@ const categoriesSlice = createSlice({
   }
 
     },
-    deleteCategory(state, action) {},
+    deleteCategory(state, action) {
+      const index= state.categories.findIndex(
+        (category) =>category.id === action.payload.id
+      )
+      state.categories.splice(index,1)
+    },
   },
 });
 
@@ -66,7 +71,7 @@ const categoriesSlice = createSlice({
 
 export  const selectCategories= (state:RootState) => state.categories;
 
-//selectiores
+//selectores
 export const selectCategoryById = (state: RootState,id: string) =>{
 
  const category = state.categories.categories.find((category:Category) =>category.id === id)

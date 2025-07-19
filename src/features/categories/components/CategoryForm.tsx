@@ -48,16 +48,16 @@ export  function CategoryForm ({
 
                         </Grid> 
 
-                        <Grid size={{xs: 12}} >
+                        <Grid size={{xs:12}} >
                             <FormControl fullWidth>
                                 <TextField
-                                required
-                                name="descrition"
-                                label="Description"
-                                value={category.description}
-                                disabled={isdisabled}
-                                onChange={handleChange}
-                                 />
+                                    required
+                                    name="descrition"
+                                    label="Description"
+                                    value={category.description}
+                                    disabled={isdisabled}
+                                    onChange={handleChange}
+                                />
                             </FormControl>
 
                         </Grid>
@@ -67,18 +67,17 @@ export  function CategoryForm ({
                                 <FormControlLabel
                                     control={
                                         <Switch
-                                        name="is_active"
-                                        color="secondary"
-                                        checked ={category.is_active}
-                                        onChange={handleChange}
-                                        disabled={isdisabled}
-                                        aria-label="Toggle switch"
-                                    
-                                    />
-                            }
+                                            name="is_active"
+                                            color="secondary"
+                                            checked ={category.is_active}
+                                            onChange={handleChange}
+                                            disabled={isdisabled}
+                                            aria-label="Toggle switch"
+                                        />
+                                    }
                              
-                            label="Active"
-                            />                      
+                                    label="Active"
+                                />                      
                             
                             </FormGroup>
 
@@ -86,8 +85,10 @@ export  function CategoryForm ({
 
                         <Grid size={{xs:12}} >
                             <Box display="flex" gap={2}>
-                                <Button  variant="contained" 
-                                component={RouterLink} to="/categories">
+                                <Button  
+                                    variant="contained" 
+                                    component={RouterLink} 
+                                    to="/categories">
                                    Back
                                  
                                 </Button>
