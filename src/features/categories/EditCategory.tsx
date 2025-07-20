@@ -5,6 +5,7 @@ import { Category, selectCategoryById, updateCategory } from "./categorySlice";
 import React, { useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useSnackbar } from "notistack";
 
 
 
@@ -37,11 +38,12 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 });
 
 const dispatch = useAppDispatch();
-
+const {enqueueSnackbar} = useSnackbar()
 
 async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     dispatch(updateCategory(categoryState));
+    enqueueSnackbar("Success Updating the Category!",{variant:"success"})
   
 }
     

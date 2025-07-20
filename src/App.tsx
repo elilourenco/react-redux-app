@@ -7,11 +7,22 @@ import {Routes,Route} from "react-router-dom"
 import CategoryList from './features/categories/ListCategory';
 import CategoryEdit  from './features/categories/EditCategory';
 import CategoryCreate from './features/categories/CreateCategory';
+import { SnackbarProvider } from 'notistack';
+
 
 
 export default function ButtonUsage() {
   return(
   <ThemeProvider theme={appTheme}>
+
+
+    <SnackbarProvider maxSnack={3}
+    autoHideDuration={2000}
+    anchorOrigin={{
+      vertical:"top",
+      horizontal:"right"
+    }}
+    >
     <Box component="main"
     sx={{height:"100vh",
       backgroundColor:(theme) => theme.palette.grey[900],
@@ -35,6 +46,7 @@ export default function ButtonUsage() {
     </Routes>
     </Layout>
     </Box>
+    </SnackbarProvider>
   </ThemeProvider>
    )
 }
