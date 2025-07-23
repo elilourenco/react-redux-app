@@ -1,6 +1,7 @@
+
 import { Box,Button,IconButton,Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteCategory, selectCategories } from "./categorySlice";
+import { deleteCategory, selectCategories, useGetCategoriesQuery } from "./categorySlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Link } from "react-router-dom";
 import { DataGrid,
@@ -12,7 +13,10 @@ import { enqueueSnackbar } from "notistack";
 
 
 function CategoryList(){
-   
+ const {data, isFetching, error} = useGetCategoriesQuery() 
+
+ console.log(data?.data )
+
     const categoriesState = useAppSelector(selectCategories);
     const dispatch= useAppDispatch();
     const categories = categoriesState.categories.flat?.() ?? categoriesState.categories;

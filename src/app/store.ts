@@ -5,9 +5,11 @@ import { apiSlice } from '../features/api/apiSlice';
 
 export const store = configureStore({
   reducer: {
+
     counter: counterReducer,
     categories: categoriesReducer,
     [apiSlice.reducerPath]:apiSlice.reducer,
+   
   },
 });
 
