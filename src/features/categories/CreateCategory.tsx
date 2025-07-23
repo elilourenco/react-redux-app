@@ -31,7 +31,7 @@ export const CategoryCreate =() =>{
         ...category,
         created_at: new Date(category.created_at),
         updated_at: new Date(category.updated_at),
-         deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
+        deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
     };});
 
     const dispatch = useAppDispatch();

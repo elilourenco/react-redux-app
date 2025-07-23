@@ -3,22 +3,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { deleteCategory, selectCategories } from "./categorySlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Link } from "react-router-dom";
-import { DataGrid, GridColDef, 
+import { DataGrid,
+    GridColDef, 
     GridRenderCellParams, 
     GridRowsProp
 } from '@mui/x-data-grid';
+import { enqueueSnackbar } from "notistack";
 
 
 function CategoryList(){
    
     const categoriesState = useAppSelector(selectCategories);
-
     const dispatch= useAppDispatch();
-
     const categories = categoriesState.categories.flat?.() ?? categoriesState.categories;
-
-    
-    
 
     const rows: GridRowsProp = categories.map((category) =>({
         id:category.id,
@@ -28,11 +25,10 @@ function CategoryList(){
         createdAt: new Date(category.created_at).toLocaleDateString("en-US")
     }));
 
-     const componentProps={toolbar:{
-                showQuickFilter:true,
-                quickFilterProps:{debounceMs:500}
-                
-            }}
+    const componentProps={toolbar:{
+        showQuickFilter:true,
+        quickFilterProps:{debounceMs:500}          
+    }}
     
 
 const columns: GridColDef[] = [
@@ -41,11 +37,10 @@ const columns: GridColDef[] = [
     renderCell: renderNameCell,
    },
   
-
   {field:"isActive",
-     headerName:"Active ", 
-     flex:1, 
-     type: "boolean",
+    headerName:"Active ", 
+    flex:1, 
+    type: "boolean",
     renderCell: renderIsActiveCell
    },
    {
@@ -58,19 +53,18 @@ const columns: GridColDef[] = [
     field:"id", headerName:"Actions", 
     flex:1 ,
     type: "string",
-     renderCell:renderActionsCell
+    renderCell:renderActionsCell
    }
 ];
 
 
 function  handleDeleteCategory(id: string) {
     dispatch(deleteCategory(id))
+    enqueueSnackbar("Category is deleted for sucess",{variant:"error"})
 }
 
 
 function renderActionsCell(params:GridRenderCellParams){
-   
-
     return( 
 
         <IconButton
@@ -78,7 +72,7 @@ function renderActionsCell(params:GridRenderCellParams){
             onClick={() => handleDeleteCategory(params.value)}
             aria-label="delete"
         >
-            <DeleteIcon />
+        <DeleteIcon />
 
         </IconButton>
     )
@@ -107,13 +101,13 @@ function renderIsActiveCell(rowData:GridRenderCellParams){
 
 
 return (
-    <Box maxWidth="lg" sx={{mt:4, mb:4}}>
+    <Box maxWidth="lg"sx={{mt:4,mb:4}}>
         <Box display="flex" justifyContent={"flex-end"}>
             <Button
             variant="contained"
             color="secondary"
             component={Link}
-            to="/category/create"
+            to="/categories/create"
             style={{marginBottom:"1rem"}}
             > 
             New category
@@ -128,9 +122,9 @@ return (
         */}
 
 
-        <Box style={{ height: 300, width: '100%' }}>
+        <Box style={{height: 300, width: '100%' }}>
             <DataGrid 
-               showToolbar={true}
+            showToolbar={true}
             disableColumnSelector={true}
             disableColumnFilter={true}
             disableDensitySelector={true}
@@ -138,8 +132,6 @@ return (
             rows={rows} 
             columns={columns}
             slotProps={componentProps}
-                
-            
             />
         </Box>
 

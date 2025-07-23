@@ -26,18 +26,14 @@ export  function CategoryForm ({
 }:Props) {
  return(
     <Paper>
+        <Box p={2}>  
+            <form onSubmit={handleSubmit} >
+                <Grid container spacing={3}>
 
-
-            <Box p={2}>  
-
-
-                <form onSubmit={handleSubmit} >
-                    <Grid container spacing={3}>
-
-                        <Grid  size={{xs:12}}>
-                            <FormControl fullWidth>
-                                <TextField 
-                                    required
+                    <Grid  size={{xs:12}}>
+                        <FormControl fullWidth>
+                            <TextField 
+                                required
                                     name="name"
                                     label="Name"
                                     value={category.name}
