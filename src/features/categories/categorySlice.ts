@@ -1,9 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-
 import { Results } from "../../types/Category";
 import { apiSlice } from "../api/apiSlice";
-import { idText } from "typescript";
+
 
 export interface Category{
   id:string;
@@ -123,6 +122,5 @@ export const { createCategory, updateCategory, deleteCategory } =
 
 
  export const {useGetCategoriesQuery, useDeleteCategoryMutation}=categoriesApiSlice
-
 
 

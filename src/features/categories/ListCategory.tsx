@@ -1,7 +1,7 @@
 
 import { Box,Button,IconButton,Typography } from "@mui/material"
 import DeleteIcon from '@mui/icons-material/Delete';
-import { deleteCategory, selectCategories, useGetCategoriesQuery } from "./categorySlice";
+import { deleteCategory, selectCategories, useDeleteCategoryMutation, useGetCategoriesQuery } from "./categorySlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { Link } from "react-router-dom";
 import { DataGrid,
@@ -10,24 +10,26 @@ import { DataGrid,
     GridRowsProp
 } from '@mui/x-data-grid';
 import { enqueueSnackbar } from "notistack";
+import { useEffect } from "react";
 
 
 function CategoryList(){
  const {data, isFetching, error} = useGetCategoriesQuery() 
+ const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
 
  console.log(data?.data )
 
-    const categoriesState = useAppSelector(selectCategories);
+    
     const dispatch= useAppDispatch();
     const categories = categoriesState.categories.flat?.() ?? categoriesState.categories;
 
-    const rows: GridRowsProp = categories.map((category) =>({
+    const rows: GridRowsProp = data ? data.data.map((category) =>({
         id:category.id,
         name:category.name,
         description: category.description,
         is_active: false,
         createdAt: new Date(category.created_at).toLocaleDateString("en-US")
-    }));
+    })):[];
 
     const componentProps={toolbar:{
         showQuickFilter:true,
@@ -62,10 +64,16 @@ const columns: GridColDef[] = [
 ];
 
 
-function  handleDeleteCategory(id: string) {
-    dispatch(deleteCategory(id))
-    enqueueSnackbar("Category is deleted for sucess",{variant:"error"})
+ async function  handleDeleteCategory(id: string) {
+     await deleteCategory({id});
 }
+useEffect(()=>{
+    if(deleteCategoryStatus.isSuccess){
+        enqueueSnackbar(`Category Delete`,{variant:"success"})
+    }
+},[deleteCategoryStatus, enqueueSnackbar]
+)
+
 
 
 function renderActionsCell(params:GridRenderCellParams){
