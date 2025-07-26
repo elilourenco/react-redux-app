@@ -15,9 +15,34 @@ export interface Category{
 }
 
 
-const endpointUrl= "/categories";
+const endpointUrl= "/categories?page=1";
 
-function parseQueryParams(params: CategoryParams) {}
+function parseQueryParams(params: CategoryParams) {
+  const query = new URLSearchParams();
+
+  if (params.page) {
+    query.append("page", params.page.toString());
+  }
+
+  if (params.perPage) {
+    query.append("per_page", params.perPage.toString());
+  }
+
+  if (params.serach){
+    query.append("search", params.serach);
+  }
+  if (params.isActive !== undefined) {
+    query.append("is_active", params.isActive.toString());
+  }
+  return query.toString();
+}
+
+
+function getCategories({page =1, perPage = 10, search = "", isActive= true}){
+    const params = {page, perPage, search};
+
+    return `${endpointUrl}?${parseQueryParams(params)}`;
+}
 
 
 function  deleteCategoryMuatation(category: Category){
@@ -30,8 +55,8 @@ function  deleteCategoryMuatation(category: Category){
 
 export const  categoriesApiSlice = apiSlice.injectEndpoints({
     endpoints: ({query, mutation}) =>({
-    getCategories:query<Results, void >({
-    query: () =>`${endpointUrl}`,
+    getCategories:query<Results, CategoryParams >({
+    query: getCategories,
     providesTags:["Categories"],
     }),
 
