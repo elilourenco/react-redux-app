@@ -1,22 +1,23 @@
-import {GridColDef, GridFilterModel, GridRenderCellParams } from "@mui/x-data-grid";
+import {DataGrid, GridColDef, GridFilterModel, GridRenderCellParams } from "@mui/x-data-grid";
 import { Results } from "../../../types/Category"
 import { GridRenderEditCellParams } from "@mui/x-data-grid";
 import { IconButton } from "material-ui";
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from "react-router-dom";
+
 
 type Props ={
     data: Results | undefined;
     perPage: number;
     isFetching: boolean;
-    rowsPerPage?:number;
+    rowsPerPage?:number[];
 
     handleOnPageChange:(page:number) => void;
     handleFilterChange:(filterModel:GridFilterModel) => void ;
     handleOnPageSizeChange:(pagesize: number) => void;
-    handleDelete:(id:number) => void;
- };
+    handleDelete:(id:string) => void;
+};
  
 
  export function CategoriesTable({
@@ -29,13 +30,14 @@ type Props ={
     handleOnPageSizeChange,
     handleDelete,
 
- } : Props) {
+} : Props) {
     const componentProps ={
         toolbar:{
-            showQuickFilter: true,
-            quickFilterProps:{debounceMs:500}
-        }
-    }
+        showQuickFilter: true,
+        quickFilterProps:{debounceMs:500},
+    },
+};
+
 
 const columns: GridColDef[] = [
   
@@ -64,7 +66,17 @@ const columns: GridColDef[] = [
 ];
 
 
- }
+function  mapDatatoGridRows(data: Results){
+    const { data: categories} = data;
+      return  categories.map((category) =>({
+        id: category.id,
+        name:category.name,
+        isActive:category.is_active,
+        create_at: new Date(category.created_at).toLocaleDateString("pt-BR")
+
+    }));
+}
+
 
 
  function renderActionsCell(params:GridRenderEditCellParams){
@@ -103,7 +115,42 @@ function renderIsActiveCell(rowData:GridRenderCellParams){
 }
 
 
+const rows = data ? mapDatatoGridRows(data):[];
+const rowCount = data?.meta.total ||0
+        return(
+            <Box sx={{ display:"flex", height:"600"}}>
+                <DataGrid rows={rows} 
+                columns={columns}
+                initialState={{
+                    pagination:{
+                        paginationModel:{
+                            pageSize:perPage
+                        }
+                    }
+                }}
+                disableColumnSelector={true}
+                disableColumnFilter={true}
+                disableDensitySelector={true}
+                disableRowSelectionOnClick={true}
+                loading={isFetching}
+                rowCount={rowCount}
+                filterMode="server"
+                paginationMode="server"
+                slotProps={componentProps}
+                //onPageChange={handleOnPageChange}
+                //onfiltermodelchange={handleFilterChange}
+                //onPageSizeChange={handleOnPageSizeChange}
+                checkboxSelection={false}>
+
+                </DataGrid>
+
+            </Box>
+        )
+
+}
 
 
 
-export default CategoryList;
+
+
+
