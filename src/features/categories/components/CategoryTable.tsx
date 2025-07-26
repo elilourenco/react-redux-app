@@ -1,7 +1,7 @@
 import {DataGrid, GridColDef, GridFilterModel, GridRenderCellParams } from "@mui/x-data-grid";
 import { Results } from "../../../types/Category"
 import { GridRenderEditCellParams } from "@mui/x-data-grid";
-import { IconButton } from "material-ui";
+import { IconButton } from "@mui/material";
 import { Box, Typography } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from "react-router-dom";
@@ -140,9 +140,9 @@ const rowCount = data?.meta.total ||0
                 //onPageChange={handleOnPageChange}
                 //onfiltermodelchange={handleFilterChange}
                 //onPageSizeChange={handleOnPageSizeChange}
-                checkboxSelection={false}>
+                checkboxSelection={false}/>
 
-                </DataGrid>
+                
 
             </Box>
         )

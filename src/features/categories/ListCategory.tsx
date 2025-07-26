@@ -6,7 +6,6 @@ import { DataGrid, GridFilterModel,} from '@mui/x-data-grid';
 import { enqueueSnackbar, useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
-import { Category } from "@mui/icons-material";
 import { CategoriesTable } from "./components/CategoryTable";
 
 
@@ -15,7 +14,7 @@ function CategoryList(){
 
     const [perPage] = useState(10)
     const [search,setSearch] = useState("");
-    const {data } = useGetCategoriesQuery() 
+    const {data, isFetching } = useGetCategoriesQuery() 
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
 
     const dispatch= useAppDispatch();
@@ -34,7 +33,7 @@ function CategoryList(){
   }
 
 
- async function  handleDeleteCategory(id: number) {
+ async function  handleDeleteCategory(id: string) {
      await deleteCategory({id});
 }
 useEffect(()=>{
