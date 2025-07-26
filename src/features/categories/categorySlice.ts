@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../redux/store";
-import { Results } from "../../types/Category";
+import { CategoryParams, Results } from "../../types/Category";
 import { apiSlice } from "../api/apiSlice";
 
 
@@ -16,6 +16,9 @@ export interface Category{
 
 
 const endpointUrl= "/categories";
+
+function parseQueryParams(params: CategoryParams) {}
+
 
 function  deleteCategoryMuatation(category: Category){
   return {
