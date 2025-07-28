@@ -11,12 +11,14 @@ import { CategoriesTable } from "./components/CategoryTable";
 
 function CategoryList(){
     const [rowPerPage] = useState([10, 20, 50]);
-
+    
+     const [page, setPage] = useState(1);
     const [perPage] = useState(10)
     const [search,setSearch] = useState("");
-    const {data, isFetching } = useGetCategoriesQuery() 
+    const {data, isFetching , error} = useGetCategoriesQuery(options) 
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
-
+    
+    const options={ perPage,search, page}
     const dispatch= useAppDispatch();
     const {enqueueSnackbar} = useSnackbar()
 
