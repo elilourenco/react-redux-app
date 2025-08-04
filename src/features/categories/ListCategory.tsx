@@ -1,5 +1,5 @@
 
-import { Box,Button} from "@mui/material"
+import { Box,Button, Typography} from "@mui/material"
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from "./categorySlice";
 import { Link } from "react-router-dom";
 import { DataGrid, GridFilterModel,} from '@mui/x-data-grid';
@@ -12,43 +12,53 @@ import { CategoriesTable } from "./components/CategoryTable";
 function CategoryList(){
     const [rowPerPage] = useState([10, 20, 50]);
     
-     const [page, setPage] = useState(1);
-    const [perPage] = useState(10)
+    const [page, setPage] = useState(1);
+    const [perPage] = useState(10);
     const [search,setSearch] = useState("");
+    const options={perPage, search, page}
+
     const {data, isFetching , error} = useGetCategoriesQuery(options) 
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
-    
-    const options={ perPage,search, page}
     const dispatch= useAppDispatch();
     const {enqueueSnackbar} = useSnackbar()
 
   function handleOnPageChange(page: number) {
-    console.log("Page changed to: ", page);
+    setPage(page +1);
   }
 
    function handleFilterChange(filterModel: GridFilterModel) {
-    console.log("Filter model changed: ", filterModel);
+    if(filterModel.quickFilterValues?.length) {
+      const search= filterModel.quickFilterValues.join("")
+      setSearch(search)
+    }
+    return setSearch("");
 
    }
   function handleOnPageSizeChange(perPage: number) {
-    console.log("Page size changed to: ", perPage);
+    setPage(perPage)
   }
 
 
  async function  handleDeleteCategory(id: string) {
-     await deleteCategory({id});
+    await deleteCategory({id});
 }
 useEffect(()=>{
     if(deleteCategoryStatus.isSuccess){
         enqueueSnackbar(`Category Delete`,{variant:"success"})
     }
+
+    if(deleteCategoryStatus.isError){
+        enqueueSnackbar(`Error deleting category`,{variant:"error"})
+    }
+
+
 },[deleteCategoryStatus, enqueueSnackbar]
 )
 
 return (
     <Box maxWidth="lg"sx={{mt:4,mb:4}}>
         <Box display="flex" justifyContent={"flex-end"}>
-            <Button
+          <Button
             variant="contained"
             color="secondary"
             component={Link}
@@ -57,7 +67,7 @@ return (
             > 
             New category
 
-            </Button>
+          </Button>
         </Box>
         
 
@@ -72,10 +82,6 @@ return (
           handleFilterChange={handleFilterChange}
           />
             
-          
-
-
-        
         
     </Box>
 );

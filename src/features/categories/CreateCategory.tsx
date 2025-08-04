@@ -9,6 +9,7 @@ import { useSnackbar } from "notistack";
 
 export const CategoryCreate =() =>{
     const id= useParams().id || "";
+    
     const [isdisabled, setIsdisabled] = useState(false)
     const [isLoading,setIsLoanding] =useState(false)
     const  category= useAppSelector((state) => selectCategoryById(state,id))
@@ -35,7 +36,7 @@ export const CategoryCreate =() =>{
     };});
 
     const dispatch = useAppDispatch();
-const {enqueueSnackbar} = useSnackbar();
+    const {enqueueSnackbar} = useSnackbar();
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
         dispatch(createCategory(categoryState));
