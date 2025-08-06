@@ -1,15 +1,17 @@
 import { Box,Paper,Typography } from "@mui/material"
-import { Category, createCategory, selectCategoryById,  } from "./categorySlice";
-import React, { useState } from "react";
+import { Category, selectCategoryById, useCreateCategoryMutation,  } from "./categorySlice";
+import React, { useEffect, useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../app/hooks";
 import { useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 
 export const CategoryCreate =() =>{
     const id= useParams().id || "";
-    
+
+    const {enqueueSnackbar} = useSnackbar();
+    const [createCategory,status] = useCreateCategoryMutation();
     const [isdisabled, setIsdisabled] = useState(false)
     const [isLoading,setIsLoanding] =useState(false)
     const  category= useAppSelector((state) => selectCategoryById(state,id))
@@ -35,12 +37,11 @@ export const CategoryCreate =() =>{
         deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
     };});
 
-    const dispatch = useAppDispatch();
-    const {enqueueSnackbar} = useSnackbar();
+    // function submit
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>){
         e.preventDefault();
-        dispatch(createCategory(categoryState));
-        enqueueSnackbar("Category created sucessfully",{variant:"success"})
+         await createCategory(categoryState);
+        
     }
     const handleChange =(e: React.ChangeEvent<HTMLInputElement>)=> {
     const {name, value} = e.target;
@@ -50,6 +51,24 @@ export const CategoryCreate =() =>{
         const {name, checked} = e.target;
         setCategoryState({ ...categoryState,[name]:checked})
     }
+
+
+    useEffect(() => {
+
+        if(status.isSuccess) {
+            setIsdisabled(true);
+            enqueueSnackbar("Category created sucessfully",{variant:"success"})
+        }
+
+            if(status.error){
+                 enqueueSnackbar("Error creating category",{variant:"error"})
+
+            }
+            
+
+    },[ enqueueSnackbar, status.error, status.isSuccess] )
+
+
     return(
 
     

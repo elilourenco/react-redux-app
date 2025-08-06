@@ -1,9 +1,7 @@
 
-import { Box, Paper,Typography } from "@mui/material"
 import { useParams }from "react-router-dom";
-import { Category, selectCategoryById, updateCategory } from "./categorySlice";
-import React, { useState } from "react";
-import { CategoryForm } from "./components/CategoryForm";
+import { Category, selectCategoryById, updateCategory, useGetCategoryQuery } from "./categorySlice";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useSnackbar } from "notistack";
 
@@ -12,21 +10,19 @@ import { useSnackbar } from "notistack";
  const CategoryEdit =()=>{
 
     const id = useParams().id || "";
-    const [isdisabled, setIsdisabled] = useState(false);
-    const category = useAppSelector((state) => selectCategoryById(state,id ))
 
-    const [categoryState, setCategoryState]=useState<Category>(()=>{
-        if (!category) {
+    const {data: category, isFetching} = useGetCategoryQuery({id});
+    const [isdisabled, setIsdisabled] = useState(false);
+
+    const [categoryState, setCategoryState]=useState<Category>({
+        id:"",
+        name:"",
+        description:"",
+        is_active:false,
+        deleted_at:"",
+        created_at: "",
+    });
     
-    return {
-      id: "",
-      name: "",
-      description: "",
-      is_active: false,
-      deleted_at: null,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
  }
 
  return {
@@ -58,6 +54,16 @@ async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         const {name, checked} = e.target;
         setCategoryState({ ...categoryState,[name]:checked})
     }
+
+    useEffect(() => {
+        if(category){
+            
+           setCategoryState(category.data)
+            
+        }
+    },[category]);
+
+
     return(
 
     
