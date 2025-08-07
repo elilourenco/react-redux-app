@@ -1,91 +1,77 @@
 
 import { useParams }from "react-router-dom";
-import { Category, selectCategoryById, updateCategory, useGetCategoryQuery } from "./categorySlice";
+import { Category,  updateCategory, useGetCategoryQuery } from "./categorySlice";
 import React, { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { useSnackbar } from "notistack";
+import { Box } from "@mui/material";
+import { Paper } from "@mui/material";
+import { CategoryForm } from "./components/CategoryForm";
 
 
 
- const CategoryEdit =()=>{
-
+export const CategoryEdit = () => {
     const id = useParams().id || "";
-
-    const {data: category, isFetching} = useGetCategoryQuery({id});
+    const { data: category, isFetching } = useGetCategoryQuery({ id });
     const [isdisabled, setIsdisabled] = useState(false);
 
-    const [categoryState, setCategoryState]=useState<Category>({
-        id:"",
-        name:"",
-        description:"",
-        is_active:false,
-        deleted_at:"",
-        created_at: "",
+    const [categoryState, setCategoryState] = useState<Category>({
+        id: "",
+        name: "",
+        description: "",
+        is_active: false,
+        deleted_at: null,
+        created_at: new Date(),
+        updated_at: new Date(),
     });
-    
- }
 
- return {
-    ...category,
-    created_at: new Date(category.created_at),
-    updated_at: new Date(category.updated_at),
-    deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
-  };
-});
+    const dispatch = useAppDispatch();
+    const { enqueueSnackbar } = useSnackbar();
 
-const dispatch = useAppDispatch();
-const {enqueueSnackbar} = useSnackbar()
-
-async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    dispatch(updateCategory(categoryState));
-    enqueueSnackbar("Success Updating the Category!",{variant:"success"})
-  
-}
-    
-    const handleChange =(e: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = e.target;
-    console.log(name,value)
-    setCategoryState({ ...categoryState,[name]:value})
-
+    async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        dispatch(updateCategory(categoryState));
+        enqueueSnackbar("Success Updating the Category!", { variant: "success" });
     }
 
-    const handleToggle= (e: React.ChangeEvent<HTMLInputElement>) =>{
-        const {name, checked} = e.target;
-        setCategoryState({ ...categoryState,[name]:checked})
-    }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        console.log(name, value);
+        setCategoryState({ ...categoryState, [name]: value });
+    };
+
+    const handleToggle = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, checked } = e.target;
+        setCategoryState({ ...categoryState, [name]: checked });
+    };
 
     useEffect(() => {
-        if(category){
-            
-           setCategoryState(category.data)
-            
+        if (category && Array.isArray(category.data) && category.data.length > 0) {
+            const cat = category.data[0];
+            setCategoryState({
+                ...cat,
+                created_at: new Date(cat.created_at),
+                updated_at: new Date(),
+                deleted_at: cat.deleted_at ? new Date(cat.deleted_at) : null
+            });
         }
-    },[category]);
+    }, [category]);
 
-
-    return(
-
-    
+    return (
         <Box>
-        <Paper>
-            <Box p={2}>
-                <Box mb={2}>
-                    <Typography variant="h4"> Edit category</Typography>
-                </Box>
-            </Box>
-            <CategoryForm
-                category={categoryState}
-                isdisabled={isdisabled}
-                isLoading={false}
-                handleSubmit={handleSubmit}
-                handleChange={handleChange}
-                handleToggle={handleToggle}
-            />
-        </Paper>
+            <Paper>
+                <CategoryForm
+                    category={categoryState}
+                    isdisabled={isdisabled}
+                    isLoading={isFetching}
+                    handleSubmit={handleSubmit}
+                    handleChange={handleChange}
+                    handleToggle={handleToggle}
+                />
+            </Paper>
         </Box>
-    )
-}
+    );
+};
 
 export default CategoryEdit;
 
