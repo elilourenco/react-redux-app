@@ -1,6 +1,6 @@
 
 import { useParams }from "react-router-dom";
-import { Category,  updateCategory, useGetCategoryQuery } from "./categorySlice";
+import { Category,useGetCategoryQuery, useUpdateCategoryMutation } from "./categorySlice";
 import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { useSnackbar } from "notistack";
@@ -14,6 +14,7 @@ export const CategoryEdit = () => {
     const id = useParams().id || "";
     const { data: category, isFetching } = useGetCategoryQuery({ id });
     const [isdisabled, setIsdisabled] = useState(false);
+    const [updateCategory, Status] = useUpdateCategoryMutation();
 
     const [categoryState, setCategoryState] = useState<Category>({
         id: "",
@@ -30,7 +31,7 @@ export const CategoryEdit = () => {
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        dispatch(updateCategory(categoryState));
+        await updateCategory(categoryState)
         enqueueSnackbar("Success Updating the Category!", { variant: "success" });
     }
 
@@ -57,12 +58,23 @@ export const CategoryEdit = () => {
         }
     }, [category]);
 
+
+useEffect(() => {
+    if (Status.isSuccess) {
+        enqueueSnackbar("Category updated successfully!", { variant: "success" });
+        setIsdisabled(true);
+    }
+    if (Status.isError) {
+        enqueueSnackbar("Error updating category!", { variant: "error" });
+    }
+},[enqueueSnackbar, Status.error, Status.isSuccess]);
+
     return (
         <Box>
             <Paper>
                 <CategoryForm
                     category={categoryState}
-                    isdisabled={isdisabled}
+                    isdisabled={Status.isLoading }
                     isLoading={isFetching}
                     handleSubmit={handleSubmit}
                     handleChange={handleChange}
