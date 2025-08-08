@@ -1,12 +1,15 @@
 
-import { Box,Button, Typography} from "@mui/material"
+import { Box,Button} from "@mui/material"
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from "./categorySlice";
 import { Link } from "react-router-dom";
-import { DataGrid, GridFilterModel,} from '@mui/x-data-grid';
-import { enqueueSnackbar, useSnackbar } from "notistack";
+import {  GridFilterModel,} from '@mui/x-data-grid';
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { CategoriesTable } from "./components/CategoryTable";
+
+import { useGetcastMembersQuery } from "../cast/CastMembersSlice";
+
 
 
 function CategoryList(){
@@ -19,6 +22,9 @@ function CategoryList(){
 
     const {data, isFetching , error} = useGetCategoriesQuery(options) 
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
+
+   
+
     const dispatch= useAppDispatch();
     const {enqueueSnackbar} = useSnackbar()
 

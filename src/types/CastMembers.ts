@@ -5,6 +5,11 @@ export interface  Results{
     meta:Meta;
 }
 
+export interface  Result{
+    data:CastMember;
+    links:Links;
+    meta:Meta;
+}
 
 export interface CastMember {
     data: Datum[];
