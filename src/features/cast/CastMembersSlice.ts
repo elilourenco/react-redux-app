@@ -20,11 +20,21 @@ export const InitialState:CastMember = {
 }
 
 function parseQueryParams(params: CastMemberParams) {
-
     return null;
 }
 
+function getCastMembers(params: CastMemberParams){
+    const  {page=1, perPage=10, search, type} = params;
+    return `${endpointsUrl}?${parseQueryParams({
+        page,
+        perPage,
+        search,
+        type
 
-export const  CastMemberSlice = apiSlice.injectEndpoints({
-    endpoints()=> null
+    })} `;
+}
+
+
+export const  castMembersApiSlice = apiSlice.injectEndpoints({
+    endpoints:()=> null,
 })
