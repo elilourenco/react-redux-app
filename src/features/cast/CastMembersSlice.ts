@@ -1,10 +1,5 @@
-
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../redux/store";
-import { CastMemberParams, Results ,CastMember} from "../../types/CastMembers";
+import { CastMemberParams, Results ,CastMember, Result} from "../../types/CastMembers";
 import { apiSlice } from "../api/apiSlice";
-
-
 
 const endpointsUrl = "/cast-members?";
 
@@ -15,6 +10,9 @@ export const InitialState:CastMember = {
     deleteAt: null,
     createdAt: "",
     updateAt: "",
+    data:[],
+    links: {} as import("../../types/CastMembers").Links,
+    meta:{} as import("../../types/CastMembers").Meta,
 };
 
 function parseQueryParams(params: CastMemberParams) {
@@ -51,23 +49,69 @@ function getCastMembers(params: CastMemberParams){
 }
 
 
-function deleteCastMember(id: string){
+function deleteCastMember({id}: {id:string}){
     return {
-
     url: `${endpointsUrl}${id}`,
     method:"DELETE",
 }
 }
 
+function  getCastMember({ id }: { id: string }) {
+    return{
+        method:"GET",
+        url: `${endpointsUrl}${id}`,
+    }
+}
 
+ function  updateCastMember(castMember: CastMember) {
+    return {
+        method: "PUT",
+        url: `${endpointsUrl}${castMember.id}`,
+        data: castMember
+    }
+ }
+
+function createCastMember(castMember: CastMember) {
+    return {
+        url: endpointsUrl,
+        method: "POST",
+        body: castMember,
+    };
+}
 export const  castMembersApiSlice = apiSlice.injectEndpoints({
     endpoints:({query,mutation})=>({
         getcastMembers: query<Results, CastMemberParams>({
             query:getCastMembers,
             providesTags:["CastMembers"]
-        })
+        }),
+        getCastMember: query<Result, {id:string}>({
+            query:getCastMember,
+            providesTags:["CastMembers"]
+        }),
+
+        
+        updateCastMember:mutation<Result, CastMember>({
+            query: updateCastMember,
+            invalidatesTags: ["CastMembers"]
+
+        }),
+
+        createCastMember: mutation<Result, CastMember>({
+            query: createCastMember,
+            invalidatesTags: ["CastMembers"]
+        }),
+
+        deteleCastMember: mutation<Result, {id:string;}>({
+            query: deleteCastMember,
+            invalidatesTags: ["CastMembers"]
+        }),
 }),
+
 });
 
 
- export const {useGetcastMembersQuery} = castMembersApiSlice;
+ export const {useGetcastMembersQuery,
+    useGetCastMemberQuery,
+    useUpdateCastMemberMutation,
+    useCreateCastMemberMutation,
+ } = castMembersApiSlice;

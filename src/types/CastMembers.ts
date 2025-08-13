@@ -12,6 +12,12 @@ export interface  Result{
 }
 
 export interface CastMember {
+    id: string;
+    name:string;
+    type:number;
+    deleteAt: boolean | null;
+    createdAt: string;
+    updateAt: string;
     data: Datum[];
     links: Links;
     meta: Meta;
