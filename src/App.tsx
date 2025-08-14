@@ -9,6 +9,7 @@ import CategoryEdit  from './features/categories/EditCategory';
 import CategoryCreate from './features/categories/CreateCategory';
 import { SnackbarProvider } from 'notistack';
 import { ListCastmembers } from './features/cast/ListCastmembers';
+import CreateCastMembers from './features/cast/components/CreateCastMembers';
 
 
 
@@ -44,7 +45,7 @@ export default function ButtonUsage() {
       {/*  cast members*/}
 
       <Route path="/cast-members" element={<ListCastmembers />} />
-        
+      <Route path="/cast-members/create" element={<CreateCastMembers />} />        
 
       <Route path="*" element={
         <Box sx={{color: "white"}}>

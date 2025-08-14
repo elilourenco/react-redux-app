@@ -1,5 +1,5 @@
 import {DataGrid, GridColDef, GridFilterModel, GridRenderCellParams } from "@mui/x-data-grid";
-import { Results } from "../../../types/Category"
+import { Results } from "../../../types/CastMembers";
 import { GridRenderEditCellParams } from "@mui/x-data-grid";
 import { IconButton } from "@mui/material";
 import { Box, Typography } from "@mui/material";
@@ -64,12 +64,11 @@ const columns: GridColDef[] = [
 
 
 function  mapDatatoGridRows(data: Results){
-    const { data: categories} = data;
-      return  categories.map((category) =>({
-        id: category.id,
-        name:category.name,
-        isActive:category.is_active,
-        create_at: new Date(category.created_at).toLocaleDateString("pt-BR")
+    const { data: castMembers} = data;
+      return castMembers.map((castMember) =>({
+        id:castMember.id,
+        name:castMember.name,
+        type:castMember.type 
 
     }));
 }
@@ -95,18 +94,19 @@ function renderNameCell(rowData: GridRenderCellParams) {
     return(
         <Link
             style={{ textDecoration: "none" }}
-            to={`/categories/edit/${rowData.id}`}
+            to={`/cast-members/edit/${rowData.id}`}
         >
             <Typography>{rowData.value}</Typography>
         </Link>
     )
 }
 
-function renderIsActiveCell(rowData:GridRenderCellParams){
+function renderTypeCell(rowData:GridRenderCellParams){
    
     return(
-        <Typography color ={rowData.value ? "primary" :"secondary"}> 
-        {rowData.value ? "Active ": "Inactive"}
+        <Typography color = "primary">
+
+        {rowData.value === 1 ? "Director" :"Actor"}
         </Typography>
     )
 }

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDeleteCastMemberMutation, useGetcastMembersQuery } from "./CastMembersSlice";
 import { GridFilterModel } from "@mui/x-data-grid";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useSnackbar } from "notistack";
+import { CastMembersTable } from "./components/CastMembersTable";
 
 
 const initialOptions = {
@@ -27,10 +28,8 @@ async function handleDeleteCastMember(id: string) {
     await deleteCastMember(castMember);
   }
 }
-function handlePageChange(page:number) {
-
-  options.page = page;
-  setOptions({ ...options, page });
+function handleOnPageChange(page:number) {
+  setOptions({ ...options, page: page + 1 });
 }
 
 function handleOnPageSizeChange(perPage:number) {
@@ -76,8 +75,20 @@ function handleOnPageSizeChange(perPage:number) {
             New Cast Member
 
           </Button>
+          </Box>
 
-        </Box>
+          <CastMembersTable
+            data={data}
+            perPage={options.perPage}
+            isFetching={isFetching}
+            rowsPerPage={options.rowsPerPage}
+            handleOnPageChange={handleOnPageChange}
+            handleFilterChange={handleFilterChange}
+            handleOnPageSizeChange={handleOnPageSizeChange}
+            handleDelete={handleDeleteCastMember}
+          />
+
+      
       </Box>
     )
   }
