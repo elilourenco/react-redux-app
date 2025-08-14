@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGetcastMembersQuery } from "./CastMembersSlice";
+import { useDeleteCastMemberMutation, useGetcastMembersQuery } from "./CastMembersSlice";
 import { GridFilterModel } from "@mui/x-data-grid";
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import { useSnackbar } from "notistack";
+
 
 const initialOptions = {
   page: 1,
@@ -13,14 +15,23 @@ const initialOptions = {
 
 export const  ListCastmembers = () => {
 
-  const [options, setOptions] = useState(initialOptions);
+const { enqueueSnackbar } = useSnackbar();
+const [options, setOptions] = useState(initialOptions);
 const {data, isFetching, error} = useGetcastMembersQuery(options);
+const [deleteCastMember, deleteCastMemberStatus] = useDeleteCastMemberMutation();
+
+
+async function handleDeleteCastMember(id: string) {
+  const castMember = data?.data.find((member: any) => member.id === id);
+  if (castMember) {
+    await deleteCastMember(castMember);
+  }
+}
 function handlePageChange(page:number) {
 
   options.page = page;
   setOptions({ ...options, page });
 }
-
 
 function handleOnPageSizeChange(perPage:number) {
   options.perPage = perPage;
@@ -41,11 +52,15 @@ function handleOnPageSizeChange(perPage:number) {
 
   useEffect(() => {
 
-    if(error){
-      console.log("Error fetching cast members:", error);
+    if( deleteCastMemberStatus.isSuccess) {
+      enqueueSnackbar(`Cast Member Deleted`, { variant: "success" });
+     
+    }
+    if(deleteCastMemberStatus.isError) {
+      enqueueSnackbar(`Error deleting Cast Member`, { variant: "error" });
     }
 
-  },[error]);
+  },[deleteCastMemberStatus, enqueueSnackbar]);
 
   if(error){
     return (
