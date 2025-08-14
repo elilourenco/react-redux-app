@@ -1,27 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetcastMembersQuery } from "./CastMembersSlice";
 import { GridFilterModel } from "@mui/x-data-grid";
+import { Box, Button, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
-
+const initialOptions = {
+  page: 1,
+  perPage: 10,
+  search: "",
+  rowsPerPage: [10, 25, 50, 100],
+}
 
 export const  ListCastmembers = () => {
 
-const [page, setPage] = useState(1);
-const [search, setSearch] = useState("");
-const [perPage, setPerPage] = useState(10);
-const [rowsPerPage] = useState([10, 25, 50, 100]);
-const options = {page, perPage, search};
-
-
+  const [options, setOptions] = useState(initialOptions);
 const {data, isFetching, error} = useGetcastMembersQuery(options);
 function handlePageChange(page:number) {
 
-  setPage(page+1);
+  options.page = page;
+  setOptions({ ...options, page });
 }
 
 
 function handleOnPageSizeChange(perPage:number) {
-  setPerPage(perPage);
+  options.perPage = perPage;
+  setOptions({ ...options, perPage})
 }
 
 
@@ -29,11 +32,39 @@ function handleOnPageSizeChange(perPage:number) {
     if(filterModel.quickFilterValues?.length ) {
       const search = filterModel.quickFilterValues.join("");
       options.search = search;
-      setSearch(search);
+      setOptions({ ...options, search });
     }
 
-    return setSearch("");    
+    return setOptions({ ...options, search: "" });   
     
+  }
+
+  useEffect(() => {
+
+    if(error){
+      console.log("Error fetching cast members:", error);
+    }
+
+  },[error]);
+
+  if(error){
+    return (
+      <Box  maxWidth="lg" sx={{mt:4, mb:4 }}>
+        <Box display={"flex"} justifyContent="flex-end" >
+          <Button 
+          variant="contained"
+          color="secondary"
+          component={Link}
+          to="/cast-members/create"
+          style={{marginBottom: "1rem"}}
+          >
+            New Cast Member
+
+          </Button>
+
+        </Box>
+      </Box>
+    )
   }
 
   return (

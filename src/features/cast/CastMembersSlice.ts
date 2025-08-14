@@ -101,7 +101,7 @@ export const  castMembersApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ["CastMembers"]
         }),
 
-        deteleCastMember: mutation<Result, {id:string;}>({
+        deleteCastMember: mutation<Result, CastMember>({
             query: deleteCastMember,
             invalidatesTags: ["CastMembers"]
         }),
@@ -114,4 +114,5 @@ export const  castMembersApiSlice = apiSlice.injectEndpoints({
     useGetCastMemberQuery,
     useUpdateCastMemberMutation,
     useCreateCastMemberMutation,
+    useDeleteCastMemberMutation
  } = castMembersApiSlice;
