@@ -67,7 +67,7 @@ function  getCastMember({ id }: { id: string }) {
     return {
         method: "PUT",
         url: `${endpointsUrl}${castMember.id}`,
-        data: castMember
+        body: castMember
     }
  }
 

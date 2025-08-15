@@ -14,7 +14,7 @@ const initialOptions = {
   rowsPerPage: [10, 25, 50, 100],
 }
 
-export const  ListCastmembers = () => {
+export const  ListCastMembers = () => {
 
 const { enqueueSnackbar } = useSnackbar();
 const [options, setOptions] = useState(initialOptions);

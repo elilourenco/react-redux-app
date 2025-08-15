@@ -60,9 +60,8 @@ export  function CastMemberForm ({
                                 name="type"
                                 value={castMember.type}
                                 onChange={handleChange}>
-                                <FormControlLabel value={2} control={<Radio />} label="Diretor"/>
-
-                                <RadioGroup/>
+                                    <FormControlLabel value={2} control={<Radio />} label="Diretor"/>
+                                </RadioGroup>
                                                
                             
                             </FormGroup>
