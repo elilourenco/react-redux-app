@@ -9,7 +9,7 @@ export const store=configureStore({
   reducer:{
     counter: counterSlice.reducer,
     categories: categoriesSlice,
-    api: apiSlice.reducer,
+    apiSlice: apiSlice.reducer,
    
     }, 
     middleware: (getDefaultMiddleware) =>

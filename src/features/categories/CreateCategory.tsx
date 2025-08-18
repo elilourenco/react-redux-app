@@ -7,35 +7,23 @@ import { useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
 
-export const CategoryCreate =() =>{
+export const CategoryCreate =() =>{ 
+    
     const id= useParams().id || "";
-
     const {enqueueSnackbar} = useSnackbar();
     const [createCategory,status] = useCreateCategoryMutation();
     const [isdisabled, setIsdisabled] = useState(false)
     const [isLoading,setIsLoanding] =useState(false)
     const  category= useAppSelector((state) => selectCategoryById(state,id))
 
-    const [categoryState, setCategoryState]=useState<Category>(()=>{
-        if (!category) {
-    
-        return {
-            id: "",
-            name: "",
-            description: "",
-            is_active: false,
-            deleted_at: null,
-            created_at: new Date(),
-            updated_at: new Date(),
-       };
-   }
 
-    return {
-        ...category,
-        created_at: new Date(category.created_at),
-        updated_at: new Date(category.updated_at),
-        deleted_at: category.deleted_at ? new Date(category.deleted_at) : null
-    };});
+    const [categoryState, setCategoryState] = useState<Category>({
+        id: Number(id),
+        first_Name: "",
+        last_Name: "",
+        email: "",
+        
+    });
 
     // function submit
     async function handleSubmit(e:React.FormEvent<HTMLFormElement>){

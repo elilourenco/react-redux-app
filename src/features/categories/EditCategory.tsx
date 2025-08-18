@@ -17,13 +17,11 @@ export const CategoryEdit = () => {
     const [updateCategory, Status] = useUpdateCategoryMutation();
 
     const [categoryState, setCategoryState] = useState<Category>({
-        id: "",
-        name: "",
-        description: "",
-        is_active: false,
-        deleted_at: null,
-        created_at: new Date(),
-        updated_at: new Date(),
+        id: Number(id),
+        first_Name: "",
+        last_Name: "",
+        email: "",
+        
     });
 
     const dispatch = useAppDispatch();
@@ -46,17 +44,17 @@ export const CategoryEdit = () => {
         setCategoryState({ ...categoryState, [name]: checked });
     };
 
-    useEffect(() => {
+    {/* useEffect(() => {
         if (category && Array.isArray(category.data) && category.data.length > 0) {
             const cat = category.data[0];
             setCategoryState({
                 ...cat,
-                created_at: new Date(cat.created_at),
-                updated_at: new Date(),
+                created_at: "",
+                updated_at: "",
                 deleted_at: cat.deleted_at ? new Date(cat.deleted_at) : null
             });
         }
-    }, [category]);
+    }, [category]); */}
 
 
 useEffect(() => {

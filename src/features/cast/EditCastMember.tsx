@@ -3,8 +3,7 @@ import { CastMember, CastMemberParams } from '../../types/CastMembers';
 import { InitialState, useGetcastMembersQuery,useUpdateCastMemberMutation } from './CastMembersSlice';
 import {useSnackbar} from 'notistack';
 import { useParams } from 'react-router-dom';
-import { Box} from '@mui/material';
-import { Paper } from 'material-ui';
+import { Box, Paper} from '@mui/material'
 import { CastMemberForm } from './components/CastMemberForm';
 
 

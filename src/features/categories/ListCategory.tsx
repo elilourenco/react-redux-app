@@ -8,9 +8,6 @@ import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../app/hooks";
 import { CategoriesTable } from "./components/CategoryTable";
 
-import { useGetcastMembersQuery } from "../cast/CastMembersSlice";
-
-
 
 function CategoryList(){
     const [rowPerPage] = useState([10, 20, 50]);
@@ -20,7 +17,9 @@ function CategoryList(){
     const [search,setSearch] = useState("");
     const options={perPage, search, page}
 
-    const {data, isFetching , error} = useGetCategoriesQuery(options) 
+    const {data, isFetching , error} = useGetCategoriesQuery(options)
+    
+    console.log(data)
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
 
    

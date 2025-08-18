@@ -16,13 +16,10 @@ export interface Result{
 }
 
  export interface  Category{
-    id:string,
-    name:string,
-    deleted_at: string,
-    is_active:boolean,
-    created_at: string,
-    update_at:String,
-    description: null | string
+    id:number,
+    first_Name:string,
+    last_Name: string,
+    email:string
 }
 
 export interface Links{

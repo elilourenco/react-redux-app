@@ -1,9 +1,9 @@
 import { createApi,fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const baseUrl="http://localhost:8000/api";
+const baseUrl="https://dummyjson.com";
 
 export const  apiSlice = createApi({
-    reducerPath:"api",
+    reducerPath:"apiSlice",
     tagTypes:["Categories", "CastMembers"],
     endpoints:(builder) =>({}),
     baseQuery:fetchBaseQuery({baseUrl}),

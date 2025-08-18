@@ -1,4 +1,3 @@
-
 import { Box,ThemeProvider } from '@mui/system';
 import { Header } from './components/Header';
 import Layout from './components/Layout';
@@ -17,8 +16,6 @@ import { EditCastMember } from './features/cast/EditCastMember';
 export default function ButtonUsage() {
   return(
   <ThemeProvider theme={appTheme}>
-
-
     <SnackbarProvider maxSnack={3}
     autoHideDuration={2000}
     anchorOrigin={{

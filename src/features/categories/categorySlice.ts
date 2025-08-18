@@ -5,17 +5,15 @@ import { apiSlice } from "../api/apiSlice";
 
 
 export interface Category{
-  id:string;
-  name: string;
-  is_active:boolean;
-  created_at: Date;
-  updated_at:Date;
-  deleted_at:null| Date;
-  description:null|string;
+  id:number;
+  first_Name: string;
+  last_Name:string;
+  email: string;
+  
 }
 
 
-const endpointUrl= "/categories?page=1";
+const endpointUrl= "/users";
 
 function parseQueryParams(params: CategoryParams) {
   const query = new URLSearchParams();
@@ -52,12 +50,12 @@ function createCategoryMutation(category: Category) {
     body: category,
   };
 }
-function  deleteCategoryMuatation(category: Category){
+function deleteCategoryMuatation({ id }: { id: string }) {
   return {
-    url:`${endpointUrl}/${category.id}`,
+    url: `${endpointUrl}/${id}`,
     method: "DELETE",
-  }
-} 
+  };
+}
 
 function updateCategoryMutation(category:Category){
   return{
@@ -82,6 +80,7 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
      providesTags:["Categories"]
     }),
 
+
     createCategory : mutation<Results, Category>({
     query:createCategoryMutation,
     invalidatesTags: ["Categories"],
@@ -100,23 +99,18 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
 
 
 const category:Category={
-  id:"O",
-  name :"Olive",
-  description: "Olive is a versatle fruit that is used to make olive oil",
-  is_active:true,
-  deleted_at:null,
-  created_at:new Date(),
-  updated_at:new Date(),
-
-
+  id:1,
+  first_Name:"Olive",
+  last_Name: "Bruno",
+  email:"eelizandralourenco@gmail.com",
+  
 };
-
 
 const categories =[
     category,
-    { ...category, id:"A", name:"Apple"},
-    { ...category, id:"B", name:"Patch"},
-    { ...category, id:"C",name:"Banana"},
+    { ...category, id: 2, first_Name:"Apple"},
+    { ...category, id: 3, first_Name:"Patch"},
+    { ...category, id: 4, first_Name:"Banana"},
 ];
 
 
@@ -133,9 +127,10 @@ const categoriesSlice = createSlice({
     createCategory(state, action) {
       state.categories.push(action.payload)
     },
+
     updateCategory(state, action) {
       // Find the index of the category to update
-      const index= state.categories.findIndex((category: Category) =>
+      const index= state.categories.findIndex((category) =>
          category.id === action.payload.id);
 
       if (index !== -1) {
@@ -160,16 +155,14 @@ export  const selectCategories= (state:RootState) => state.categories;
 //selectores
 export const selectCategoryById = (state: RootState,id: string) =>{
 
- const category =state.categories.categories.find((category:Category) =>category.id === id)
+ const category = state.categories.categories.find((category: Category) => category.id === Number(id));
  
- return  ( category  || {
-  id: "",
-  name:"",
-  description:"",
-  is_active:false,
-  deleted_at: null,
-  created_at: "",
-  updated_at:"",
+ return (category || {
+  id,
+  first_Name: "",
+  last_Name: "",
+  email: "",
+  
 })};
   
 

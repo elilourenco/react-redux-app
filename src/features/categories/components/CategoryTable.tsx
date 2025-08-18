@@ -37,20 +37,24 @@ type Props ={
         quickFilterProps:{debounceMs:500},
     },
 };
+ 
 
 
 const columns: GridColDef[] = [
   
-  { field: 'name', headerName: 'Name', flex:1,
-    renderCell: renderNameCell,
+  { field: 'first_Name', 
+    headerName: 'first_Name',
+     flex:1,
+    renderCell: renderFirstNameCell,
    },
   
-  {field:"isActive",
-    headerName:"Active ", 
+  {field:"last_Name",
+    headerName:"last_Name", 
     flex:1, 
-    type: "boolean",
-    renderCell: renderIsActiveCell
+    
+    renderCell: renderLastNameCell
    },
+   
    {
     field: "createdAt",
     headerName: "Created At",
@@ -63,18 +67,25 @@ const columns: GridColDef[] = [
     type: "string",
     renderCell:renderActionsCell
    }
-];
+]; 
 
 
 function  mapDatatoGridRows(data: Results){
     const { data: categories} = data;
+    if( categories && Array.isArray(categories)){
+
+    
       return  categories.map((category) =>({
         id: category.id,
-        name:category.name,
-        isActive:category.is_active,
-        create_at: new Date(category.created_at).toLocaleDateString("pt-BR")
+        first_Name:category.first_Name,
+        last_Name:category.last_Name,
+        email:category.email,
 
     }));
+
+    return [];
+
+}
 }
 
 
@@ -94,7 +105,7 @@ function  mapDatatoGridRows(data: Results){
 }
 
 
-function renderNameCell(rowData: GridRenderCellParams) {
+function renderFirstNameCell(rowData: GridRenderCellParams) {
     return(
         <Link
             style={{ textDecoration: "none" }}
@@ -105,18 +116,20 @@ function renderNameCell(rowData: GridRenderCellParams) {
     )
 }
 
-function renderIsActiveCell(rowData:GridRenderCellParams){
+function renderLastNameCell(rowData:GridRenderCellParams){
    
     return(
-        <Typography color ={rowData.value ? "primary" :"secondary"}> 
-        {rowData.value ? "Active ": "Inactive"}
-        </Typography>
+        <Link style={{textDecoration:"none"}} 
+        to={`/categories/edit/${rowData.id}`}
+        >
+        <Typography>{rowData.value}</Typography>
+        </Link>
     )
 }
 
 
 const rows = data ? mapDatatoGridRows(data):[];
-const rowCount = data?.meta.total ||0
+const rowCount = data?.meta?.total || 0
         return(
             <Box sx={{ display:"flex", height:"600"}}>
                 <DataGrid rows={rows} 

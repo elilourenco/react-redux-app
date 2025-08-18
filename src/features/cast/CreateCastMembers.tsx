@@ -2,8 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { CastMember } from '../../types/CastMembers';
 import { InitialState, useCreateCastMemberMutation } from './CastMembersSlice';
 import {useSnackbar} from 'notistack'
-import { Box, Typography } from '@mui/material';
-import { Paper } from 'material-ui';
+import { Box, Typography, Paper } from '@mui/material';
 import { CastMemberForm } from './components/CastMemberForm';
 
 

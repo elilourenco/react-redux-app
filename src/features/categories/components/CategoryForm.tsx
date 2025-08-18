@@ -34,9 +34,9 @@ export  function CategoryForm ({
                         <FormControl fullWidth>
                             <TextField 
                                 required
-                                    name="name"
-                                    label="Name"
-                                    value={category.name}
+                                    name="first_Name"
+                                    label="first_Name"
+                                    value={category.first_Name}
                                     disabled={isdisabled}
                                     onChange={handleChange}
                                 />
@@ -48,9 +48,9 @@ export  function CategoryForm ({
                             <FormControl fullWidth>
                                 <TextField
                                     required
-                                    name="descrition"
-                                    label="Description"
-                                    value={category.description}
+                                    name="last_Name"
+                                    label="last_Name"
+                                    value={category.last_Name}
                                     disabled={isdisabled}
                                     onChange={handleChange}
                                 />
@@ -58,7 +58,24 @@ export  function CategoryForm ({
 
                         </Grid>
 
-                        <Grid size={{xs:12}} >
+                                                <Grid size={{xs:12}} >
+                            <FormControl fullWidth>
+                                <TextField
+                                    required
+                                    name="email"
+                                    label="email"
+                                    value={category.email}
+                                    disabled={isdisabled}
+                                    onChange={handleChange}
+                                />
+                            </FormControl>
+
+                        </Grid>
+
+
+                        
+
+                        {/*<Grid size={{xs:12}} >
                             <FormGroup>
                                 <FormControlLabel
                                     control={
@@ -77,7 +94,7 @@ export  function CategoryForm ({
                             
                             </FormGroup>
 
-                        </Grid>
+                        </Grid> */}
 
                         <Grid size={{xs:12}} >
                             <Box display="flex" gap={2}>
