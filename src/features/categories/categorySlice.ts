@@ -13,7 +13,8 @@ export interface Category{
 }
 
 
-const endpointUrl= "/users";
+const endpointUrl= "/add";
+const endpointUrlist="/${id}" 
 
 function parseQueryParams(params: CategoryParams) {
   const query = new URLSearchParams();
@@ -39,7 +40,7 @@ function parseQueryParams(params: CategoryParams) {
 function getCategories({page =1, perPage = 10, search = "", isActive= true}){
     const params = {page, perPage, search};
 
-    return `${endpointUrl}?${parseQueryParams(params)}`;
+    return `${endpointUrlist}?${parseQueryParams(params)}`;
 }
 
 
@@ -50,7 +51,7 @@ function createCategoryMutation(category: Category) {
     body: category,
   };
 }
-function deleteCategoryMuatation({ id }: { id: string }) {
+function deleteCategoryMutation({ id }: { id: string }) {
   return {
     url: `${endpointUrl}/${id}`,
     method: "DELETE",
@@ -65,7 +66,7 @@ function updateCategoryMutation(category:Category){
   };
 }
 
-function getCategory( {id}:{id: string}) {
+function getCategoryMutation( {id}:{id: string}) {
   return `${endpointUrl}/${id}`;
 }
 
@@ -76,7 +77,7 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
     providesTags:["Categories"],
     }),
     getCategory: query<Results,{id:string}>({
-     query: getCategory,
+     query: getCategoryMutation,
      providesTags:["Categories"]
     }),
 
@@ -86,7 +87,7 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
     invalidatesTags: ["Categories"],
         }),
     deleteCategory: mutation<Results, { id: string}>({
-      query: deleteCategoryMuatation,
+      query: deleteCategoryMutation,
       invalidatesTags:["Categories"],
     }),
     updateCategory: mutation<Results, Category>({

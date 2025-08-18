@@ -58,7 +58,7 @@ export  function CategoryForm ({
 
                         </Grid>
 
-                                                <Grid size={{xs:12}} >
+                            <Grid size={{xs:12}} >
                             <FormControl fullWidth>
                                 <TextField
                                     required

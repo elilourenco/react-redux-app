@@ -137,8 +137,9 @@ function renderEmailCell (rowData:GridRenderCellParams){
     )
 }
 
-
 const rows = data ? mapDatatoGridRows(data):[];
+
+
 const rowCount = data?.meta?.total || 0
         return(
             <Box sx={{ display:"flex", height:"600"}}>

@@ -1,7 +1,7 @@
 import { CastMemberParams, Results ,CastMember, Result} from "../../types/CastMembers";
 import { apiSlice } from "../api/apiSlice";
 
-const endpointsUrl = "/cast-members?";
+const endpointsUrl = "/add";
 
 export const InitialState:CastMember = {
     id: "",

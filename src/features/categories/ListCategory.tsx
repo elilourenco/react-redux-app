@@ -20,6 +20,7 @@ function CategoryList(){
     const {data, isFetching , error} = useGetCategoriesQuery(options)
     
     console.log(data)
+    
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
 
    
