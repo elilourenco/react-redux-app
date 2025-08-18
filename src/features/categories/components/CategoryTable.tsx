@@ -56,9 +56,10 @@ const columns: GridColDef[] = [
    },
    
    {
-    field: "createdAt",
-    headerName: "Created At",
-    flex:1
+    field: "email",
+    headerName: "email",
+    flex:1,
+    renderCell: renderEmailCell
    },
 
    {
@@ -87,7 +88,6 @@ function  mapDatatoGridRows(data: Results){
 
 }
 }
-
 
 
  function renderActionsCell(params:GridRenderEditCellParams){
@@ -123,6 +123,16 @@ function renderLastNameCell(rowData:GridRenderCellParams){
         to={`/categories/edit/${rowData.id}`}
         >
         <Typography>{rowData.value}</Typography>
+        </Link>
+    )
+}  
+
+function renderEmailCell (rowData:GridRenderCellParams){
+    return(
+        <Link style={{textDecoration:"nome"}}
+            to={`/categories/edit/${rowData.id}`}
+            >
+            <Typography> {rowData.value}</Typography>
         </Link>
     )
 }
