@@ -2,58 +2,54 @@ import { render } from "@testing-library/react";
 import { CastMembersTable } from "./CastMembersTable";
 import { GridFilterModel } from "@mui/x-data-grid";
 import { BrowserRouter } from "react-router-dom";
+import { CastMember } from "../../../types/CastMembers";
 
+
+  type Meta ={
+    to:number
+    from:number
+    path: string
+    total:number
+    perPage:number
+    LastPage: number;
+    currentPage: number;
+}
+
+type Links={
+    
+    first: string;
+    last: string;
+    prev: string;
+    next: string;
+
+}
+
+type Results ={
+    data:CastMember[];
+    links:Links;
+    meta:Meta;
+}
 
 
 const Props = {
-    data:[
-        {
-                    
-            id:"123",
-            type:1,
-            name:"test",
-            deletedAt: null,
-            createdAt :"",
-            updatedAt:""
-
-                    
-        },
-    ],
-    meta:
-        {
-            currentPage: 1,
-            form:1,
-            lastPage: 1,
-            path:"https://dummyjson.com/users",
-            perPage: 1,
-            to:1,
-            total:1
-        },
-            links:{
-            first:"https://dummyjson.com/users",
-            last: "https://dummyjson.com/users",
-            prev:"",
-            next:"",
-                 
-            },
+   data: {} as Results,
+    meta: {} as Meta,
+    links:{} as Links,
         
-
     perPage: 10,
     isFetching: false,
     rowPerPage:[10,20,30],
-
 
     handleOnPageChange:(page:number)=>{},
     handleFilterChange:(filterModel: GridFilterModel) =>{},
     handleOnPageSizeChange:(perPage:number)=>{},
     handleDelete:(id:string) =>{},
 
-
 }
 
 
 describe("CastMemberTable",()=>{
-    it("should  render casMember table  correctly",()=>{
+    it("Should  render casMember table  correctly",()=>{
          const {asFragment} = render(<CastMembersTable  { ... Props}/>,{
             wrapper:BrowserRouter,
         
@@ -62,7 +58,7 @@ describe("CastMemberTable",()=>{
         expect(asFragment()).toMatchSnapshot();
     });
 
-    it("renders castMemberTable with loading",()=>{
+    it("Should renders castMemberTable with loading",()=>{
         const {asFragment} = render(<CastMembersTable {... Props} isFetching />,{
             wrapper:BrowserRouter,
         })
@@ -72,45 +68,35 @@ describe("CastMemberTable",()=>{
     });
 
 
-    it("render castMembertable with Data",()=>{
+    it("Should render castMembertable with Data",()=>{
 
-        const data = {
-            data:[
-                {
-                    
-                    id:"123",
-                    type:1,
-                    name:"test",
-                    deletedAt: null,
-                    createdAt :"",
-                    updatedAt:""
-
-                    
-                },
-            ],
-            meta: {
-                currentPage: 1,
-                form:1,
-                lastPage: 1,
-                path:"https://dummyjson.com/users",
-                perPage: 1,
-                to:1,
-                total:1
-            },
-            links:{
-                 first:"https://dummyjson.com/users",
-                 last: "https://dummyjson.com/users",
-                 prev:"",
-                 next:"",
-                 
-            }
-        }
-        const {asFragment} = render(<CastMembersTable { ... Props} data={{}} />,{
+        
+    const {asFragment} = render(<CastMembersTable { ... Props} data={{ data:[], meta:{}} as any} />,{
             wrapper:BrowserRouter,
 
         });
 
         expect(asFragment()).toMatchSnapshot();
+    })
+
+
+    it("should render corret type",()=>{
+
+        const {asFragment} = render(<CastMembersTable 
+            { ... Props}
+            data={{
+                data:[{ ...Props.data.data[0], type: 2}],
+                links:{ ...Props.data.links},
+                meta:{ ...Props.data.meta, total:0}
+            }}
+             />,{
+            wrapper: BrowserRouter,
+
+
+        })
+
+        expect(asFragment()).toMatchSnapshot();
+
     })
        
                       

@@ -38,8 +38,8 @@ export interface Datum {
 export interface Links{
     first: string;
     last: string;
-    prev: string;
-    next: string;
+    prev: string |null;
+    next: string | null ;
 }
 
 export interface Meta {

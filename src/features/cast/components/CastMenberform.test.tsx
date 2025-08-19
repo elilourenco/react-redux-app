@@ -16,8 +16,8 @@ import { BrowserRouter } from "react-router-dom";
 type Links = {
   first: string;
   last: string;
-  prev: null;
-  next: string;
+  prev: string | null;
+  next: string | null;
 };
 
 const Props ={
