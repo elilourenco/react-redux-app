@@ -38,7 +38,7 @@ export interface Datum {
 export interface Links{
     first: string;
     last: string;
-    prev: null;
+    prev: string;
     next: string;
 }
 
