@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import { CategoriesTable } from "./CategoryTable"
+import { BrowserRouter } from "react-router-dom";
 
 
 
@@ -11,12 +12,12 @@ type  Results ={
 }
 
 
-export interface Links{
+type Links ={
     prev: null,
 }
 
 
-export interface Meta{
+type Meta ={
     to:number,
     from:number,
     path:string,
@@ -51,6 +52,8 @@ const  Props ={
 }
 
 
+
+
 describe("CategoryTable",()=>{
     it("should render correctly",() =>{
         const {asFragment} = render(<CategoriesTable {... Props} />)
@@ -58,4 +61,37 @@ describe("CategoryTable",()=>{
         expect(asFragment()).toMatchSnapshot()
 
     })
+
+
+    it("should render Categorytable is loading",()=>{
+        const {asFragment} = render(<CategoriesTable  {... Props} />)
+
+        expect(asFragment()).toMatchSnapshot()
+    })
+
+    it("Should render Categorytable is Loading",()=>{
+        const {asFragment}= render(<CategoriesTable {...Props} data={{data:[], meta:{}}  as any}  />,
+            {wrapper:BrowserRouter}
+        )
+       
+
+        expect(asFragment()).toMatchSnapshot()
+    })
+
+
+
+    it("should render CategoryTable with Inative value", () =>{
+
+        const  {asFragment}= render(
+            <CategoriesTable { ...Props}  /> 
+
+        )
+        expect(asFragment()).toMatchSnapshot()
+
+    })
+
+
+   
+
+    
 })
