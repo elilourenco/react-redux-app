@@ -33,7 +33,8 @@ describe("CategoryForm",()=>{
 
     it("Should",()=>{
 
-        const {asFragment} = render(<CategoryForm {...Props} isLoading={null as any} isdisabled={null as any} />,{
+        const {asFragment} = render(<CategoryForm {...Props} isLoading={null as any}
+             isdisabled={null as any} />,{
             wrapper: BrowserRouter,
         });
          expect( asFragment()).toMatchSnapshot()
