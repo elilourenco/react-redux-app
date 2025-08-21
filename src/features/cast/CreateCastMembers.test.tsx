@@ -1,13 +1,17 @@
 
 import { render } from "@testing-library/react";
-import { Header } from "./Header";
+import { CreateCastMembers } from "./CreateCastMembers";
+import { BrowserRouter } from "react-router-dom";
 
 
-
-
-describe("Header",()=>{
+describe("CreateCastMember",()=>{
     it("Should  render correctly",()=>{
-        const {asFragment} = render(<Header />);
+        const {asFragment} = render(
+            <BrowserRouter>
+                <CreateCastMembers />
+            </BrowserRouter>
+        
+    );
          expect( asFragment()).toMatchSnapshot()
     })
 
