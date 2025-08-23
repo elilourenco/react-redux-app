@@ -33,7 +33,7 @@ export function renderWithProviders(
 
   const Wrapper = ({ children }: PropsWithChildren) => (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter future={{ v7_relativeSplatPath: true ,  v7_startTransition: true,}}>
       <SnackbarProvider>
       {children}
       </SnackbarProvider>

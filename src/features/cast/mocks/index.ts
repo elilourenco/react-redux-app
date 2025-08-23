@@ -1,4 +1,4 @@
-const categoryResponse = {
+ export const categoryResponse = {
     users:[
     {
       "id": 1,
@@ -7,35 +7,23 @@ const categoryResponse = {
       "email": "emily.johnson@x.dummyjson.com",
     },
 
-    {
-      "id": 2,
-      "firstName": "Emily",
-      "lastName": "Johnson",
-      "email": "emily.johnson@x.dummyjson.com",
-    },
-    {
-      "id": 3,
-      "firstName": "Emily",
-      "lastName": "Johnson",
-      "email": "emily.johnson@x.dummyjson.com",
-    },
-    
 ],
 
 
 links:{
-    first:"",
-    last:"",
-    prev:"",
-    next:""
+    first:"https://dummyjson.com/users",
+    last:"https://dummyjson.com/users",
+    prev:null,
+    next:"https://dummyjson.com/users"
 
 },
 meta:{
     current_page:1,
     from:1,
     last_page: 7,
-    path:"",
+    path:"https://dummyjson.com/users",
     per_page: 15,
+    to: 15,
 
 }
 

@@ -38,6 +38,7 @@ export interface Meta{
 }
 
 export interface CategoryParams{
+    id: number | string,
     page?: number
     perPage: number
     serach?: string,

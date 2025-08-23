@@ -1,7 +1,7 @@
 
 import { Box,Button} from "@mui/material"
 import { useDeleteCategoryMutation, useGetCategoriesQuery } from "./categorySlice";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {  GridFilterModel,} from '@mui/x-data-grid';
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
@@ -11,19 +11,18 @@ import { CategoriesTable } from "./components/CategoryTable";
 
 function CategoryList(){
     const [rowPerPage] = useState([10, 20, 50]);
-    
+
+   const {id}= useParams<{id:string}>();
     const [page, setPage] = useState(1);
     const [perPage] = useState(10);
     const [search,setSearch] = useState("");
-    const options={perPage, search, page}
+    const options ={ id: id!, perPage, search, page}
 
-    const {data, isFetching , error} = useGetCategoriesQuery(options)
+    const { data, isFetching , error} = useGetCategoriesQuery(options)
     
     console.log(data)
     
     const [deleteCategory, deleteCategoryStatus] =  useDeleteCategoryMutation()
-
-   
 
     const dispatch= useAppDispatch();
     const {enqueueSnackbar} = useSnackbar()

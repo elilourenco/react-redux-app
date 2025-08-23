@@ -5,19 +5,28 @@ import { apiSlice } from "../api/apiSlice";
 
 
 export interface Category{
-  id:number;
+  id: string |number;
   first_Name: string;
   last_Name:string;
   email: string;
   
 }
 
+type GetCategoriesParams ={
+  id: string| number,
+  page ? : number,
+  perPage ?: number,
+  
+}
 
-const endpointUrl= "/add";
-const endpointUrlist="/${id}" 
+
+const endpointUrl= "/";
+
 
 function parseQueryParams(params: CategoryParams) {
-  const query = new URLSearchParams();
+  const query = new URLSearchParams(
+    Object.entries(params).filter(([_,value]) => value !== "" && value != null)
+  );
 
   if (params.page) {
     query.append("page", params.page.toString());
@@ -37,10 +46,12 @@ function parseQueryParams(params: CategoryParams) {
 }
 
 
-function getCategories({page =1, perPage = 10, search = "", isActive= true}){
-    const params = {page, perPage, search};
+function getCategories({ id, page =1, perPage = 10} : GetCategoriesParams){
+  const params = { id,page, perPage};
 
-    return `${endpointUrlist}?${parseQueryParams(params)}`;
+    const baseUrL= id ? `${endpointUrl}/users/${id}`: endpointUrl;
+
+    return `${baseUrL}?${parseQueryParams(params)}`;
 }
 
 
