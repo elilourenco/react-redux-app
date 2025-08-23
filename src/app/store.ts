@@ -2,7 +2,8 @@ import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/t
 import counterReducer from '../features/counter/counterSlice';
 import categoriesReducer from '../features/categories/categorySlice';
 import { apiSlice } from '../features/api/apiSlice';
-import {castMembersApiSlice} from '../features/cast/CastMembersSlice';
+import {castMembersApiSlice} from '../features/cast/CastMembersSlice'; 
+
 
 
 const rootReducer = combineReducers({ 
@@ -14,17 +15,29 @@ const rootReducer = combineReducers({
 })
 
 
-export const store = configureStore({
-  reducer:rootReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(apiSlice.middleware),
-});
+ const setupStore = () =>{
 
-export type AppDispatch = typeof store.dispatch;
-export type RootState = ReturnType<typeof store.getState>;
+  return  configureStore({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  })
+
+}
+
+
+
+
+export  type AppStore = ReturnType<typeof setupStore>
+export type AppDispatch = AppStore["dispatch"]
+export type RootState = ReturnType<typeof rootReducer>;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
   RootState,
   unknown,
   Action<string>
 >;
+
+
+
+export default setupStore;

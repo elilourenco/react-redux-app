@@ -1,23 +1,22 @@
  import React, { PropsWithChildren } from 'react'
 import { render } from '@testing-library/react'
 import type {RenderOptions } from '@testing-library/react'
-import { configureStore } from '@reduxjs/toolkit'
+
 import { Provider } from 'react-redux'
 
-import type {RootState } from '../app/store'
+import type {AppStore, RootState } from '../app/store'
 
 // As a basic setup, import your same slice reducers
 
-import { apiSlice } from '../features/api/apiSlice'
-import { castMembersApiSlice } from '../features/cast/CastMembersSlice'
 import { SnackbarProvider } from 'notistack'
 import { BrowserRouter } from 'react-router-dom'
+import setupStore from '../app/store'
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: Partial<RootState>
-  store?: ReturnType<typeof configureStore>
+  store?:AppStore;
  
 }
 
@@ -28,11 +27,7 @@ export function renderWithProviders(
   const {
   
     // Automatically create a store instance if no store was passed in
-    store = configureStore({
-      reducer:{
-        [castMembersApiSlice.reducerPath]: apiSlice.reducer,
-      },
-  }),
+    store = setupStore(),
     ...renderOptions
   } = extendedRenderOptions
 
@@ -52,3 +47,6 @@ export function renderWithProviders(
     ...render(ui, { wrapper: Wrapper, ...renderOptions })
   }
 }
+
+
+export * from "@testing-library/react"
