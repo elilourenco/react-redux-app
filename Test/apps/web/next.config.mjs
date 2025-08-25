@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
+  images: { 
+    domains: ['picsum.photos'],
+    contentDispositionType: 'attachment',
+ 
+    loader: 'default',
+    path: '/_next/image',
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
     remotePatterns: [
@@ -10,14 +15,24 @@ const nextConfig = {
         port: '4000',
         pathname: '/**',
       },
-      { protocol: 'https', hostname: 'picsum.photos', pathname: '/**' },
-      { protocol: 'https', hostname: 'images.unsplash.com', pathname: '/**' },
-      { protocol: 'https', hostname: 'source.unsplash.com', pathname: '/**' },
+      { 
+        protocol: 'https', 
+        hostname: 'picsum.photos', 
+        pathname: '/id/**' 
+      },
+      { 
+        protocol: 'https', 
+        hostname: 'images.unsplash.com', 
+        pathname: '/**' 
+      },
+      { 
+        protocol: 'https', 
+        hostname: 'source.unsplash.com', 
+        pathname: '/**' 
+      },
     ],
   },
-  experimental: {
-    optimizePackageImports: ['swr'],
-  },
+  
 };
 
 export default nextConfig;

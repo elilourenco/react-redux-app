@@ -1,58 +1,18 @@
-'use client';
 
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo, useState } from 'react';
-
-// Gerador de fallback SVG local - SEMPRE funciona
-const generateFallbackSVG = (text: string, width: number = 800, height: number = 800) => {
-  const svgContent = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
-    <defs>
-      <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
-        <stop offset="100%" style="stop-color:#2d2d2d;stop-opacity:1" />
-      </linearGradient>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#gradient)"/>
-    <text x="50%" y="50%" font-family="Arial, sans-serif" font-size="24" 
-          fill="#fff" text-anchor="middle" dy=".3em" font-weight="bold">
-      ${text.length > 15 ? text.substring(0, 15) + '...' : text}
-    </text>
-  </svg>`;
-
-  return `data:image/svg+xml;base64,${btoa(svgContent)}`;
-};
+import { useMemo } from 'react';
 
 export default function NFTCard({ nft }: { nft: any }) {
-  const [imgError, setImgError] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState<string>('');
-  
   const img = useMemo(() => {
-    // Se já temos uma source válida, usa ela
-    if (currentSrc && !imgError) {
-      return currentSrc;
-    }
-
-    // Se imageUrl existe e não estamos em estado de erro, tenta usar
-    if (nft.imageUrl && !imgError) {
-      return nft.imageUrl;
-    }
-
-    // Fallback IMEDIATO para SVG local - SEMPRE funciona
-    return generateFallbackSVG(nft.name);
-    
-  }, [nft, imgError, currentSrc]);
-
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    console.log('Image failed, using fallback for:', nft.name);
-    
-    // Marca que houve erro e vai direto para fallback local
-    setImgError(true);
-    setCurrentSrc(generateFallbackSVG(nft.name));
-    
-    // Previne múltiplas tentativas
-    e.currentTarget.src = generateFallbackSVG(nft.name);
-  };
+    return (
+      nft.imageUrl ||
+      `${process.env.NEXT_PUBLIC_API_URL}/image/${encodeURIComponent(
+        nft.imageSeed || nft.name
+      )}.svg?size=800`
+    );
+  }, [nft]);
 
   return (
     <Link
@@ -64,10 +24,10 @@ export default function NFTCard({ nft }: { nft: any }) {
           src={img}
           alt={nft.name}
           fill
+          
+          
+          
           className="object-cover transition-transform group-hover:scale-[1.03]"
-          onError={handleImageError}
-          priority={false}
-          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition" />
       </div>
