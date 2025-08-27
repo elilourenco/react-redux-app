@@ -20,7 +20,7 @@ type Props ={
 };
  
 
- export function CategoriesTable({
+export function CategoriesTable({
     data,
     perPage,
     isFetching,
@@ -90,7 +90,7 @@ function  mapDatatoGridRows(data: Results){
 }
 
 
- function renderActionsCell(params:GridRenderEditCellParams){
+function renderActionsCell(params:GridRenderEditCellParams){
     return( 
 
         <IconButton

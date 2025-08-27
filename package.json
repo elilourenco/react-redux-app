@@ -54,6 +54,7 @@
     "@types/material-ui": "^0.21.18",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@types/react-redux": "^7.1.34"
+    "@types/react-redux": "^7.1.34",
+    "msw": "^2.10.5"
   }
 }
