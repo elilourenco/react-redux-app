@@ -78,7 +78,7 @@ return (
 
           <CategoriesTable
           data={data}
-          isFetching={isFetching}
+          isFetching={true}
           perPage={perPage}
           rowsPerPage={[10,20,50]}
           handleDelete={handleDeleteCategory}
