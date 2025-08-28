@@ -3,20 +3,22 @@ import {setupServer} from "msw/node";
 import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  CategoryList  from "./ListCategory";
 import { baseUrl } from "../api/apiSlice";
+import { categoryResponse } from "../cast/mocks";
 
 
 export const handlers = [
     http.get(`${baseUrl}/categories`,({request, params, cookies}) =>{
 
-      //return Response.json(categoryResponse);
+      const url = new URL(request.url);
+      if(url.searchParams.get("page") === "2"){
+      return Response.json(categoryResponse, { status: 200, headers: { "Content-Type": "application/json" } });
+}
       
     }),
 
 ];
 
 const server = setupServer(...handlers);
-
-
 
 describe("ListCategory",()=>{
   afterAll(() => server.close());
