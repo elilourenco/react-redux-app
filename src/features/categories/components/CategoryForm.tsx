@@ -34,6 +34,7 @@ export  function CategoryForm ({
                         <FormControl fullWidth>
                             <TextField 
                                 required
+                                    
                                     name="first_Name"
                                     label="first_Name"
                                     value={category.first_Name}
@@ -48,6 +49,7 @@ export  function CategoryForm ({
                             <FormControl fullWidth>
                                 <TextField
                                     required
+                                    
                                     name="last_Name"
                                     label="last_Name"
                                     value={category.last_Name}
@@ -62,6 +64,7 @@ export  function CategoryForm ({
                             <FormControl fullWidth>
                                 <TextField
                                     required
+                                    id="email"
                                     name="email"
                                     label="email"
                                     value={category.email}
@@ -72,10 +75,7 @@ export  function CategoryForm ({
 
                         </Grid>
                          
-                        
-
-
-                        
+                                                
 
                         {/*<Grid size={{xs:12}} >
                             <FormGroup>
@@ -104,8 +104,7 @@ export  function CategoryForm ({
                                     variant="contained" 
                                     component={RouterLink} 
                                     to="/categories">
-                                   Back
-                                 
+                                   Back                                 
                                 </Button>
 
                                 <Button 

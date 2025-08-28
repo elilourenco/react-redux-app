@@ -10,15 +10,15 @@ import { CategoriesTable } from "./components/CategoryTable";
 
 
 function CategoryList(){
-    const [rowPerPage] = useState([10, 20, 50]);
+  const [rowPerPage] = useState([10, 20, 50]);
 
-   const {id}= useParams<{id:string}>();
-    const [page, setPage] = useState(1);
-    const [perPage] = useState(10);
-    const [search,setSearch] = useState("");
-    const options ={ id: id!, perPage, search, page}
+  const {id}= useParams<{id:string}>();
+  const [page, setPage] = useState(1);
+  const [perPage] = useState(10);
+  const [search,setSearch] = useState("");
+  const options ={ id: id!, perPage, search, page}
 
-    const { data, isFetching , error} = useGetCategoriesQuery(options)
+  const { data, isFetching,error} = useGetCategoriesQuery(options)
     
     console.log(data)
     
@@ -31,7 +31,7 @@ function CategoryList(){
     setPage(page +1);
   }
 
-   function handleFilterChange(filterModel: GridFilterModel) {
+  function handleFilterChange(filterModel: GridFilterModel) {
     if(filterModel.quickFilterValues?.length) {
       const search= filterModel.quickFilterValues.join("")
       setSearch(search)

@@ -151,7 +151,8 @@ const rowCount = data?.meta?.total || 0
                             pageSize:perPage
                         }
                     }
-                }} 
+                }}
+                
                 pageSizeOptions={rowsPerPage}
                 disableColumnSelector={true}
                 disableColumnFilter={true}

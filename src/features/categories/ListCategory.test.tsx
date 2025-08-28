@@ -1,17 +1,15 @@
 import { http } from "msw";
 import {setupServer} from "msw/node";
-
-
 import { renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  CategoryList  from "./ListCategory";
 import { baseUrl } from "../api/apiSlice";
-import { categoryResponse } from "../cast/mocks";
+
 
 export const handlers = [
     http.get(`${baseUrl}/categories`,({request, params, cookies}) =>{
 
-      return Response.json(categoryResponse);
-      console.log("request", request);
+      //return Response.json(categoryResponse);
+      
     }),
 
 ];
@@ -45,6 +43,28 @@ describe("ListCategory",()=>{
           expect(name).toBeInTheDocument();
          })
     })
+
+
+    it("should render error state", async ()=>{
+      server.use(
+        http.get(`${baseUrl}/categories`, ({request,params,cookies}) => {
+          //return Response.json(categoryResponse, {status: 500});
+        })
+      );
+
+      renderWithProviders(<CategoryList/>);
+
+      await waitFor(() =>{
+        const error= screen.getByText(/Error fetching categories/i);
+        expect(error).toBeInTheDocument();
+      })
+
+      it("should handle OnpageChange", async ()=>{
+        renderWithProviders(<CategoryList/>);
+      
+      })
+      
+})
 
 })
   

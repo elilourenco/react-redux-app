@@ -1,5 +1,3 @@
-
-
 export interface  Results{
     meta:Meta,
     links: Links,
@@ -15,7 +13,7 @@ export interface Result{
 
 }
 
- export interface  Category{
+ export interface Category{
     id:number,
     first_Name:string,
     last_Name: string,
