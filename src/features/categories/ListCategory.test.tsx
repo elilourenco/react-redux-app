@@ -1,6 +1,6 @@
 import { http } from "msw";
 import {setupServer} from "msw/node";
-import { renderWithProviders, screen, waitFor } from "../../utils/test-utils";
+import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  CategoryList  from "./ListCategory";
 import { baseUrl } from "../api/apiSlice";
 
@@ -61,8 +61,17 @@ describe("ListCategory",()=>{
 
       it("should handle OnpageChange", async ()=>{
         renderWithProviders(<CategoryList/>);
+
+        await waitFor(() =>{
+          const name= screen.getByText("name");
+          expect(name).toBeInTheDocument();
       
-      })
+        });
+
+         const nextButton= screen.getByTestId("KeyboardArrowRightIcon");
+         fireEvent.click(nextButton);
+      
+      });
       
 })
 
