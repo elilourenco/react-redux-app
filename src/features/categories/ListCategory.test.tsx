@@ -74,6 +74,48 @@ describe("ListCategory",()=>{
          fireEvent.click(nextButton);
       
       });
+
+
+      it("should handle filter change", async ()=>{
+        renderWithProviders(<CategoryList/>);
+        // esperar que o elemento seja renderizado
+        await waitFor(() =>{
+          const name= screen.getByText("name");
+          expect(name).toBeInTheDocument();
+        }) 
+        
+        const input = screen.getByPlaceholderText("search");
+
+        // Fire event change
+        fireEvent.change(input, {
+          target: {
+            value: "test",
+          },
+
+        });
+
+        await waitFor(() =>{
+          const  loading = screen.getByRole("progressbar");
+          expect(loading).toHaveValue("test");
+      })
+    })
+
+    it("should handle delete category", async ()=>{
+      renderWithProviders(<CategoryList/>);
+      // esperar que o elemento seja renderizado
+      await waitFor(() =>{
+        const name= screen.getByText("name");
+        expect(name).toBeInTheDocument();
+      })
+
+      const deleteButton= screen.getByTestId("delete-button");
+      fireEvent.click(deleteButton);
+
+      await waitFor(() =>{
+        const  loading = screen.getByRole("progressbar");
+        expect(loading).toBeInTheDocument();
+      })
+    })
       
 })
 
