@@ -44,19 +44,7 @@ export const CategoryEdit = () => {
         setCategoryState({ ...categoryState, [name]: checked });
     };
 
-    {/* useEffect(() => {
-        if (category && Array.isArray(category.data) && category.data.length > 0) {
-            const cat = category.data[0];
-            setCategoryState({
-                ...cat,
-                created_at: "",
-                updated_at: "",
-                deleted_at: cat.deleted_at ? new Date(cat.deleted_at) : null
-            });
-        }
-    }, [category]); */}
-
-
+   
 useEffect(() => {
     if (Status.isSuccess) {
         enqueueSnackbar("Category updated successfully!", { variant: "success" });

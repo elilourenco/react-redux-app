@@ -1,12 +1,10 @@
 import { Box,Paper,Typography } from "@mui/material"
-import { Category, selectCategoryById, useCreateCategoryMutation,  } from "./categorySlice";
+import { Category,useCreateCategoryMutation  } from "./categorySlice";
 import React, { useEffect, useState } from "react";
 import { CategoryForm } from "./components/CategoryForm";
 import { useAppSelector } from "../../app/hooks";
 import { useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
-
-
 export const CategoryCreate =() =>{ 
     
     const id= useParams().id || "";
@@ -84,5 +82,13 @@ export const CategoryCreate =() =>{
 
 export default CategoryCreate;
 
-
+// Reasonable implementation: assumes categories are stored in state.categories.items as an array
+function selectCategoryById(
+    state: any,
+    id: string
+): Category | undefined {
+    // Adjust the path to your actual categories slice
+    const categories = state.categories?.items || [];
+    return categories.find((category: Category) => String(category.id) === String(id));
+}
 
