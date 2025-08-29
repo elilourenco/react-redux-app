@@ -80,6 +80,7 @@ describe('EditCategory', () => {
 
     fireEvent.change(name, { target: { value: "Jane" } });
     fireEvent.change(email, { target: { value: "doe@email.com" } });
+    
 
     const submitButton = screen.getByRole('button', { name: /submit/i });
     fireEvent.click(submitButton);
