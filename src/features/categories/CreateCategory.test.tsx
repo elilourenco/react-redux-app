@@ -1,5 +1,4 @@
-import  {http} from "msw";
-import {setupServer} from "msw/node";
+import  {http} from "msw"
 import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  Createcategory from "./CreateCategory";
 import { baseUrl } from "../api/apiSlice";
