@@ -110,14 +110,6 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
 
 
 
-const category:Category={
-  id:1,
-  first_Name:"Olive",
-  last_Name: "Bruno",
-  email:"eelizandralourenco@gmail.com",
-  
-};
-
 const categories =[
     category,
     { ...category, id: 2, first_Name:"Apple"},
