@@ -53,6 +53,22 @@ describe("CreateCastMember",()=>{
                  return Response.json({request,params, cookies})
             })
          )
+
+
+         renderWithProviders(<CreateCastMembers/>)
+         const name= screen.getByTestId("name");
+      
+        fireEvent.change(name, { target: { value: "John Doe" } });
+
+        const submitButton = screen.getByRole('button', { name: /submit/i });
+        fireEvent.click(submitButton);
+        
+        await waitFor(() => {
+            const name = screen.getByTestId("name");
+            
+            
+            expect(name).toBeInTheDocument();   
+        })
     })
 })
 
