@@ -42,6 +42,11 @@ it('should renders correctly', () => {
       
     });
 
+    await waitFor(() => {  
+        
+        expect(name).toHaveValue('name');
+    });
+
     fireEvent.change(name, {target: {value: 'Jane'}});
     fireEvent.change(type, {target: {value: '2'}});
 
