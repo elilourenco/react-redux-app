@@ -82,8 +82,24 @@ describe("ListCastMembers",()=>{
     const deleteButton = screen.getAllByTestId("delete-button")[0];
     fireEvent.click(deleteButton);
   });
+
+  it("should handle  delete next button on last page", async ()=>{  
+    server.use(
+      http.delete(`${baseUrl}/cast_members/1`, ({request, params, cookies}) => { 
+        return Response.json(castMemberResponse2, { status: 200, headers: { "Content-Type":"application/json" }});
+      })
+    );
+
+    renderWithProviders(<ListCastMembers/>);
+    const deleteButton = screen.getAllByTestId("delete-button")[0];
+    fireEvent.click(deleteButton);        
+
+    await waitFor(() => {
     
   })
+
+});
+})
 
 
 
