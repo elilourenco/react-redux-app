@@ -11,13 +11,13 @@ export const handlers = [
 
       const url = new URL(request.url);
       if(url.searchParams.get("page") === "2"){
-        return Response.json(categoryResponse, { status: 200, headers: { "Content-Type": "application/json" } });
+        return new Response(JSON.stringify(categoryResponse), { status: 200, headers: { "Content-Type": "application/json" } });
       }
 
-      return Response.json(categoryResponse, { status: 200, headers: { "Content-Type": "application/json" } });
+      return new  Response(JSON.stringify(categoryResponse), { status: 200, headers: { "Content-Type": "application/json" } });
     }),
     http.delete(`${baseUrl}/categories/1`, ({request, params, cookies}) => {
-      return Response.json({}, { status: 200, headers: { "Content-Type": "application/json" }});
+      return new Response(JSON.stringify({}), { status: 200, headers: { "Content-Type": "application/json" }});
     }),
 ];
 

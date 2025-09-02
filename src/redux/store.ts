@@ -1,14 +1,14 @@
 // src/redux/store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import {counterSlice } from '../features/counter/counterSlice';
-import categoriesSlice from '../features/categories/categorySlice';
+
 import { apiSlice } from '../features/api/apiSlice';
 
 
 export const store=configureStore({
   reducer:{
     counter: counterSlice.reducer,
-    categories: categoriesSlice,
+
     apiSlice: apiSlice.reducer,
    
     }, 

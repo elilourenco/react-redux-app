@@ -1,4 +1,4 @@
-import { RootState } from "../../redux/store";
+
 import { CategoryParams, Results } from "../../types/Category";
 import { apiSlice } from "../api/apiSlice";
 
@@ -109,7 +109,7 @@ export const  categoriesApiSlice = apiSlice.injectEndpoints({
 
 // selectores
 
-export  const selectCategories= (state:RootState) => state.categories;
+
 
 //selectores
 

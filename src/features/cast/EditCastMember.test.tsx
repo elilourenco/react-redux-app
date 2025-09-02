@@ -12,11 +12,11 @@ const data = {
 
 const handlers = [
   http.get('/api/cast_members/:id', ({request, params, cookies}) => {
-    return Response.json(data, {status: 200, headers: {'Content-Type': 'application/json'}});
+    return new Response(JSON.stringify(data), {status: 200, headers: {'Content-Type': 'application/json'},});
   }),
 
   http.put(`${baseUrl}/cast_members/1`, ({request, params, cookies}) => {
-    return Response.json({...data, ...request.json()}, {status: 200, headers: {'Content-Type': 'application/json'}});
+    return new Response(JSON.stringify({...data, ...request.json()}), {status: 200, headers: {'Content-Type': 'application/json'}});
   }),
 ];
 

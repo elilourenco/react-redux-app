@@ -7,7 +7,7 @@ import { categoryResponse } from "../cast/mocks";
 
 export const handlers = [
     http.post(`${baseUrl}/categories`, ({request, params, cookies}) => {
-      return Response.json(categoryResponse, { status: 201, headers: { "Content-Type": "application/json" }});
+      return new  Response(JSON.stringify(categoryResponse), { status: 201, headers: { "Content-Type": "application/json" }});
     }),
 ];
 

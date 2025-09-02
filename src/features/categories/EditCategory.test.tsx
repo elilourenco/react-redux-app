@@ -17,11 +17,11 @@ const data = {
 
 const handlers = [
     http.get('/api/categories/:id', ({request, params, cookies}) => {
-        return Response.json(data, { status: 200, headers: { "Content-Type": "application/json" }});
+        return new  Response(JSON.stringify(data), { status: 200, headers: { "Content-Type": "application/json" }});
     }),
 
     http.put(`${baseUrl}/categories/1`, ({request, params, cookies}) => {
-        return Response.json({...data, ...request.json()}, { status: 200, headers: { "Content-Type": "application/json" }});
+        return new Response(JSON.stringify({...data, ...request.json()}), { status: 200, headers: { "Content-Type": "application/json" }});
     })
 ]; 
 
@@ -66,7 +66,7 @@ describe('EditCategory', () => {
   it("should show error message on fetch failure", async () => {
     server.use(
         http.put('/api/categories/:id', ({request, params, cookies}) => {
-            return Response.json({ message: 'Failed to fetch category' }, { status: 500 });
+            return new Response(JSON.stringify({ message: 'Failed to fetch category' }), { status: 500 });
         })
     );
 
