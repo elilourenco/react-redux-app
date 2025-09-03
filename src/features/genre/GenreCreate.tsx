@@ -25,9 +25,9 @@ export const genreCreate = () => {
             handleChange={function noRefCheck(){}}
 
 
-            >
+            />
 
-            </GenreForm>
+            
         </Box>
     )
 }   
