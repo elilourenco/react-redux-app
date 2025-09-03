@@ -1,4 +1,4 @@
-import { http } from "msw";
+import { http, HttpResponse } from "msw";
 import {setupServer} from "msw/node";
 import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  CategoryList  from "./ListCategory";
@@ -11,13 +11,13 @@ export const handlers = [
 
       const url = new URL(request.url);
       if(url.searchParams.get("page") === "2"){
-        return new Response(JSON.stringify(categoryResponse), { status: 200, headers: { "Content-Type": "application/json" } });
+        return HttpResponse.json(categoryResponse, { status: 200, headers: { "Content-Type": "application/json" } });
       }
 
-      return new  Response(JSON.stringify(categoryResponse), { status: 200, headers: { "Content-Type": "application/json" } });
+      return HttpResponse.json(categoryResponse, { status: 200, headers: { "Content-Type": "application/json" } });
     }),
     http.delete(`${baseUrl}/categories/1`, ({request, params, cookies}) => {
-      return new Response(JSON.stringify({}), { status: 200, headers: { "Content-Type": "application/json" }});
+      return HttpResponse.json({}, { status: 200, headers: { "Content-Type": "application/json" }});
     }),
 ];
 
@@ -53,7 +53,7 @@ describe("ListCategory",()=>{
     it("should render error state", async ()=>{
       server.use(
         http.get(`${baseUrl}/categories`, ({request,params,cookies}) => {
-          //return Response.json(categoryResponse, {status: 500});
+          return HttpResponse.json(categoryResponse, {status: 500});
         })
       );
 

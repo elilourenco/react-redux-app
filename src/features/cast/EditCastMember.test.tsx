@@ -1,4 +1,4 @@
-import {http} from 'msw';
+import {http, HttpResponse} from 'msw';
 import {setupServer} from 'msw/lib/node';
 import {fireEvent, renderWithProviders, screen, waitFor} from '../../utils/test-utils';
 import { EditCastMember } from './EditCastMember';
@@ -12,11 +12,12 @@ const data = {
 
 const handlers = [
   http.get('/api/cast_members/:id', ({request, params, cookies}) => {
-    return new Response(JSON.stringify(data), {status: 200, headers: {'Content-Type': 'application/json'},});
+    return HttpResponse.json(data, {status: 200, headers: {'Content-Type': 'application/json'},});
   }),
 
   http.put(`${baseUrl}/cast_members/1`, ({request, params, cookies}) => {
-    return new Response(JSON.stringify({...data, ...request.json()}), {status: 200, headers: {'Content-Type': 'application/json'}});
+    const responseData = {...data, ...request.json()};         
+    return HttpResponse.json(responseData, {status: 200, headers: {'Content-Type': 'application/json'},});
   }),
 ];
 

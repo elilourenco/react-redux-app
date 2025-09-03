@@ -1,4 +1,4 @@
-import  {http} from "msw"
+import  {http, HttpResponse} from "msw"
 import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import  Createcategory from "./CreateCategory";
 import { baseUrl } from "../api/apiSlice";
@@ -7,7 +7,7 @@ import { categoryResponse } from "../cast/mocks";
 
 export const handlers = [
     http.post(`${baseUrl}/categories`, ({request, params, cookies}) => {
-      return new  Response(JSON.stringify(categoryResponse), { status: 201, headers: { "Content-Type": "application/json" }});
+      return HttpResponse.json(categoryResponse, { status: 201, headers: { "Content-Type": "application/json" }});
     }),
 ];
 

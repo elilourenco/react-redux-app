@@ -2,13 +2,16 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { CreateCastMembers } from "./CreateCastMembers";
 import { baseUrl } from "../api/apiSlice";
-import { http} from "msw";
+import { http, HttpResponse} from "msw";
 import { setupServer } from "msw/lib/node";
 import { renderWithProviders } from "../../utils/test-utils";
 
 export const handlers =[
     http.post(`${baseUrl}/cast_members`, ({request, params, cookies}) => {
-        return new  Response( JSON.stringify({...request.json()}), { status: 201, headers: {"Content-Type": "application/json" },});
+        const responseData = {...request.json(), id: "1"};
+         return HttpResponse.json(responseData, { status: 201, headers: { "Content-Type": "application/json" }});
+        
+        
     })
 ]
 
@@ -46,7 +49,7 @@ describe("CreateCastMember",()=>{
     it("should  handle  submit  error", async () =>{
         server.use(
             http.post(`${baseUrl}/cast_members`, ({request, params, cookies}) => {
-                return new  Response(JSON.stringify({request,params, cookies}))
+                return HttpResponse.json({request,params, cookies})
             })
         )
 

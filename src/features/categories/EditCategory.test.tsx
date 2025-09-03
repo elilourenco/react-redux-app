@@ -2,7 +2,7 @@
 import { setupServer } from "msw/lib/node";
 import { fireEvent, renderWithProviders, screen, waitFor } from "../../utils/test-utils";
 import CategoryEdit from "./EditCategory";
-import { http } from "msw";
+import { http, HttpResponse } from 'msw'
 import { baseUrl } from "../api/apiSlice";
 
 
@@ -17,12 +17,15 @@ const data = {
 
 const handlers = [
     http.get('/api/categories/:id', ({request, params, cookies}) => {
-        return new  Response(JSON.stringify(data), { status: 200, headers: { "Content-Type": "application/json" }});
+        return HttpResponse.json(data, { status: 200, headers: { "Content-Type": "application/json" }});
     }),
 
-    http.put(`${baseUrl}/categories/1`, ({request, params, cookies}) => {
-        return new Response(JSON.stringify({...data, ...request.json()}), { status: 200, headers: { "Content-Type": "application/json" }});
+    http.put(`${baseUrl}/categories/1`,({request, params, cookies}) => {
+        const responseData = {...data, ...request.json()};
+        return HttpResponse.json(responseData, { status: 200, headers: { "Content-Type": "application/json" }});
     })
+        
+        
 ]; 
 
 
@@ -65,8 +68,8 @@ describe('EditCategory', () => {
 
   it("should show error message on fetch failure", async () => {
     server.use(
-        http.put('/api/categories/:id', ({request, params, cookies}) => {
-            return new Response(JSON.stringify({ message: 'Failed to fetch category' }), { status: 500 });
+        http.put('/api/categories/:id', ({request}) => {
+            return HttpResponse.json({ message: 'Failed to fetch category' }, { status: 500 });
         })
     );
 

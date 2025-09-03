@@ -1,4 +1,4 @@
-import {http} from "msw";
+import {http, HttpResponse} from "msw";
 import {baseUrl} from "../api/apiSlice";
 import {setupServer} from "msw/node";
 import { fireEvent, screen } from "@testing-library/react";
@@ -10,8 +10,14 @@ const handlers = [
 
         const url = new URL(request.url);
         if(url.searchParams.get("page") === "2"){
-      return new  Response(JSON.stringify({}), { status: 200, headers: { "Content-Type": "application/json" } });
+            
+        return HttpResponse.json({data: [], total: 0, per_page: 20, current_page: 2},
+           { status: 200, headers: { "Content-Type": "application/json" } });
+      
         }
+    }),
+    http.delete(`${baseUrl}/cast_members/1`, ({request, params, cookies}) => {
+        return HttpResponse.json({}, { status: 200, headers: { "Content-Type": "application/json" }});
     }),
 ]
 
@@ -47,7 +53,8 @@ describe('ListCastMembers', () => {
   it('should render error state', async () => {   
     server.use(
         http.get(`${baseUrl}/cast_members`, ({request,params,cookies}) => {
-          return new Response(null, { status: 500 });
+
+          return HttpResponse.json({message: "Error loading cast members"}, {status: 500});
         })
       );
   
@@ -94,6 +101,29 @@ describe('ListCastMembers', () => {
 
             const deleteButton= screen.getAllByTestId("DeleteIcon")[0];
             fireEvent.click(deleteButton);
+
+            await waitFor(() =>{
+                const dialog= screen.getByRole("dialog");
+                expect(dialog).toBeInTheDocument();
+            })
+        })
+
+        it('should handle delete Category error', async () => {   
+            server.use(
+                http.delete(`${baseUrl}/cast_members/1`, ({request, params, cookies}) => {
+                    return HttpResponse.json({ message: 'Failed to delete cast member' }, { status: 500, headers: { "Content-Type": "application/json" }});
+                }),
+            );
+            
+            renderWithProviders(<ListCastMembers/>);
+            await waitFor(() =>{
+                const table= screen.getByRole("table");
+                expect(table).toBeInTheDocument();
+            })
+    
+            const deleteButton= screen.getAllByTestId("DeleteIcon")[0];
+            fireEvent.click(deleteButton);    
+
         })
            
       })
