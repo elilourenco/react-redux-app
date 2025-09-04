@@ -1,11 +1,19 @@
 import React from "react";
 import { Category } from "../../../types/Category";
-import { Autocomplete, Box, Button, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, Radio, RadioGroup, TextField } from "@mui/material";
+import { Autocomplete, Box, Button,
+     FormControl, 
+     FormControlLabel, 
+     FormGroup, 
+     FormLabel, 
+     Grid, Radio, 
+     RadioGroup, 
+     TextField } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Genre } from "../../../types/Genre";
 
  export type GenreFormProps = {
-    genre: any;
+    genre: Genre;
     categories?: Category[];
     isLoading: boolean;
     isDisabled: boolean;
@@ -36,7 +44,7 @@ export function GenreForm({
                                 required
                                     name="name"
                                     label="Name"
-                                    value={genre.name}
+                                    value={genre.first_Name}
                                     disabled={isDisabled}
                                     onChange={handleChange}
                                    
@@ -49,12 +57,24 @@ export function GenreForm({
                             multiple
                             loading={isLoading}
                             disablePortal
-                            options={[]}
-                           value={genre.email}
-                           disabled={isDisabled || !categories}
-                           renderInput={(params) => <TextField {...params}
-                           label="Categories"
-                            data-testid= "categories-input" />}
+                            options={categories || []}
+                            value={genre.categories || []}
+                            disabled={isDisabled || !categories}
+                            renderOption={(props, option) => (
+                                <li {...props} key={option.id}>
+                                    {option.first_Name} 
+                                </li>
+                            )}
+                            onChange={(_, value) => {
+                                handleChange({ target: { name: "categories", value } } as any);
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    label="Categories"
+                                    data-testid="categories-input"
+                                />
+                            )}
                         />
                             
                         <Grid size={{xs:12}} >
@@ -64,7 +84,7 @@ export function GenreForm({
                                 aria-labelledby="type-label"
                                 defaultValue="Director"
                                 name="type"
-                                value={genre.name}
+                                value={genre.first_Name}
                                 onChange={handleChange}>
                                     <FormControlLabel value={2} control={<Radio />} label="Diretor"/>
                                 </RadioGroup>

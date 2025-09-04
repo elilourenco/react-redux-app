@@ -1,52 +1,58 @@
-export interface  Results{
-    meta:Meta,
-    links: Links,
-    data:Genre[],
+import { Category } from "./Category";
 
+export interface Genres {
+  data: Genre[];
+  links: Links;
+  meta: Meta;
 }
 
-
-export interface Result{
-    data:Genre,
-    meta: Meta,
-    links:Links
-
+export interface Result {
+  data: Genre;
+  meta: Meta;
+  links: Links;
 }
 
- export interface Genre{
-    id:number,
-    first_Name:string,
-    last_Name: string,
-    email:string
+export interface Genre {
+  id: string;
+  first_Name: string;
+  last_Name: string;
+  email: string;
+  categories?: Category[];
+  pivot?: Pivot;
 }
 
-export interface Links{
-    prev: null,
+export interface Pivot {
+  genre_id: string;
+  category_id: string;
 }
 
-
-export interface Meta{
-    to:number,
-    from:number,
-    path:string,
-    total: number,
-    per_page:number,
-    last_page: number,
-    current_page: number,
+export interface Links {
+  first: string;
+  last: string;
+  prev: string;
+  next: string;
 }
 
-export interface GenreParams{
-    id: number | string,
-    page?: number
-    perPage: number
-    serach?: string,
-    isActive?: boolean,
-
+export interface Meta {
+  current_page?: number;
+  from?: number;
+  last_page?: number;
+  path?: string;
+  per_page?: number;
+  to?: number;
+  total?: number;
 }
 
-export interface GenrePlayload{
-    id:number | string
-    first_Name:string,
-    last_Name: string,
-    email: string,
+export interface GenreParams {
+  page?: number;
+  perPage?: number;
+  search?: string;
+  isActive?: boolean;
 }
+
+export interface GenrePayload {
+  id: string;
+  first_Name: string;
+  categories_id?: string[];
+}
+

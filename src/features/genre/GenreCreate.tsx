@@ -2,7 +2,8 @@ import { Box, Typography } from "@mui/material"
 import { Paper } from "@mui/material"
 import { GenreForm } from "./components/GenreForm"
 import { useSnackbar } from "notistack"
-import { useCreateGenreMutation, inicialState as genreInitialState, useGetCategoriesQuery } from "./genreSlice"
+import { useCreateGenreMutation, inicialState as
+     genreInitialState, useGetCategoriesQuery } from "./genreSlice"
 import { useEffect, useState } from "react"
 import { Genre } from "../../types/Genre"
 
@@ -27,10 +28,9 @@ export const GenreCreate = () => {
         
             await CreateGenre({
                 id: genreState.id,
-                email: genreState.email,
                 first_Name: genreState.first_Name,
-                last_Name: genreState.last_Name,
-
+                
+                
             });
         enqueueSnackbar('Genre created successfully', {variant: 'success'});
         setGenreState(genreInitialState);
@@ -65,7 +65,7 @@ export const GenreCreate = () => {
             {/* genre form will go here */}
             <GenreForm
             genre={genreState}
-            categories={[]}
+            categories={categories?.data}
             isLoading={status.isLoading}
             isDisabled={status.isLoading}
             handleSubmit={handleSubmit}
