@@ -1,4 +1,4 @@
-import { Genre, GenreParams, GenrePlayload } from "../../types/Genre";
+import { Genre, GenreParams, GenrePlayload, Results } from "../../types/Genre";
 import { apiSlice } from "../api/apiSlice";
 import { GenreFormProps } from "./components/GenreForm";
 
@@ -7,7 +7,7 @@ const endpointUrl = '/genres';
 
 
 export const inicialState={
-    name:'',
+    id:0,
     first_Name:"",
     last_Name:"",
     email:"",
@@ -36,8 +36,17 @@ function createGenreMutation(genre:GenrePlayload){
 
 }
 
+function  getCategories(){
+    return `categories?all=true`;
+
+}
+
 export const genreSlice = apiSlice.injectEndpoints({
     endpoints: ({query,mutation}) => ({
+        getCategories: query<Results, void>({ 
+            query: getCategories,
+            providesTags: ['Genres'],
+        }),
         createGenre: mutation<Genre,GenrePlayload>({ 
             query: createGenreMutation,
             invalidatesTags: ['Genres'],
@@ -45,3 +54,5 @@ export const genreSlice = apiSlice.injectEndpoints({
 
     })
 })
+
+export const { useCreateGenreMutation, useGetCategoriesQuery } = genreSlice;

@@ -45,6 +45,7 @@ export interface GenreParams{
 }
 
 export interface GenrePlayload{
+    id:number | string
     first_Name:string,
     last_Name: string,
     email: string,

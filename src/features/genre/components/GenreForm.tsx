@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
     isLoading: boolean;
     isDisabled: boolean;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-    handleChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+    handleChange: (event: React.ChangeEvent<HTMLInputElement >) => void;
 }   
 
 
