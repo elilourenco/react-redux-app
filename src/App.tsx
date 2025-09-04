@@ -10,7 +10,7 @@ import { SnackbarProvider } from 'notistack';
 import { ListCastMembers } from './features/cast/ListCastMembers';
 import {CreateCastMembers} from './features/cast/CreateCastMembers';
 import { EditCastMember } from './features/cast/EditCastMember';
-import { Typography } from '@mui/material';
+import { GenreCreate} from './features/genre/GenreCreate';
 
 
 
@@ -48,7 +48,7 @@ export default function ButtonUsage() {
       <Route path="/cast-members/edit/:id" element={<EditCastMember />} />
 
       {/* Genre */}
-      <Route path="/genres/create" element={<Typography>Genre List</Typography>} />
+      <Route path="/genres/create" element={<GenreCreate/>} />
 
       {/* 404 Page */}      
 

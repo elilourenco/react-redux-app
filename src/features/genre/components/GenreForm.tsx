@@ -1,7 +1,7 @@
 import React from "react";
 import { Category } from "../../../types/Category";
 import { Autocomplete, Box, FormControl, Grid, TextField } from "@mui/material";
-import { Paper } from "material-ui";
+import { Paper } from "@mui/material";
 
  export type GenreFormProps = {
     genre: any;
@@ -45,13 +45,10 @@ export function GenreForm({
                         </Grid> 
                         <Grid size={{xs:12}} >
                             <Autocomplete
+                            multiple
+                            loading={isLoading}
                             disablePortal
-                            options={[
-                                { label: 'The Shawshank Redemption', year: 1994 },
-                                { label: 'The Godfather', year: 1972 },
-                                { label: 'The Godfather: Part II', year: 1974 },
-                                { label: 'The Dark Knight', year: 2008 },
-                            ]}
+                            options={[]}
                            sx={{ width: 300 }}
                            renderInput={(params) => <TextField {...params} label="Movie" />}
                         />

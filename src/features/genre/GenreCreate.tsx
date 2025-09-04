@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material"
-import { Paper } from "material-ui"
+import { Paper } from "@mui/material"
 import { GenreForm } from "./components/GenreForm"
 
-export const genreCreate = () => {
+export const GenreCreate = () => {
     return(
         <Box>
             <Paper>
@@ -24,10 +24,7 @@ export const genreCreate = () => {
             handleSubmit={function noRefCheck(){}}
             handleChange={function noRefCheck(){}}
 
-
             />
-
-            
         </Box>
     )
 }   
