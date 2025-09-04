@@ -1,7 +1,8 @@
 import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import { apiSlice } from '../features/api/apiSlice';
-import {castMembersApiSlice} from '../features/cast/CastMembersSlice'; 
+import {castMembersApiSlice} from '../features/cast/CastMembersSlice';
+import { genreSlice } from '../features/genre/genreSlice'; 
 
 
 
@@ -9,7 +10,8 @@ const rootReducer = combineReducers({
     counter: counterReducer,
    
     [apiSlice.reducerPath]:apiSlice.reducer,
-    castMembers:castMembersApiSlice.reducer
+    castMembers:castMembersApiSlice.reducer,
+    genre: genreSlice.reducer
   
 })
 

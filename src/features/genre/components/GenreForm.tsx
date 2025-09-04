@@ -1,7 +1,8 @@
 import React from "react";
 import { Category } from "../../../types/Category";
-import { Autocomplete, Box, FormControl, Grid, TextField } from "@mui/material";
+import { Autocomplete, Box, Button, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, Radio, RadioGroup, TextField } from "@mui/material";
 import { Paper } from "@mui/material";
+import { Link } from "react-router-dom";
 
  export type GenreFormProps = {
     genre: any;
@@ -42,19 +43,61 @@ export function GenreForm({
                                 />
                             </FormControl>
 
-                        </Grid> 
-                        <Grid size={{xs:12}} >
+                    </Grid> 
+                    <Grid size={{xs:12}} >
                             <Autocomplete
                             multiple
                             loading={isLoading}
                             disablePortal
                             options={[]}
-                           sx={{ width: 300 }}
-                           renderInput={(params) => <TextField {...params} label="Movie" />}
+                           value={genre.email}
+                           disabled={isDisabled || !categories}
+                           renderInput={(params) => <TextField {...params}
+                           label="Categories"
+                            data-testid= "categories-input" />}
                         />
                             
+                        <Grid size={{xs:12}} >
+                            <FormGroup>
+                                <FormLabel>Type</FormLabel>   
+                                <RadioGroup
+                                aria-labelledby="type-label"
+                                defaultValue="Director"
+                                name="type"
+                                value={genre.name}
+                                onChange={handleChange}>
+                                    <FormControlLabel value={2} control={<Radio />} label="Diretor"/>
+                                </RadioGroup>
+                                               
+                            
+                            </FormGroup>
+
                         </Grid>
-                        
+
+                        <Grid size={{xs:12}} >
+                            <Box display="flex" gap={2}>
+                                <Button  
+                                    variant="contained" 
+                                    component={Link} 
+                                    to="/cast-members">
+                                   Back
+                                 
+                                </Button>
+
+                                <Button 
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                                disabled={isDisabled || isLoading}
+                                >
+                                
+                                {isLoading ?  "Saving..." : "Save"}
+                                    
+                                </Button>
+                            </Box>
+                        </Grid>
+                                                
+                    </Grid>
                     </Grid>
                 </form>
  
