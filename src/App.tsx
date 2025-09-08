@@ -11,6 +11,7 @@ import { ListCastMembers } from './features/cast/ListCastMembers';
 import {CreateCastMembers} from './features/cast/CreateCastMembers';
 import { EditCastMember } from './features/cast/EditCastMember';
 import { GenreCreate} from './features/genre/GenreCreate';
+import { GenreEdit } from './features/genre/GenreEdit';
 
 
 
@@ -49,7 +50,7 @@ export default function ButtonUsage() {
 
       {/* Genre */}
       <Route path="/genres/create" element={<GenreCreate/>} />
-
+      <Route path="/genres/edit/:id" element={< GenreEdit />} />  
       {/* 404 Page */}      
 
       <Route path="*" element={

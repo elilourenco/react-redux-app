@@ -64,7 +64,7 @@ export  function CategoryForm ({
                             <FormControl fullWidth>
                                 <TextField
                                     required
-                                    id="email"
+                                    
                                     name="email"
                                     label="email"
                                     value={category.email}

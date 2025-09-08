@@ -12,11 +12,11 @@ import { Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Genre } from "../../../types/Genre";
 
- export type GenreFormProps = {
+export type GenreFormProps = {
     genre: Genre;
     categories?: Category[];
     isLoading: boolean;
-    isDisabled: boolean;
+    isdisabled: boolean;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     handleChange: (event: React.ChangeEvent<HTMLInputElement >) => void;
 }   
@@ -26,7 +26,7 @@ export function GenreForm({
     genre,
     categories,
     isLoading = false,
-    isDisabled = false,
+    isdisabled = false,
     handleSubmit,
     handleChange
 }:GenreFormProps){
@@ -44,12 +44,13 @@ export function GenreForm({
                                 required
                                     name="name"
                                     label="Name"
+                                    autoComplete="off"
                                     value={genre.first_Name}
-                                    disabled={isDisabled}
+                                    disabled={isdisabled}
                                     onChange={handleChange}
                                    
                                 />
-                            </FormControl>
+                        </FormControl>
 
                     </Grid> 
                     <Grid size={{xs:12}} >
@@ -59,7 +60,8 @@ export function GenreForm({
                             disablePortal
                             options={categories || []}
                             value={genre.categories || []}
-                            disabled={isDisabled || !categories}
+                            disabled={isdisabled || !categories}
+                            getOptionLabel={(option) => option.first_Name}
                             renderOption={(props, option) => (
                                 <li {...props} key={option.id}>
                                     {option.first_Name} 
@@ -77,13 +79,14 @@ export function GenreForm({
                             )}
                         />
                             
-                        <Grid size={{xs:12}} >
-                            <FormGroup>
-                                <FormLabel>Type</FormLabel>   
+                        <Grid size={{xs:12}}>
+                            <FormGroup >
+                                <FormLabel id="type">Type</FormLabel>   
                                 <RadioGroup
                                 aria-labelledby="type-label"
                                 defaultValue="Director"
                                 name="type"
+                                id="type"
                                 value={genre.first_Name}
                                 onChange={handleChange}>
                                     <FormControlLabel value={2} control={<Radio />} label="Diretor"/>
@@ -108,7 +111,7 @@ export function GenreForm({
                                 type="submit"
                                 variant="contained"
                                 color="secondary"
-                                disabled={isDisabled || isLoading}
+                                disabled={isdisabled || isLoading}
                                 >
                                 
                                 {isLoading ?  "Saving..." : "Save"}

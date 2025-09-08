@@ -11,9 +11,9 @@ export interface Category{
 }
 
 type GetCategoriesParams ={
-  id: string| number,
+  id?: string| number | undefined,
   page ? : number,
-  perPage ?: number,
+  //perPage ?: number,
   
 }
 
@@ -30,10 +30,7 @@ function parseQueryParams(params: CategoryParams) {
     query.append("page", params.page.toString());
   }
 
-  if (params.perPage) {
-    query.append("per_page", params.perPage.toString());
-  }
-
+  
   if (params.serach){
     query.append("search", params.serach);
   }
@@ -43,13 +40,15 @@ function parseQueryParams(params: CategoryParams) {
   return query.toString();
 }
 
-
-function getCategories({ id, page =1, perPage = 10} : GetCategoriesParams){
-  const params = { id,page, perPage};
-
-    const baseUrL= id ? `${endpointUrl}/users/${id}`: endpointUrl;
-
-    return `${baseUrL}?${parseQueryParams(params)}`;
+function getCategories({ id, page = 1}: GetCategoriesParams = {}){
+  const params = {
+    ...(id && { id }), // Only include id if it exists
+    page,
+  
+  } as CategoryParams;
+  
+  const baseUrl = id ? `${endpointUrl}/users/${id}` : endpointUrl;
+  return `${baseUrl}?${parseQueryParams(params)}`;
 }
 
 

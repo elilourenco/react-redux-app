@@ -29,11 +29,11 @@ export const GenreCreate = () => {
             await CreateGenre({
                 id: genreState.id,
                 first_Name: genreState.first_Name,
+                categories_id: genreState.categories?.map((cat) => String(cat.id))
                 
                 
             });
-        enqueueSnackbar('Genre created successfully', {variant: 'success'});
-        setGenreState(genreInitialState);
+        
         
     }
 
@@ -52,26 +52,23 @@ export const GenreCreate = () => {
 
     return(
         <Box>
-            <Paper>
-                <Box p={2}>
-                    <Box mb={2}>
-                        <Typography variant="h4" >
-                            Genre Create Component
-                        </Typography>
-                    </Box>
-                </Box>
-            </Paper>
+        <Paper>
+        <Box p={2}>
+          <Box mb={2}>
+            <Typography variant="h4">Create Genre</Typography>
+          </Box>
+        </Box>
 
-            {/* genre form will go here */}
-            <GenreForm
-            genre={genreState}
-            categories={categories?.data}
-            isLoading={status.isLoading}
-            isDisabled={status.isLoading}
-            handleSubmit={handleSubmit}
-            handleChange={handleChange}
-
-            />
+        <GenreForm
+          genre={genreState}
+          categories={categories?.data}
+          isLoading={status.isLoading}
+          isdisabled={status.isLoading}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+        />
+      </Paper>
+        
         </Box>
     )
 }   
