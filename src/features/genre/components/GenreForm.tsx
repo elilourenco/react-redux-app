@@ -16,7 +16,7 @@ export type GenreFormProps = {
     genre: Genre;
     categories?: Category[];
     isLoading: boolean;
-    isdisabled: boolean;
+    isDisabled: boolean;
     handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     handleChange: (event: React.ChangeEvent<HTMLInputElement >) => void;
 }   
@@ -26,7 +26,7 @@ export function GenreForm({
     genre,
     categories,
     isLoading = false,
-    isdisabled = false,
+    isDisabled = false,
     handleSubmit,
     handleChange
 }:GenreFormProps){
@@ -46,7 +46,7 @@ export function GenreForm({
                                     label="Name"
                                     autoComplete="off"
                                     value={genre.first_Name}
-                                    disabled={isdisabled}
+                                    disabled={isDisabled}
                                     onChange={handleChange}
                                    
                                 />
@@ -60,7 +60,7 @@ export function GenreForm({
                             disablePortal
                             options={categories || []}
                             value={genre.categories || []}
-                            disabled={isdisabled || !categories}
+                            disabled={isDisabled || !categories}
                             getOptionLabel={(option) => option.first_Name}
                             renderOption={(props, option) => (
                                 <li {...props} key={option.id}>
@@ -111,7 +111,7 @@ export function GenreForm({
                                 type="submit"
                                 variant="contained"
                                 color="secondary"
-                                disabled={isdisabled || isLoading}
+                                disabled={isDisabled || isLoading}
                                 >
                                 
                                 {isLoading ?  "Saving..." : "Save"}

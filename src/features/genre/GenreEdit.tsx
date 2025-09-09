@@ -1,7 +1,7 @@
 import { useSnackbar } from "notistack"
 import { useParams } from "react-router-dom"
 import { useGetCategoriesQuery ,inicialState as  genreInintalState,
-     useGetGenreQuery, useUpdateGenreMutationMutation } from "./genreSlice"
+    useGetGenreQuery, useUpdateGenreMutation } from "./genreSlice"
 import React, { useEffect, useState } from "react"
 import { Genre } from "../../types/Genre"
 import { Paper } from "material-ui"
@@ -15,7 +15,7 @@ export const  GenreEdit =()=>{
     const {data: genre, isFetching}= useGetGenreQuery({ id: id ?? "" })
     const  {data: categories} = useGetCategoriesQuery();
     const [genreState,setGenreState] = useState<Genre>(genreInintalState);
-    const [updateGenre, { isLoading, isSuccess, isError }] = useUpdateGenreMutationMutation();
+    const [updateGenre, { isLoading, isSuccess, isError }] = useUpdateGenreMutation();
 
 
     function  handleChange(event:React.ChangeEvent<HTMLInputElement>){
@@ -23,7 +23,7 @@ export const  GenreEdit =()=>{
         setGenreState((state) =>({ ...state, [name]:value}))
     }
 
-    async function handleSubmit(event: React.FormEvent<HTMLInputElement>){
+    async function handleSubmit(event:React.FormEvent<HTMLFormElement>){
         event.preventDefault();
          await updateGenre({
             id: genreState.id,

@@ -110,7 +110,6 @@ return categories?.map((category) => ({
         rows={rows}
         pagination={true}
         columns={columns}
-        //pageSize={perPage}
         filterMode="server"
         rowCount={rowCount}
         loading={isFetching}
@@ -119,12 +118,8 @@ return categories?.map((category) => ({
         disableColumnFilter={true}
         disableColumnSelector={true}
         disableDensitySelector={true}
-        //rowsPerPageOptions={rowsPerPage}
-        //componentsProps={componentProps}
-        //onPageChange={handleOnPageChange}
-        //components={{ Toolbar: GridToolbar }}
         onFilterModelChange={handleFilterChange}
-        //onPageSizeChange={handleOnPageSizeChange}
+        
       />
     </Box>
   );
