@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div>
+    <ul>
+        <li><a href="/login">Login</a></li>
+        {% if logged_in %}
+        <li><a href="/Dashboard">Dashboard</a></li>
+        <li><a href="/clients"></a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/register">Register</a></li>
+        {% endif %}
+    </ul>
+
+    <section>
+        <h2>login</h2>
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        
+        {% endif %}
+
+        <form method="post" action="/login">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Utilizador" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="Login">
+        </form>
+    </section>
+</div>
+
+    
+    
+</body>
+</html>
