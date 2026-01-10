@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <h2>Excluir Cliente</h2>
+        <p>Tem certeza que deseja excluir o cliente?</p>
+
+        <p>
+            <strong>Nome:</strong> {{ client.nome }}<br>
+            <strong>Email:</strong> {{ client.email }}<br>
+            
+        </p>
+        <form action="/clientes/excluir/{{ client.id }}" method="post">
+            <button type="submit">Confirmar Exclusão</button>
+            <a href="/clientes">Cancelar</a>
+        </form>
+    </section>
+    
+</body>
+</html>

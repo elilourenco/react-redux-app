@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section>
+        <h2>Editar Cliente</h2>
+        <form action="#" method="post" class="form-edit-client">
+            <label class="label" for="name">Nome:</label><br>
+            <input class="input" type="text" id="name" name="name" value="{{ client.nome }}" required><br><br>
+
+            <label class="label"  for="email">Email:</label><br>
+            <input class="input" type="email" id="email" name="email" value="{{ client.email }}" required><br><br>
+
+            <label class="label" for="phone">Telefone:</label><br>
+            <input class="input" type="text" id="phone" name="phone" value="{{ client.telefone }}" required><br><br>
+
+            <input class="btn" type="submit" value="Atualizar Cliente">
+
+            <button type="submit">
+                Gaurdar Alterações
+                
+
+            </button>
+
+            <a href="/clients">Cancelar</a>
+        </form>
+    </section>
+
+    <aside>
+        <h3>Clientes</h3>
+        <p>ID: {{ client.id }}</p>
+        <p>Nome: {{ client.nome }}</p>
+        <p>Email: {{ client.email }}</p>
+        <p>Telefone: {{ client.telefone }}</p>
+    </aside>
+    
+</body>
+</html>
