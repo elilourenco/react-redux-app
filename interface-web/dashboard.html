@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <ul>
+        <!-- Dashboard content goes here -->
+         <li><a href="/dashboard">Inicio</a></li>
+         {% if logged_in %}
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/clients">Clientes</a></li>
+            <li><a href="/logout">Logout</a></li>
+         {% else %}
+            <li><a href="/login">Login</a></li>
+            {% endif %}
+    </ul>
+
+    <section>
+        <h2>Dashboard</h2>
+        <p>Welcome to your dashboard! <strong>Logged in as {{ username }}</strong></p>
+    </section>
+    
+</body>
+</html>
