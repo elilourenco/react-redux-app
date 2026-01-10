@@ -20,8 +20,29 @@
 
     <section>
         <h2>Dashboard</h2>
-        <p>Welcome to your dashboard! <strong>Logged in as {{ username }}</strong></p>
+        <p>Welcome to your dashboard!<strong>Logged in as {{ username }}</strong></p>
     </section>
+
+
+    <div class="card">
+        <h3>Client Information</h3>
+        <p>Consultar,editar ou apagar clientes existentes</p>
+        <a href="/clients" class="card-link">Manage Clients</a>
+        
+
+    </div>
+    <div class="card">
+        <h3>Novo Cliente</h3>
+        <p>Adicionar novos clientes à base de dados</p>
+        <a href="/add_client" class="card-link">Add Client</a>
+
+    </div>
+
+    <aside>
+        <h3>Conta</h3>
+        <p>utilizador activo</p>
+        <p><strong>{{ username }}</strong></p>
+    </aside>
     
 </body>
 </html>
