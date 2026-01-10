@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+</head>
+<body>
+    <h2>Lista de Clientes</h2>
+    <!-- Example table of clients -->
+     {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if mesages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+
+
+    <section>
+        <h2>Clientes </h2>
+
+        <p>
+            <a href="/add_client">Adicionar Novo Cliente</a>
+        </p>
+
+        {% if clients % }
+            <table border="1">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+                {% for client in clients %}
+                <tr>
+                    <td>{{ client.id }}</td>
+                    <td>{{ client.nome }}</td>
+                    <td>{{ client.email }}</td>
+                    <td>{{ client.telefone }}</td>
+                    <td>
+                        <a href="/edit_client/{{ client.id }}">Editar</a> |
+                        <a href="/delete_client/{{ client.id }}" onclick="return confirm('Tem certeza que deseja apagar este cliente?');">Apagar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Nenhum cliente encontrado.</p>
+        {% endif %}
+    </section>
+   </body>
+</html>

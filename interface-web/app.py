@@ -24,16 +24,6 @@ app.secret_key="segredo_super_secreto"
 def index():
     return render_template("index.html")
 
-@app.route("/home")
-def home():
-    conn=get_db_connection()
-    cursor=conn.cursor(dictionary=True)
-    cursor.execute("SELECT nome,email  FROM clientes")
-    dados=cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template('index.html', dados=dados)
-
 @app.route('/about')
 def about():
     return "This is the about page."        
@@ -43,6 +33,29 @@ def about():
 
 def contact():
     return "This is the contact page."
+
+
+@app.route("/clientes/novo", methods=["GET", "POST"])
+def novo_cliente():
+    if "user_idd" not in session:
+        flash("Please log in to add a new client.", "warning")
+        return redirect("/login")
+    if request.method == "POST":
+        nome = request.form["nome"]
+        email = request.form["email"]
+        telefone = request.form["telefone"]
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO clientes (nome, email, telefone) VALUES (%s, %s, %s)", (nome, email, telefone))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        flash("Cliente adicionado com sucesso!", "success")
+        return redirect("/clientes")
+
+    return render_template("new_client.html", username=session.get("username"))
 
 @app.context_processor
 def inject_user():
