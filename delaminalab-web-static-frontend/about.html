@@ -3,12 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="A creative laboratory for objects, artists & collaborations."
-    />
-    <title>de la Mina Lab</title>
-    <link rel="stylesheet" href="index.css" />
+    <meta name="description" content="About de la Mina Lab." />
+    <title>About — de la Mina Lab</title>
+    <link rel="stylesheet" href="about.css" />
     <script src="script.js" defer></script>
   </head>
   <body class="home">
@@ -16,18 +13,13 @@
 
     <header class="site-header home-header">
       <div class="container header-inner">
-        <a class="brand" href="#top" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
-        <button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="site-navigation"
-        >
+        <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
           <span class="sr-only">Open navigation</span>
           <span></span><span></span>
         </button>
         <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
-          <a href="page.html" data-i18n="nav.about">About</a>
+          <a href="page.html" aria-current="page" data-i18n="nav.about">About</a>
           <a href="objects.html" data-i18n="nav.store">Store</a>
           <a href="artists.html" data-i18n="nav.artists">Artists</a>
           <a href="collaborations.html" data-i18n="nav.collaborations">Collaborations</a>
@@ -57,50 +49,71 @@
     </header>
 
     <main id="main">
-      <section id="top" class="hero-photo">
-        <img
-          class="hero-photo-img"
-          src="images/home.png"
-          alt=""
-          onerror="this.style.display='none'"
-        />
-        <div class="container hero-photo-inner">
-          <p class="hero-wordmark">De la <br /> Mina Lab</p>
-          <hr class="hero-rule" />
-          <p class="hero-tagline" data-i18n-html="hero.tagline">A creative laboratory<br />for objects, artists<br />&amp; collaborations.</p>
-          <a class="hero-explore" href="#work"><span data-i18n="hero.explore">Explore</span> <span aria-hidden="true">↓</span></a>
+      <section class="about-hero">
+        <div class="about-hero-copy">
+          <p class="eyebrow">About</p>
+          <h1 class="about-hero-heading">A creative laboratory for objects, artists and collaborations.</h1>
+          <hr class="about-rule" />
+          <p class="about-hero-lead">De la Mina Lab is a space where ideas are researched, designed and brought to life. We believe in the value of well-made objects and the power of meaningful collaborations.</p>
+          <a class="about-link" href="mailto:hello@delaminalab.com">Our manifesto <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="about-hero-photo">
+          <img src="images/about-hero.jpg" alt="" onerror="this.style.display='none'" />
         </div>
       </section>
 
-      <section id="work" class="section category-strip">
-        <div class="container category-grid">
-          <a class="category-item" href="objects.html">
-            <p class="category-index"><span>01</span><i></i></p>
-            <h3 data-i18n="category.objects.title">Objects</h3>
-            <p data-i18n-html="category.objects.desc">Our own collections.<br />Designed in-house.</p>
-            <div class="category-photo category-photo--objects" role="img" aria-label="Photo for Objects">
-              <img class="category-photo-img" src="./images/objects.jpeg" alt="" onerror="this.style.display='none'" />
+      <section class="section about-philosophy">
+        <div class="container about-philosophy-grid">
+          <div class="about-philosophy-photo">
+            <img src="images/about-philosophy.jpg" alt="" onerror="this.style.display='none'" />
+          </div>
+          <div class="about-philosophy-copy">
+            <p class="eyebrow">Our philosophy</p>
+            <h2 class="about-heading">Objects with purpose. Created with intention.</h2>
+            <hr class="about-rule" />
+            <p class="about-philosophy-lead">We work with independent artists and like-minded brands to create limited editions and meaningful projects. Everything we do is driven by curiosity, quality and respect for the creative process.</p>
+            <div class="about-stats-row">
+              <div class="about-stat"><span>01</span><h3>Quality</h3><p>We focus on timeless design and enduring materials.</p></div>
+              <div class="about-stat"><span>02</span><h3>Collaboration</h3><p>We believe the best ideas are born from working together.</p></div>
+              <div class="about-stat"><span>03</span><h3>Curiosity</h3><p>We keep exploring to discover new perspectives and push boundaries.</p></div>
             </div>
-            <span class="category-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="category-item" href="artists.html">
-            <p class="category-index"><span>02</span><i></i></p>
-            <h3 data-i18n="category.artists.title">Artists</h3>
-            <p data-i18n-html="category.artists.desc">Works and collections<br />by selected artists.</p>
-            <div class="category-photo category-photo--artists" role="img" aria-label="Photo for Artists">
-              <img class="category-photo-img" src="./images/artists.jpeg" alt="" onerror="this.style.display='none'" />
-            </div>
-            <span class="category-arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="category-item" href="collaborations.html">
-            <p class="category-index"><span>03</span><i></i></p>
-            <h3 data-i18n="category.collab.title">Collaborations</h3>
-            <p data-i18n-html="category.collab.desc">Projects with brands,<br />studios and friends.</p>
-            <div class="category-photo category-photo--collab" role="img" aria-label="Photo for Collaborations">
-              <img class="category-photo-img" src="./images/collaborations (1).jpeg" alt="" onerror="this.style.display='none'" />
-            </div>
-            <span class="category-arrow" aria-hidden="true">→</span>
-          </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section about-whatwedo">
+        <div class="container about-whatwedo-grid">
+          <div class="about-whatwedo-copy">
+            <p class="eyebrow">What we do</p>
+            <ol class="about-list">
+              <li>
+                <div class="about-list-text"><span>01</span><h3>Objects</h3><p>We design and produce limited collections of functional objects.</p></div>
+                <span class="about-list-icon" aria-hidden="true">+</span>
+              </li>
+              <li>
+                <div class="about-list-text"><span>02</span><h3>Artists</h3><p>We collaborate with independent artists to bring their vision to life.</p></div>
+                <span class="about-list-icon" aria-hidden="true">+</span>
+              </li>
+              <li>
+                <div class="about-list-text"><span>03</span><h3>Collaborations</h3><p>We partner with brands, studios and institutions on creative projects.</p></div>
+                <span class="about-list-icon" aria-hidden="true">+</span>
+              </li>
+              <li>
+                <div class="about-list-text"><span>04</span><h3>Editions</h3><p>Everything we create is released in small batches or limited editions.</p></div>
+                <span class="about-list-icon" aria-hidden="true">+</span>
+              </li>
+            </ol>
+          </div>
+          <div class="about-whatwedo-photo">
+            <img src="images/about-whatwedo.jpg" alt="" onerror="this.style.display='none'" />
+          </div>
+        </div>
+      </section>
+
+      <section class="about-cta">
+        <div class="container about-cta-grid">
+          <h2 class="about-heading">Rooted in curiosity.<br />Driven by creativity.</h2>
+          <p>de la Mina Lab was founded with the idea of creating a space where creativity can take shape without limits. A laboratory of ideas, where objects, artists and collaborations come together to build something meaningful.</p>
         </div>
       </section>
     </main>

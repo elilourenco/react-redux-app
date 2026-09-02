@@ -3,23 +3,313 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A static product detail page for de la Mina Lab." />
-    <title>Still Vessel — de la Mina Lab</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
+    <meta name="description" content="Horizon Cap — de la Mina Lab." />
+    <title>Horizon Cap — de la Mina Lab</title>
+    <link rel="stylesheet" href="product.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header"><div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Open navigation</span><span></span><span></span></button>
-      <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation"><a href="objects.html" aria-current="page">Objects</a><a href="artists.html">Artists</a><a href="collaborations.html">Collaborations</a><a href="page.html">About</a></nav>
-    </div></header>
-    <main id="main" class="section"><div class="container detail-layout">
-      <div class="detail-visual" role="img" aria-label="Placeholder visual for the Still Vessel"></div>
-      <article class="detail-copy"><p class="eyebrow">Object / 01</p><h1>Still Vessel</h1><p class="price">€95</p><p>A small vessel for flowers, found objects, or the perfectly ordinary. The content and purchasing controls here are intentionally visual-only placeholders.</p><button class="button" type="button">Add to basket <span aria-hidden="true">↗</span></button><ul class="meta-list"><li><span>Material</span><span>Stoneware</span></li><li><span>Dimensions</span><span>18 × 12 cm</span></li><li><span>Edition</span><span>Open</span></li></ul></article>
-    </div></main>
-    <footer class="site-footer"><div class="container footer-inner"><span>© <span data-current-year></span> de la Mina Lab</span><a href="objects.html">Back to objects ↑</a></div></footer>
+
+    <header class="site-header product-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
+        <div class="header-icons">
+          <button type="button" class="icon-btn" id="search-trigger" aria-haspopup="dialog" aria-controls="search-overlay" aria-label="Search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          </button>
+          <a class="icon-btn" href="#" aria-label="Wishlist">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.8 5.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+          </a>
+          <button type="button" class="icon-btn cart-trigger" id="cart-trigger" aria-haspopup="dialog" aria-controls="cart-drawer" aria-label="Cart, 1 item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8h12l-1 12H7L6 8z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+            <span class="cart-count" id="cart-count">1</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <nav class="breadcrumb container" aria-label="Breadcrumb">
+        <a href="objects.html">Objects</a>
+        <span aria-hidden="true">/</span>
+        <span>Edition 004</span>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Horizon Cap</span>
+      </nav>
+
+      <section class="product-main container">
+        <div class="product-gallery">
+          <div class="product-image">
+            <img src="images/product-horizon-cap.jpg" alt="" onerror="this.style.display='none'" />
+          </div>
+        </div>
+
+        <div class="product-info">
+          <p class="eyebrow">Edition 004</p>
+          <h1 class="product-title">Horizon Cap</h1>
+          <p class="product-price">€45,00</p>
+          <p class="product-desc">6-panel cap in washed cotton. Embroidered logo. Adjustable strap.</p>
+
+          <div class="product-color">
+            <p class="product-color-label">Color: <span id="color-label">Sea Blue</span></p>
+            <div class="color-swatches" role="group" aria-label="Color">
+              <button type="button" class="swatch swatch--blue is-active" data-color="Sea Blue" aria-label="Sea Blue"></button>
+              <button type="button" class="swatch swatch--sand" data-color="Sand" aria-label="Sand"></button>
+              <button type="button" class="swatch swatch--black" data-color="Black" aria-label="Black"></button>
+            </div>
+          </div>
+
+          <p class="product-edition">Edition: 52 / 100</p>
+
+          <div class="product-actions">
+            <button type="button" class="btn-add-cart" id="add-to-cart">Add to cart</button>
+            <button type="button" class="btn-wishlist" aria-label="Add to wishlist">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 20.5s-7.5-4.6-9.8-9A5.3 5.3 0 0 1 12 6a5.3 5.3 0 0 1 9.8 5.5c-2.3 4.4-9.8 9-9.8 9z"/></svg>
+            </button>
+          </div>
+
+          <div class="product-accordion">
+            <details>
+              <summary>Details <span class="acc-icon" aria-hidden="true">+</span></summary>
+              <div class="acc-body"><p>Made from 100% washed cotton twill. Six-panel construction with a curved brim and embroidered de la Mina Lab logo on the front panel. Adjustable strap with brass buckle at the back.</p></div>
+            </details>
+            <details>
+              <summary>Shipping &amp; returns <span class="acc-icon" aria-hidden="true">+</span></summary>
+              <div class="acc-body"><p>Ships within 2&ndash;4 business days. Free returns within 30 days of delivery.</p></div>
+            </details>
+            <details>
+              <summary>Care instructions <span class="acc-icon" aria-hidden="true">+</span></summary>
+              <div class="acc-body"><p>Spot clean with a damp cloth. Do not machine wash. Air dry away from direct sunlight.</p></div>
+            </details>
+            <details>
+              <summary>Share <span class="acc-icon" aria-hidden="true">+</span></summary>
+              <div class="acc-body"><p><a href="mailto:?subject=Horizon%20Cap">Email</a> &middot; <a href="https://instagram.com/delaminalab" target="_blank" rel="noopener">Instagram</a> &middot; <a href="#">Copy link</a></p></div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="recently-viewed container">
+        <div class="rv-header">
+          <p>Recently viewed</p>
+          <div class="rv-nav">
+            <button type="button" aria-label="Previous">←</button>
+            <button type="button" aria-label="Next">→</button>
+          </div>
+        </div>
+        <div class="rv-grid">
+          <a class="rv-item" href="product.html">
+            <img src="images/rv-bottle.jpg" alt="" onerror="this.style.display='none'" />
+            <span class="rv-hover">View</span>
+          </a>
+          <a class="rv-item" href="product.html">
+            <img src="images/rv-notebook.jpg" alt="" onerror="this.style.display='none'" />
+            <span class="rv-hover">View</span>
+          </a>
+          <a class="rv-item" href="product.html">
+            <img src="images/rv-tote.jpg" alt="" onerror="this.style.display='none'" />
+            <span class="rv-hover">View</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Search overlay -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search" hidden>
+      <div class="search-overlay-inner">
+        <button type="button" class="search-close" id="search-close" aria-label="Close search">×</button>
+        <h2>Search</h2>
+        <input type="text" placeholder="Type to search..." autocomplete="off" />
+        <div class="search-links">
+          <a href="objects.html">Objects</a>
+          <a href="artists.html">Artists</a>
+          <a href="collaborations.html">Collaborations</a>
+          <a href="#">Journal</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart drawer -->
+    <div class="cart-drawer" id="cart-drawer" hidden>
+      <div class="cart-drawer-backdrop" id="cart-backdrop"></div>
+      <div class="cart-drawer-panel" role="dialog" aria-modal="true" aria-label="Your cart">
+        <div class="cart-drawer-header">
+          <p>Your objects (<span id="cart-item-count">2</span>)</p>
+          <button type="button" id="cart-close" aria-label="Close cart">×</button>
+        </div>
+        <div class="cart-items">
+          <div class="cart-item" data-price="45">
+            <img src="images/product-horizon-cap.jpg" alt="" onerror="this.style.display='none'" />
+            <div class="cart-item-copy">
+              <p class="cart-item-name">Horizon Cap</p>
+              <p class="cart-item-variant">Sea Blue</p>
+              <p class="cart-item-price">€45,00</p>
+            </div>
+            <div class="qty-stepper">
+              <button type="button" class="qty-minus" aria-label="Decrease quantity">–</button>
+              <span class="qty-value">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-item" data-price="35">
+            <img src="images/rv-bottle.jpg" alt="" onerror="this.style.display='none'" />
+            <div class="cart-item-copy">
+              <p class="cart-item-name">Bottle 001</p>
+              <p class="cart-item-variant">Sand</p>
+              <p class="cart-item-price">€35,00</p>
+            </div>
+            <div class="qty-stepper">
+              <button type="button" class="qty-minus" aria-label="Decrease quantity">–</button>
+              <span class="qty-value">1</span>
+              <button type="button" class="qty-plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="cart-subtotal">
+          <span>Subtotal</span>
+          <span id="cart-subtotal-value">€80,00</span>
+        </div>
+        <a class="cart-checkout" href="cart.html">Checkout <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+
+    <div class="lab-assistant">
+      <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
+        <div class="lab-assistant-header">
+          <p>Lab Assistant</p>
+          <div class="lab-assistant-controls">
+            <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
+            <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="lab-assistant-body">
+          <p class="lab-assistant-greeting">Hello. What would you like to discover today?</p>
+          <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
+            <a href="objects.html"><span>Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span>Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span>Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>General Question</span> <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+        <form class="lab-assistant-form" action="#" onsubmit="return false;">
+          <label class="sr-only" for="lab-assistant-input">Type your message</label>
+          <input id="lab-assistant-input" type="text" placeholder="Type your message" autocomplete="off" />
+          <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
+        </form>
+      </div>
+      <div class="lab-assistant-launcher">
+        <p class="lab-assistant-hint" id="lab-assistant-hint">Hello. Need help or have a question?</p>
+        <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
+          <span>LAB<br />ASSISTANT</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // --- Search overlay ---
+      var searchTrigger = document.getElementById('search-trigger');
+      var searchOverlay = document.getElementById('search-overlay');
+      var searchClose = document.getElementById('search-close');
+      function openSearch() {
+        searchOverlay.hidden = false;
+        var input = searchOverlay.querySelector('input');
+        if (input) input.focus();
+      }
+      function closeSearch() { searchOverlay.hidden = true; }
+      if (searchTrigger) searchTrigger.addEventListener('click', openSearch);
+      if (searchClose) searchClose.addEventListener('click', closeSearch);
+      if (searchOverlay) {
+        searchOverlay.addEventListener('click', function (e) {
+          if (e.target === searchOverlay) closeSearch();
+        });
+      }
+
+      // --- Cart drawer ---
+      var cartTrigger = document.getElementById('cart-trigger');
+      var cartDrawer = document.getElementById('cart-drawer');
+      var cartClose = document.getElementById('cart-close');
+      var cartBackdrop = document.getElementById('cart-backdrop');
+      function openCart() { cartDrawer.hidden = false; }
+      function closeCart() { cartDrawer.hidden = true; }
+      if (cartTrigger) cartTrigger.addEventListener('click', openCart);
+      if (cartClose) cartClose.addEventListener('click', closeCart);
+      if (cartBackdrop) cartBackdrop.addEventListener('click', closeCart);
+
+      var addToCart = document.getElementById('add-to-cart');
+      if (addToCart) addToCart.addEventListener('click', openCart);
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { closeSearch(); closeCart(); }
+      });
+
+      // --- Color swatches ---
+      var swatches = document.querySelectorAll('.swatch');
+      var colorLabel = document.getElementById('color-label');
+      swatches.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          swatches.forEach(function (s) { s.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          if (colorLabel) colorLabel.textContent = btn.getAttribute('data-color');
+        });
+      });
+
+      // --- Cart quantity steppers ---
+      function recalcSubtotal() {
+        var total = 0;
+        document.querySelectorAll('.cart-item').forEach(function (item) {
+          var price = parseFloat(item.getAttribute('data-price')) || 0;
+          var qty = parseInt(item.querySelector('.qty-value').textContent, 10) || 0;
+          total += price * qty;
+        });
+        var subtotalEl = document.getElementById('cart-subtotal-value');
+        if (subtotalEl) subtotalEl.textContent = '€' + total.toFixed(2).replace('.', ',');
+        var countEl = document.getElementById('cart-item-count');
+        if (countEl) {
+          var count = 0;
+          document.querySelectorAll('.qty-value').forEach(function (q) { count += parseInt(q.textContent, 10) || 0; });
+          countEl.textContent = count;
+        }
+        var headerCount = document.getElementById('cart-count');
+        if (headerCount) {
+          var count2 = 0;
+          document.querySelectorAll('.qty-value').forEach(function (q) { count2 += parseInt(q.textContent, 10) || 0; });
+          headerCount.textContent = count2;
+        }
+      }
+      document.querySelectorAll('.qty-plus').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var span = btn.parentElement.querySelector('.qty-value');
+          span.textContent = (parseInt(span.textContent, 10) || 0) + 1;
+          recalcSubtotal();
+        });
+      });
+      document.querySelectorAll('.qty-minus').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var span = btn.parentElement.querySelector('.qty-value');
+          var val = (parseInt(span.textContent, 10) || 0) - 1;
+          span.textContent = Math.max(1, val);
+          recalcSubtotal();
+        });
+      });
+
+      // --- Lab Assistant ---
+      var labTrigger = document.getElementById('lab-assistant-trigger');
+      var labPanel = document.getElementById('lab-assistant-panel');
+      var labHint = document.getElementById('lab-assistant-hint');
+      if (labTrigger && labPanel) {
+        labTrigger.addEventListener('click', function () {
+          var isHidden = labPanel.hidden;
+          labPanel.hidden = !isHidden;
+          labTrigger.setAttribute('aria-expanded', String(isHidden));
+          if (labHint) labHint.style.display = 'none';
+        });
+        var labClose = labPanel.querySelector('.lab-assistant-close');
+        var labMin = labPanel.querySelector('.lab-assistant-min');
+        if (labClose) labClose.addEventListener('click', function () { labPanel.hidden = true; labTrigger.setAttribute('aria-expanded', 'false'); });
+        if (labMin) labMin.addEventListener('click', function () { labPanel.hidden = true; labTrigger.setAttribute('aria-expanded', 'false'); });
+      }
+    </script>
   </body>
 </html>
-

@@ -5,25 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Collaborations by de la Mina Lab." />
     <title>Collaborations — de la Mina Lab</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="collaborations.css" />
     <script src="script.js" defer></script>
   </head>
-  <body>
+  <body class="home">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header"><div class="container header-inner">
-      <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation"><span class="sr-only">Open navigation</span><span></span><span></span></button>
-      <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation"><a href="objects.html">Objects</a><a href="artists.html">Artists</a><a href="collaborations.html" aria-current="page">Collaborations</a><a href="page.html">About</a></nav>
-    </div></header>
-    <main id="main"><section class="page-intro"><div class="container"><p class="eyebrow">With brands, studios, and friends</p><h1>Collaborations</h1></div></section>
-      <section class="section section-muted"><div class="container case-grid">
-        <article class="case-card"><p>01 / 2026</p><h2>Common<br />Ground</h2><p>Material exploration with a local maker.</p></article>
-        <article class="case-card"><p>02 / 2025</p><h2>Soft<br />Systems</h2><p>A limited edition with Studio Forma.</p></article>
-        <article class="case-card"><p>03 / 2025</p><h2>All<br />Together</h2><p>An installation for a shared space.</p></article>
-        <article class="case-card"><p>04 / 2024</p><h2>After<br />Hours</h2><p>A one-night gathering of objects and sound.</p></article>
-      </div></section>
+
+    <header class="site-header home-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+          <span class="sr-only">Open navigation</span>
+          <span></span><span></span>
+        </button>
+        <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
+          <a href="page.html">About</a>
+          <a href="objects.html">Objects</a>
+          <a href="artists.html">Artists</a>
+          <a href="collaborations.html" aria-current="page">Collaborations</a>
+        </nav>
+        <div class="header-icons">
+          <div class="header-icons-group">
+            <a class="icon-link" href="#" aria-label="Account">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            </a>
+            <a class="icon-link" href="#" aria-label="Cart, 0 items">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20.5" r="1.2"/><circle cx="17.5" cy="20.5" r="1.2"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="collab-hero">
+        <div class="collab-hero-copy">
+          <h1 class="collab-hero-heading">Collaborations</h1>
+          <hr class="collab-rule" />
+          <p class="collab-hero-lead">We collaborate with brands, studios and friends to create meaningful projects.</p>
+        </div>
+        <div class="collab-hero-photo">
+          <img src="images/collaborations-hero.jpg" alt="" onerror="this.style.display='none'" />
+        </div>
+      </section>
+
+      <section class="collab-list">
+        <div class="container">
+          <a class="collab-row" href="article.html">
+            <div class="collab-row-copy">
+              <p class="collab-row-brand">De la Mina Lab</p>
+              <p class="collab-row-x" aria-hidden="true">×</p>
+              <h2 class="collab-row-partner">Arket</h2>
+              <p class="collab-row-desc">A capsule collection inspired by daily rituals and timeless design.</p>
+              <span class="collab-row-link">View project <span aria-hidden="true">→</span></span>
+            </div>
+            <div class="collab-row-photo">
+              <img src="images/collab-arket.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+          </a>
+
+          <a class="collab-row" href="article.html">
+            <div class="collab-row-copy">
+              <p class="collab-row-brand">De la Mina Lab</p>
+              <p class="collab-row-x" aria-hidden="true">×</p>
+              <h2 class="collab-row-partner">Hemisphere Studio</h2>
+              <p class="collab-row-desc">Limited edition objects developed together in Barcelona.</p>
+              <span class="collab-row-link">View project <span aria-hidden="true">→</span></span>
+            </div>
+            <div class="collab-row-photo">
+              <img src="images/collab-hemisphere.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+          </a>
+
+          <a class="collab-row" href="article.html">
+            <div class="collab-row-copy">
+              <p class="collab-row-brand">De la Mina Lab</p>
+              <p class="collab-row-x" aria-hidden="true">×</p>
+              <h2 class="collab-row-partner">Matter</h2>
+              <p class="collab-row-desc">An experimental project exploring material, texture and color.</p>
+              <span class="collab-row-link">View project <span aria-hidden="true">→</span></span>
+            </div>
+            <div class="collab-row-photo">
+              <img src="images/collab-matter.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+          </a>
+        </div>
+      </section>
     </main>
-    <footer class="site-footer"><div class="container footer-inner"><span>© <span data-current-year></span> de la Mina Lab</span><a href="#main">Back to top ↑</a></div></footer>
+
+    <footer class="site-footer collab-footer">
+      <div class="container collab-footer-inner">
+        <p class="brand">DE LA MINA LAB</p>
+        <div class="footer-links-inline">
+          <a href="https://instagram.com/delaminalab" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@delaminalab" target="_blank" rel="noopener">TikTok</a>
+          <a href="mailto:hello@delaminalab.com">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lab-assistant">
+      <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
+        <div class="lab-assistant-header">
+          <p>Lab Assistant</p>
+          <div class="lab-assistant-controls">
+            <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
+            <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="lab-assistant-body">
+          <p class="lab-assistant-greeting">Hello. What would you like to discover today?</p>
+          <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
+            <a href="objects.html"><span>Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span>Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span>Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>General Question</span> <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+        <form class="lab-assistant-form" action="#" onsubmit="return false;">
+          <label class="sr-only" for="lab-assistant-input">Type your message</label>
+          <input id="lab-assistant-input" type="text" placeholder="Type your message" autocomplete="off" />
+          <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
+        </form>
+      </div>
+      <div class="lab-assistant-launcher">
+        <p class="lab-assistant-hint" id="lab-assistant-hint">Hello. Need help or have a question?</p>
+        <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
+          <span>LAB<br />ASSISTANT</span>
+        </button>
+      </div>
+    </div>
   </body>
 </html>
-
