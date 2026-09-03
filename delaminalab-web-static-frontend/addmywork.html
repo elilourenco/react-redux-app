@@ -1,0 +1,357 @@
+<title>Add New Work — De La Mina Lab</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+  :root {
+    --navy: #1e3347;
+    --navy-soft: #2c4459;
+    --ink: #1c2b38;
+    --muted: #5b6b6f;
+    --placeholder: #9aa39a;
+    --hairline: #c7c9bd;
+    --bg: #f3f1e9;
+    --dropzone: #e9e7dd;
+    --dropzone-border: #b9b6a8;
+    --focus: #4c6b86;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { min-height: 100vh; display: flex; flex-direction: column; }
+
+  nav {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 2.4rem clamp(1.5rem, 5vw, 4rem) 1.8rem;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+    color: var(--navy);
+    line-height: 1.3;
+    max-width: 9ch;
+  }
+  .navlinks {
+    display: flex;
+    gap: clamp(1.2rem, 3vw, 2.4rem);
+    list-style: none;
+    margin: 0.2rem 0 0;
+    padding: 0;
+  }
+  .navlinks a {
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+  .navlinks a:hover, .navlinks a:focus-visible { opacity: 1; }
+  .navlinks a.current { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+
+  main {
+    flex: 1;
+    padding: clamp(2.5rem, 6vw, 4rem) clamp(1.5rem, 5vw, 4rem) clamp(3rem, 6vw, 4rem);
+    max-width: 1180px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin-bottom: 2.2rem;
+  }
+  .back:hover { color: var(--navy); }
+
+  .eyebrow { display: flex; align-items: center; gap: 0.65rem; margin-bottom: 1.1rem; }
+  .eyebrow .rule { width: 28px; height: 1px; background: var(--navy); opacity: 0.55; }
+  .eyebrow span { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; color: var(--navy); opacity: 0.75; }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 3.6vw, 2.8rem);
+    letter-spacing: -0.01em;
+    color: var(--navy);
+    margin: 0 0 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .lede { font-size: 1rem; line-height: 1.6; color: var(--ink); opacity: 0.75; margin: 0 0 2.8rem; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .dropzone {
+    aspect-ratio: 1 / 1;
+    max-height: 380px;
+    border: 1px dashed var(--dropzone-border);
+    background: var(--dropzone);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.9rem;
+    cursor: pointer;
+    padding: 1.5rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .dropzone:hover, .dropzone.drag { border-color: var(--navy); background: #e3e0d3; }
+  .dropzone:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .dropzone svg { width: 26px; height: 26px; stroke: var(--muted); }
+  .dropzone .title { font-size: 0.95rem; color: var(--ink); font-weight: 500; }
+  .dropzone .hint { font-size: 0.74rem; letter-spacing: 0.04em; color: var(--placeholder); }
+  .dropzone input[type="file"] { display: none; }
+  .dropzone.has-file .title { color: var(--navy); font-weight: 600; }
+
+  .field { margin-bottom: 1.5rem; }
+  .field label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 0.55rem;
+  }
+  .field input, .field select {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid var(--hairline);
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: var(--ink);
+    padding: 0.35rem 0.1rem 0.6rem;
+    outline: none;
+    border-radius: 0;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.15s ease;
+  }
+  .field select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%235b6b6f' stroke-width='1.3'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.2rem center;
+    padding-right: 1.2rem;
+  }
+  .field input::placeholder { color: var(--placeholder); }
+  .field input:focus, .field select:focus { border-bottom-color: var(--navy); }
+
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+  .actions { display: flex; gap: 1rem; margin-top: 0.8rem; flex-wrap: wrap; }
+  .btn {
+    font-family: inherit;
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    padding: 0.95rem 1.5rem;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+  .btn-outline { background: transparent; color: var(--navy); border: 1px solid var(--navy); }
+  .btn-outline:hover { background: rgba(30, 51, 71, 0.06); }
+  .btn-solid { background: var(--navy); color: #f3f1ea; border: 1px solid var(--navy); }
+  .btn-solid:hover { background: var(--navy-soft); }
+  .btn-solid .arrow { transition: transform 0.15s ease; }
+  .btn-solid:hover .arrow { transform: translateX(3px); }
+
+  .form-note {
+    display: none;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--navy);
+    background: rgba(30, 51, 71, 0.07);
+    border-radius: 3px;
+    padding: 0.8rem 0.9rem;
+    margin: 1.4rem 0 0;
+  }
+  .form-note.visible { display: block; }
+
+  footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    padding: 1.5rem clamp(1.5rem, 5vw, 4rem) 2rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+    border-top: 1px solid var(--hairline);
+  }
+  footer p { margin: 0; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--muted); max-width: 46ch; }
+  .social { display: flex; gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+  .social a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; color: var(--navy); text-decoration: none; opacity: 0.85; }
+  .social a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 780px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .dropzone { max-height: 300px; }
+  }
+  @media (max-width: 480px) {
+    .field-row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+
+<div class="page">
+  <nav>
+    <div class="wordmark">DE LA MINA LAB</div>
+    <ul class="navlinks">
+      <li><a href="#" class="current">My Works</a></li>
+      <li><a href="#">Profile</a></li>
+      <li><a href="#">Log Out</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <a class="back" href="#">← Back to My Works</a>
+
+    <div class="eyebrow"><span class="rule"></span><span>New Entry</span></div>
+    <h1>Add New Work</h1>
+    <p class="lede">Share a new piece with your collection.</p>
+
+    <form id="add-work-form" novalidate>
+      <div class="form-grid">
+        <label class="dropzone" id="dropzone" for="file-input" tabindex="0">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 16V4M12 4l-4 4M12 4l4 4" />
+            <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3" />
+          </svg>
+          <span class="title" id="dropzone-title">Click to upload or drag and drop</span>
+          <span class="hint">JPG or PNG, up to 10MB</span>
+          <input id="file-input" type="file" accept=".jpg,.jpeg,.png">
+        </label>
+
+        <div>
+          <div class="field">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text" placeholder="e.g. Untitled Horizon 03" required>
+          </div>
+
+          <div class="field">
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option>Painting</option>
+              <option>Sculpture</option>
+              <option>Photography</option>
+              <option>Ceramics</option>
+              <option>Textile</option>
+              <option>Mixed Media</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="year">Year</label>
+              <input id="year" name="year" type="number" placeholder="2026" min="1900" max="2100">
+            </div>
+            <div class="field">
+              <label for="price">Price (€)</label>
+              <input id="price" name="price" type="number" placeholder="0.00" min="0" step="0.01">
+            </div>
+          </div>
+
+          <div class="form-note" id="form-note"></div>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-outline" id="save-draft">Save as Draft</button>
+            <button type="submit" class="btn btn-solid" id="publish">Publish Work <span class="arrow">→</span></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    <p>De La Mina Lab — a creative laboratory based on discovery and collaboration.</p>
+    <ul class="social">
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">TikTok</a></li>
+      <li><a href="#">Email</a></li>
+    </ul>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var dropzone = document.getElementById('dropzone');
+    var fileInput = document.getElementById('file-input');
+    var titleEl = document.getElementById('dropzone-title');
+    var form = document.getElementById('add-work-form');
+    var note = document.getElementById('form-note');
+    var lastAction = 'Publish Work';
+
+    function setFileName(name) {
+      titleEl.textContent = name;
+      dropzone.classList.add('has-file');
+    }
+
+    fileInput.addEventListener('change', function () {
+      if (fileInput.files && fileInput.files[0]) setFileName(fileInput.files[0].name);
+    });
+
+    ['dragover', 'dragenter'].forEach(function (evt) {
+      dropzone.addEventListener(evt, function (e) {
+        e.preventDefault();
+        dropzone.classList.add('drag');
+      });
+    });
+    ['dragleave', 'dragend'].forEach(function (evt) {
+      dropzone.addEventListener(evt, function () { dropzone.classList.remove('drag'); });
+    });
+    dropzone.addEventListener('drop', function (e) {
+      e.preventDefault();
+      dropzone.classList.remove('drag');
+      var file = e.dataTransfer.files && e.dataTransfer.files[0];
+      if (file) {
+        fileInput.files = e.dataTransfer.files;
+        setFileName(file.name);
+      }
+    });
+
+    document.getElementById('save-draft').addEventListener('click', function () { lastAction = 'Saved as draft'; });
+    document.getElementById('publish').addEventListener('click', function () { lastAction = 'Published'; });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      note.textContent = lastAction + ' — this is a design preview, not yet wired to a backend.';
+      note.classList.add('visible');
+    });
+  })();
+</script>
