@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="My Works — artist dashboard, de la Mina Lab." />
+    <title>My Works — de la Mina Lab</title>
+    <link rel="stylesheet" href="my.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+          <span class="sr-only">Open navigation</span>
+          <span></span><span></span>
+        </button>
+        <nav id="site-navigation" class="site-navigation" aria-label="Account navigation">
+          <a href="my-works.html" aria-current="page">My Works</a>
+          <a href="artist-profile.html">Profile</a>
+          <a href="index.html">Log Out</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="dashboard-main">
+      <div class="container">
+        <div class="dashboard-head">
+          <div>
+            <p class="dashboard-eyebrow">Artist Dashboard</p>
+            <h1 class="dashboard-title">My Works</h1>
+            <p class="dashboard-lead">Manage the pieces you have shared with De La Mina Lab.</p>
+          </div>
+          <div class="dashboard-head-right">
+            <p class="dashboard-stats">9 Works &middot; 7 Published &middot; 2 Drafts</p>
+            <a class="dashboard-btn" href="add-work.html">+ Add Work</a>
+          </div>
+        </div>
+
+        <div class="works-toolbar" role="group" aria-label="Filter by category">
+          <div class="filter-tabs">
+            <button type="button" class="filter-pill is-active" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-pill" data-filter="painting" aria-pressed="false">Painting</button>
+            <button type="button" class="filter-pill" data-filter="photography" aria-pressed="false">Photography</button>
+            <button type="button" class="filter-pill" data-filter="sculpture" aria-pressed="false">Sculpture</button>
+            <button type="button" class="filter-pill" data-filter="drawing" aria-pressed="false">Drawing</button>
+          </div>
+          <p class="works-sort">Sort: Recent</p>
+        </div>
+
+        <div class="works-grid">
+          <a class="work-card" data-category="painting" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-untitled-horizon-01.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Untitled Horizon 01</p><p class="work-card-price">€1.200</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Painting &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="photography" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-coastal-fragments.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Coastal Fragments</p><p class="work-card-price">€680</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Photography &mdash; 2023</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="sculpture" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status is-draft">Draft</span>
+              <img src="images/work-study-in-stone.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Study in Stone</p><p class="work-card-price">&mdash;</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Sculpture &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="photography" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-salt-line.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Salt Line</p><p class="work-card-price">€520</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Photography &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="painting" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status is-draft">Draft</span>
+              <img src="images/work-untitled-horizon-02.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Untitled Horizon 02</p><p class="work-card-price">&mdash;</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Painting &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="painting" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-quiet-interior.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Quiet Interior</p><p class="work-card-price">€950</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Painting &mdash; 2023</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="drawing" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-terra-incognita.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Terra Incognita</p><p class="work-card-price">€410</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Drawing &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="photography" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-low-tide-study.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Low Tide Study</p><p class="work-card-price">€560</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Photography &mdash; 2023</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+
+          <a class="work-card" data-category="sculpture" href="add-work.html">
+            <div class="work-card-photo">
+              <span class="work-status">Published</span>
+              <img src="images/work-night-frame.jpg" alt="" onerror="this.style.display='none'" />
+            </div>
+            <div class="work-card-row"><p class="work-card-name">Night Frame</p><p class="work-card-price">€1.050</p></div>
+            <div class="work-card-meta-row"><p class="work-card-meta">Sculpture &mdash; 2024</p><span class="work-card-edit">Edit &rarr;</span></div>
+          </a>
+        </div>
+        <p class="catalog-empty" hidden>No works in this category yet.</p>
+
+        <nav class="works-pagination" aria-label="Works pagination">
+          <button type="button" id="works-prev" aria-label="Previous page">&lsaquo;</button>
+          <span id="works-page-label">2 of 3</span>
+          <button type="button" id="works-next" aria-label="Next page">&rsaquo;</button>
+        </nav>
+      </div>
+    </main>
+
+    <footer class="site-footer dashboard-footer">
+      <div class="container dashboard-footer-inner">
+        <span>&copy; <span data-current-year></span> De la Mina Lab</span>
+        <a href="mailto:hello@delaminalab.com">Need help? Contact us</a>
+      </div>
+    </footer>
+
+    <div class="lab-assistant">
+      <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
+        <div class="lab-assistant-header">
+          <p>Lab Assistant</p>
+          <div class="lab-assistant-controls">
+            <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
+            <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="lab-assistant-body">
+          <p class="lab-assistant-greeting">Hello. What would you like to discover today?</p>
+          <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
+            <a href="objects.html"><span>Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span>Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span>Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span>General Question</span> <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+        <form class="lab-assistant-form" action="#" onsubmit="return false;">
+          <label class="sr-only" for="lab-assistant-input">Type your message</label>
+          <input id="lab-assistant-input" type="text" placeholder="Type your message" autocomplete="off" />
+          <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
+        </form>
+      </div>
+      <div class="lab-assistant-launcher">
+        <p class="lab-assistant-hint" id="lab-assistant-hint">Hello. Need help or have a question?</p>
+        <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
+          <span>LAB<br />ASSISTANT</span>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const worksToolbar = document.querySelector('.works-toolbar');
+      const worksGrid = document.querySelector('.works-grid');
+
+      if (worksToolbar && worksGrid) {
+        const pills = worksToolbar.querySelectorAll('.filter-pill');
+        const cards = worksGrid.querySelectorAll('.work-card');
+        const emptyMessage = document.querySelector('.catalog-empty');
+
+        worksToolbar.addEventListener('click', (event) => {
+          const pill = event.target.closest('.filter-pill');
+          if (!pill) return;
+
+          pills.forEach((item) => {
+            item.classList.toggle('is-active', item === pill);
+            item.setAttribute('aria-pressed', String(item === pill));
+          });
+
+          const filter = pill.dataset.filter;
+          let visibleCount = 0;
+
+          cards.forEach((card) => {
+            const matches = filter === 'all' || card.dataset.category === filter;
+            card.classList.toggle('is-hidden', !matches);
+            if (matches) visibleCount += 1;
+          });
+
+          if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
+        });
+      }
+    </script>
+  </body>
+</html>
