@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Manage your De la Mina Lab profile and account." />
+    <title>Profile — de la Mina Lab</title>
+    <link rel="stylesheet" href="profile.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body class="home">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header home-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+          <span class="sr-only">Open navigation</span>
+          <span></span><span></span>
+        </button>
+        <nav id="site-navigation" class="site-navigation" aria-label="Account navigation">
+          <a href="myworks.html" data-i18n="profile.nav.myworks">My Works</a>
+          <a href="profile.html" aria-current="page" data-i18n="profile.nav.profile">Profile</a>
+          <a href="index.html" data-i18n="profile.nav.logout">Log Out</a>
+        </nav>
+        <div class="header-icons">
+          <div class="lang-switch">
+            <button type="button" class="lang-switch-toggle" id="lang-switch-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+              <span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-label">English</span><span aria-hidden="true">›</span>
+            </button>
+            <ul class="lang-menu" id="lang-menu" hidden>
+              <li><button type="button" class="lang-option is-active" data-lang="en"><span aria-hidden="true">🇬🇧</span> English</button></li>
+              <li><button type="button" class="lang-option" data-lang="es"><span aria-hidden="true">🇪🇸</span> Español</button></li>
+              <li><button type="button" class="lang-option" data-lang="pt"><span aria-hidden="true">🇵🇹</span> Português</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="profile-page-header">
+        <div class="container">
+          <p class="eyebrow" data-i18n="profile.eyebrow">Account</p>
+          <h1 data-i18n="profile.heading">Profile</h1>
+          <p class="profile-lead" data-i18n="profile.lead">Manage your public profile and account settings.</p>
+        </div>
+      </section>
+
+      <section class="section profile-section">
+        <div class="container profile-grid">
+          <div class="profile-grid-label">
+            <h2 data-i18n="profile.section.public.title">Public profile</h2>
+            <p data-i18n="profile.section.public.note">This is what visitors see on your artist page.</p>
+          </div>
+          <div class="profile-card">
+            <div class="profile-avatar-row">
+              <div class="profile-avatar" aria-hidden="true">
+                <img src="images/profile-avatar.jpg" alt="" onerror="this.style.display='none'" />
+              </div>
+              <button type="button" class="text-button" data-i18n="profile.section.public.avatarChange">Change photo</button>
+            </div>
+            <form class="profile-form" action="#" onsubmit="return false;">
+              <label for="profile-name" data-i18n="profile.field.displayName">Display name</label>
+              <input id="profile-name" type="text" name="name" autocomplete="name" />
+
+              <label for="profile-bio" data-i18n="profile.field.bio">Bio</label>
+              <textarea id="profile-bio" name="bio" rows="4" data-i18n-placeholder="profile.field.bioPlaceholder" placeholder="Tell people about your work..."></textarea>
+
+              <div class="profile-form-row">
+                <div>
+                  <label for="profile-location" data-i18n="profile.field.location">Location</label>
+                  <input id="profile-location" type="text" name="location" autocomplete="address-level2" />
+                </div>
+                <div>
+                  <label for="profile-website" data-i18n="profile.field.website">Website</label>
+                  <input id="profile-website" type="url" name="website" autocomplete="url" />
+                </div>
+              </div>
+
+              <label for="profile-instagram" data-i18n="profile.field.instagram">Instagram</label>
+              <input id="profile-instagram" type="text" name="instagram" placeholder="@username" />
+
+              <button type="submit" class="contact-submit">
+                <span data-i18n="profile.action.saveProfile">Save changes</span> <span aria-hidden="true">→</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <hr class="contact-divider profile-divider" />
+
+      <section class="section profile-section">
+        <div class="container profile-grid">
+          <div class="profile-grid-label">
+            <h2 data-i18n="profile.section.account.title">Account</h2>
+            <p data-i18n="profile.section.account.note">Your login email and password.</p>
+          </div>
+          <div class="profile-card">
+            <form class="profile-form" action="#" onsubmit="return false;">
+              <label for="profile-email" data-i18n="profile.field.email">Email</label>
+              <input id="profile-email" type="email" name="email" autocomplete="email" />
+
+              <label for="profile-current-password" data-i18n="profile.field.currentPassword">Current password</label>
+              <input id="profile-current-password" type="password" name="current-password" autocomplete="current-password" />
+
+              <div class="profile-form-row">
+                <div>
+                  <label for="profile-new-password" data-i18n="profile.field.newPassword">New password</label>
+                  <input id="profile-new-password" type="password" name="new-password" autocomplete="new-password" />
+                </div>
+                <div>
+                  <label for="profile-confirm-password" data-i18n="profile.field.confirmPassword">Confirm new password</label>
+                  <input id="profile-confirm-password" type="password" name="confirm-password" autocomplete="new-password" />
+                </div>
+              </div>
+
+              <button type="submit" class="contact-submit">
+                <span data-i18n="profile.action.updateAccount">Update account</span> <span aria-hidden="true">→</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <hr class="contact-divider profile-divider" />
+
+      <section class="section profile-section">
+        <div class="container profile-grid">
+          <div class="profile-grid-label">
+            <h2 data-i18n="profile.section.payouts.title">Payouts</h2>
+            <p data-i18n="profile.section.payouts.note">Where we send your earnings from sold works.</p>
+          </div>
+          <div class="profile-card">
+            <span class="profile-badge is-pending" data-i18n="profile.badge.pending">Pending verification</span>
+            <form class="profile-form" action="#" onsubmit="return false;">
+              <label for="profile-bank-name" data-i18n="profile.field.bankName">Bank name</label>
+              <input id="profile-bank-name" type="text" name="bank-name" />
+
+              <label for="profile-iban" data-i18n="profile.field.iban">IBAN</label>
+              <input id="profile-iban" type="text" name="iban" autocomplete="off" />
+
+              <button type="submit" class="contact-submit">
+                <span data-i18n="profile.action.savePayouts">Save payout details</span> <span aria-hidden="true">→</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer home-footer">
+      <div class="container home-footer-inner">
+        <div class="footer-brand">
+          <p class="brand">DE LA MINA LAB</p>
+          <p data-i18n="footer.tagline">A creative laboratory for objects, artists and collaborations.</p>
+        </div>
+        <form class="footer-newsletter" action="#" onsubmit="return false;">
+          <p class="eyebrow" data-i18n="footer.stayUpdated">Stay updated</p>
+          <div class="newsletter-field">
+            <label class="sr-only" for="newsletter-email">Email address</label>
+            <input id="newsletter-email" type="email" data-i18n-placeholder="footer.emailPlaceholder" placeholder="Your email" autocomplete="email" />
+            <button class="text-link" type="submit"><span aria-hidden="true">→</span><span class="sr-only">Subscribe</span></button>
+          </div>
+        </form>
+        <div class="footer-links-inline">
+          <a href="https://instagram.com/delaminalab" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://tiktok.com/@delaminalab" target="_blank" rel="noopener">TikTok</a>
+          <a href="mailto:hello@delaminalab.com">Email</a>
+        </div>
+      </div>
+    </footer>
+
+    <div class="lab-assistant">
+      <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
+        <div class="lab-assistant-header">
+          <p data-i18n="lab.title">Lab Assistant</p>
+          <div class="lab-assistant-controls">
+            <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
+            <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="lab-assistant-body">
+          <p class="lab-assistant-greeting" data-i18n="lab.greeting">Hello. What would you like to discover today?</p>
+          <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
+            <a href="objects.html"><span data-i18n="lab.objects">Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span data-i18n="lab.artists">Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span data-i18n="lab.collaborations">Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.orders">Orders & Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.becomeArtist">Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.generalQuestion">General Question</span> <span aria-hidden="true">→</span></a>
+          </nav>
+        </div>
+        <form class="lab-assistant-form" action="#" onsubmit="return false;">
+          <label class="sr-only" for="lab-assistant-input">Type your message</label>
+          <input id="lab-assistant-input" type="text" data-i18n-placeholder="lab.placeholder" placeholder="Type your message" autocomplete="off" />
+          <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
+        </form>
+      </div>
+      <div class="lab-assistant-launcher">
+        <p class="lab-assistant-hint" id="lab-assistant-hint" data-i18n="lab.hint">Hello. Need help or have a question?</p>
+        <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
+          <span>LAB<br />ASSISTANT</span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -10,7 +10,6 @@
   </head>
   <body class="home">
     <a class="skip-link" href="#main">Skip to content</a>
-
     <header class="site-header home-header">
       <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
@@ -19,11 +18,11 @@
           <span></span><span></span>
         </button>
         <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
-          <a href="page.html">About</a>
-          <a href="objects.html">Objects</a>
-          <a href="artists.html">Artists</a>
-          <a href="collaborations.html">Collaborations</a>
-          <a href="contact.html" aria-current="page">Contact</a>
+          <a href="about.html" data-i18n="nav.about">About</a>
+          <a href="objects.html" data-i18n="nav.objects">Objects</a>
+          <a href="artists.html" data-i18n="nav.artists">Artists</a>
+          <a href="collaborations.html" data-i18n="nav.collaborations">Collaborations</a>
+          <a href="contact.html" aria-current="page" data-i18n="nav.contact">Contact</a>
         </nav>
         <div class="header-icons">
           <div class="header-icons-group">
@@ -34,23 +33,31 @@
               <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20.5" r="1.2"/><circle cx="17.5" cy="20.5" r="1.2"/></svg>
             </a>
           </div>
+          <div class="lang-switch">
+            <button type="button" class="lang-switch-toggle" id="lang-switch-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+              <span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-label">English</span><span aria-hidden="true">›</span>
+            </button>
+            <ul class="lang-menu" id="lang-menu" hidden>
+              <li><button type="button" class="lang-option is-active" data-lang="en"><span aria-hidden="true">🇬🇧</span> English</button></li>
+              <li><button type="button" class="lang-option" data-lang="es"><span aria-hidden="true">🇪🇸</span> Español</button></li>
+              <li><button type="button" class="lang-option" data-lang="pt"><span aria-hidden="true">🇵🇹</span> Português</button></li>
+            </ul>
+          </div>
         </div>
       </div>
     </header>
-
     <main id="main">
       <section class="contact-hero">
         <div class="contact-hero-copy">
-          <p class="eyebrow">Contact</p>
-          <h1 class="contact-hero-heading">Let&rsquo;s create something meaningful.</h1>
+          <p class="eyebrow" data-i18n="contact.eyebrow">Contact</p>
+          <h1 class="contact-hero-heading" data-i18n="contact.heading">Let&rsquo;s create something meaningful.</h1>
           <hr class="contact-rule" />
-          <p class="contact-hero-lead">Whether you want to collaborate, ask about a product or share an idea, we&rsquo;d love to hear from you.</p>
+          <p class="contact-hero-lead" data-i18n="contact.lead">Whether you want to collaborate, ask about a product or share an idea, we&rsquo;d love to hear from you.</p>
         </div>
         <div class="contact-hero-photo">
-          <img src="images/contact-hero.jpg" alt="" onerror="this.style.display='none'" />
+          <img src="./images/contact-hero.jpeg" alt="" onerror="this.style.display='none'" />
         </div>
       </section>
-
       <section class="section contact-form-section">
         <div class="container contact-form-grid">
           <div class="postcard">
@@ -61,93 +68,88 @@
               <span>DE LA MINA LAB</span>
               <span>OBJECTS · PEOPLE</span>
             </span>
-            <h2 class="postcard-heading">Share your project</h2>
+            <h2 class="postcard-heading" data-i18n="contact.postcard.heading">Share your project</h2>
             <hr class="contact-rule" />
             <form class="contact-form" action="#" onsubmit="return false;">
-              <label for="contact-name">Name</label>
+              <label for="contact-name" data-i18n="contact.form.name">Name</label>
               <input id="contact-name" type="text" name="name" autocomplete="name" />
-
-              <label for="contact-email">Email</label>
+              <label for="contact-email" data-i18n="contact.form.email">Email</label>
               <input id="contact-email" type="email" name="email" autocomplete="email" />
-
-              <label for="contact-subject">Subject</label>
+              <label for="contact-subject" data-i18n="contact.form.subject">Subject</label>
               <div class="select-wrap">
                 <select id="contact-subject" name="subject">
-                  <option value="" selected>Choose an option</option>
-                  <option value="collaboration">Collaboration</option>
-                  <option value="product">Product question</option>
-                  <option value="press">Press</option>
-                  <option value="other">Other</option>
+                  <option value="" selected data-i18n="contact.form.subjectPlaceholder">Choose an option</option>
+                  <option value="collaboration" data-i18n="contact.form.subject.collaboration">Collaboration</option>
+                  <option value="product" data-i18n="contact.form.subject.product">Product question</option>
+                  <option value="press" data-i18n="contact.form.subject.press">Press</option>
+                  <option value="other" data-i18n="contact.form.subject.other">Other</option>
                 </select>
                 <span class="select-arrow" aria-hidden="true">⌄</span>
               </div>
-
-              <label for="contact-message">Your message</label>
-              <textarea id="contact-message" name="message" rows="4" placeholder="Tell us about your idea, project or question..."></textarea>
-
-              <button type="submit" class="contact-submit">Share your project <span aria-hidden="true">→</span></button>
+              <label for="contact-message" data-i18n="contact.form.message">Your message</label>
+              <textarea id="contact-message" name="message" rows="4" data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Tell us about your idea, project or question..."></textarea>
+              <button type="submit" class="contact-submit">
+                <span data-i18n="contact.form.submit">Share your project</span> <span aria-hidden="true">→</span>
+              </button>
             </form>
           </div>
-
           <div class="contact-info">
             <div class="contact-info-block">
-              <h3>We&rsquo;re here to listen</h3>
+              <h3 data-i18n="contact.info.listen.title">We&rsquo;re here to listen</h3>
               <span class="contact-dash" aria-hidden="true">—</span>
-              <p>If you have any questions about our objects, need more information or want to collaborate on a project, feel free to get in touch.</p>
+              <p data-i18n="contact.info.listen.body">If you have any questions about our objects, need more information or want to collaborate on a project, feel free to get in touch.</p>
             </div>
             <hr class="contact-divider" />
             <div class="contact-info-block">
-              <h3>Collaborations</h3>
+              <h3 data-i18n="contact.info.collab.title">Collaborations</h3>
               <span class="contact-dash" aria-hidden="true">—</span>
-              <p>We are always open to working with independent artists, studios, brands and creative minds.</p>
+              <p data-i18n="contact.info.collab.body">We are always open to working with independent artists, studios, brands and creative minds.</p>
             </div>
             <hr class="contact-divider" />
             <div class="contact-info-block">
-              <h3>General inquiries</h3>
+              <h3 data-i18n="contact.info.general.title">General inquiries</h3>
               <span class="contact-dash" aria-hidden="true">—</span>
-              <p>Questions about products, orders, shipping or anything else. We&rsquo;ll get back to you as soon as possible.</p>
+              <p data-i18n="contact.info.general.body">Questions about products, orders, shipping or anything else. We&rsquo;ll get back to you as soon as possible.</p>
             </div>
             <hr class="contact-divider" />
             <div class="contact-info-block">
-              <h3>Response time</h3>
+              <h3 data-i18n="contact.info.response.title">Response time</h3>
               <span class="contact-dash" aria-hidden="true">—</span>
-              <p>We usually reply within 24&ndash;48h.</p>
+              <p data-i18n="contact.info.response.body">We usually reply within 24&ndash;48h.</p>
             </div>
           </div>
         </div>
       </section>
-
       <section class="contact-reach">
         <div class="container contact-reach-grid">
           <div class="contact-reach-block">
-            <h3>Other ways to reach us</h3>
+            <h3 data-i18n="contact.reach.title">Other ways to reach us</h3>
             <span class="contact-dash" aria-hidden="true">—</span>
             <p><a href="mailto:hello@delaminalab.com">hello@delaminalab.com</a><br />+351 912 345 678</p>
           </div>
           <div class="contact-reach-block">
-            <h3>Based in Lisbon</h3>
+            <h3 data-i18n="contact.reach.locationTitle">Based in Lisbon</h3>
             <span class="contact-dash" aria-hidden="true">—</span>
             <p>De La Mina Lab<br />Lisbon, Portugal</p>
-            <p class="contact-reach-note">Working Worldwide</p>
+            <p class="contact-reach-note" data-i18n="contact.reach.note">Working Worldwide</p>
           </div>
           <div class="contact-reach-photo">
-            <img src="images/contact-reach.jpg" alt="" onerror="this.style.display='none'" />
+            <img src="./images/contact-reach.jpeg" alt="" onerror="this.style.display='none'" />
           </div>
         </div>
       </section>
     </main>
-
     <footer class="site-footer home-footer">
       <div class="container home-footer-inner">
         <div class="footer-brand">
           <p class="brand">DE LA MINA LAB</p>
-          <p>A creative laboratory for objects, artists and collaborations.</p>
+          <p data-i18n="footer.tagline">A creative laboratory for objects, artists and collaborations.</p>
         </div>
         <form class="footer-newsletter" action="#" onsubmit="return false;">
-          <p class="eyebrow">Stay updated</p>
+          <p class="eyebrow" data-i18n="footer.stayUpdated">Stay updated</p>
           <div class="newsletter-field">
             <label class="sr-only" for="newsletter-email">Email address</label>
-            <input id="newsletter-email" type="email" placeholder="Your email" autocomplete="email" />
+            <input id="newsletter-email" type="email" data-i18n-placeholder="footer.emailPlaceholder" placeholder="Your email" autocomplete="email" />
             <button class="text-link" type="submit"><span aria-hidden="true">→</span><span class="sr-only">Subscribe</span></button>
           </div>
         </form>
@@ -158,35 +160,34 @@
         </div>
       </div>
     </footer>
-
     <div class="lab-assistant">
       <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
         <div class="lab-assistant-header">
-          <p>Lab Assistant</p>
+          <p data-i18n="lab.title">Lab Assistant</p>
           <div class="lab-assistant-controls">
             <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
             <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
           </div>
         </div>
         <div class="lab-assistant-body">
-          <p class="lab-assistant-greeting">Hello. What would you like to discover today?</p>
+          <p class="lab-assistant-greeting" data-i18n="lab.greeting">Hello. What would you like to discover today?</p>
           <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
-            <a href="objects.html"><span>Objects</span> <span aria-hidden="true">→</span></a>
-            <a href="artists.html"><span>Artists</span> <span aria-hidden="true">→</span></a>
-            <a href="collaborations.html"><span>Collaborations</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>Become an Artist</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>General Question</span> <span aria-hidden="true">→</span></a>
+            <a href="objects.html"><span data-i18n="lab.objects">Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span data-i18n="lab.artists">Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span data-i18n="lab.collaborations">Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.orders">Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.becomeArtist">Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.generalQuestion">General Question</span> <span aria-hidden="true">→</span></a>
           </nav>
         </div>
         <form class="lab-assistant-form" action="#" onsubmit="return false;">
           <label class="sr-only" for="lab-assistant-input">Type your message</label>
-          <input id="lab-assistant-input" type="text" placeholder="Type your message" autocomplete="off" />
+          <input id="lab-assistant-input" type="text" data-i18n-placeholder="lab.placeholder" placeholder="Type your message" autocomplete="off" />
           <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
         </form>
       </div>
       <div class="lab-assistant-launcher">
-        <p class="lab-assistant-hint" id="lab-assistant-hint">Hello. Need help or have a question?</p>
+        <p class="lab-assistant-hint" id="lab-assistant-hint" data-i18n="lab.hint">Hello. Need help or have a question?</p>
         <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
           <span>LAB<br />ASSISTANT</span>
         </button>

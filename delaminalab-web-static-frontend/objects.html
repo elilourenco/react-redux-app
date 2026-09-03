@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Objects by de la Mina Lab — our own collections, designed in-house." />
     <title>Objects — de la Mina Lab</title>
-    <link rel="stylesheet" href="store.css" />
+    <link rel="stylesheet" href="objects.css" />
     <script src="script.js" defer></script>
   </head>
   <body class="home">
     <a class="skip-link" href="#main">Skip to content</a>
-
     <header class="site-header home-header">
       <div class="container header-inner">
         <a class="brand" href="index.html" aria-label="de la Mina Lab home">DE LA MINA LAB</a>
@@ -19,92 +18,107 @@
           <span></span><span></span>
         </button>
         <nav id="site-navigation" class="site-navigation" aria-label="Primary navigation">
-          <a href="page.html">About</a>
-          <a href="objects.html" aria-current="page">Objects</a>
-          <a href="artists.html">Artists</a>
-          <a href="collaborations.html">Collaborations</a>
-          <a href="cart.html">Cart (0)</a>
+          <a href="about.html" data-i18n="nav.about">About</a>
+          <a href="objects.html" aria-current="page" data-i18n="nav.objects">Objects</a>
+          <a href="artists.html" data-i18n="nav.artists">Artists</a>
+          <a href="collaborations.html" data-i18n="nav.collaborations">Collaborations</a>
         </nav>
+        <div class="header-icons">
+          <div class="header-icons-group">
+            <a class="icon-link" href="#" aria-label="Account">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+            </a>
+            <a class="icon-link" href="cart.html" aria-label="Cart, 0 items">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h2l2.4 12.2a2 2 0 0 0 2 1.6h8.2a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="9.5" cy="20.5" r="1.2"/><circle cx="17.5" cy="20.5" r="1.2"/></svg>
+            </a>
+          </div>
+          <div class="lang-switch">
+            <button type="button" class="lang-switch-toggle" id="lang-switch-toggle" aria-haspopup="true" aria-expanded="false" aria-controls="lang-menu">
+              <span class="lang-flag" aria-hidden="true">🇬🇧</span><span class="lang-label">English</span><span aria-hidden="true">›</span>
+            </button>
+            <ul class="lang-menu" id="lang-menu" hidden>
+              <li><button type="button" class="lang-option is-active" data-lang="en"><span aria-hidden="true">🇬🇧</span> English</button></li>
+              <li><button type="button" class="lang-option" data-lang="es"><span aria-hidden="true">🇪🇸</span> Español</button></li>
+              <li><button type="button" class="lang-option" data-lang="pt"><span aria-hidden="true">🇵🇹</span> Português</button></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </header>
-
     <main id="main">
       <section class="objects-hero">
         <div class="objects-hero-copy">
-          <h1 class="objects-hero-heading">Objects</h1>
+          <h1 class="objects-hero-heading" data-i18n="objects.heading">Objects</h1>
           <hr class="objects-rule" />
-          <p class="objects-hero-lead">Our own collections.<br />Designed in-house.<br />Made with purpose.</p>
+          <p class="objects-hero-lead" data-i18n-html="objects.lead">Our own collections.<br />Designed in-house.<br />Made with purpose.</p>
         </div>
         <div class="objects-hero-photo">
-          <img src="images/objects-hero.jpg" alt="" onerror="this.style.display='none'" />
+          <img src="./images/objects-hero.jpeg" alt="" onerror="this.style.display='none'" />
         </div>
       </section>
-
       <section class="section-catalog">
         <div class="container">
           <div class="filter-bar" role="group" aria-label="Filter by category">
             <div class="filter-tabs">
-              <button type="button" class="filter-pill is-active" data-filter="all" aria-pressed="true">All</button>
-              <button type="button" class="filter-pill" data-filter="apparel" aria-pressed="false">Apparel</button>
-              <button type="button" class="filter-pill" data-filter="accessories" aria-pressed="false">Accessories</button>
-              <button type="button" class="filter-pill" data-filter="objects" aria-pressed="false">Objects</button>
-              <button type="button" class="filter-pill" data-filter="stationery" aria-pressed="false">Stationery</button>
+              <button type="button" class="filter-pill is-active" data-filter="all" aria-pressed="true" data-i18n="objects.filter.all">All</button>
+              <button type="button" class="filter-pill" data-filter="apparel" aria-pressed="false" data-i18n="objects.filter.apparel">Apparel</button>
+              <button type="button" class="filter-pill" data-filter="accessories" aria-pressed="false" data-i18n="objects.filter.accessories">Accessories</button>
+              <button type="button" class="filter-pill" data-filter="objects" aria-pressed="false" data-i18n="objects.filter.objects">Objects</button>
+              <button type="button" class="filter-pill" data-filter="stationery" aria-pressed="false" data-i18n="objects.filter.stationery">Stationery</button>
             </div>
-            <button type="button" class="filter-more">Filter</button>
+            <button type="button" class="filter-more" data-i18n="objects.filter.button">Filter</button>
           </div>
-
           <div class="catalog-grid">
             <a class="catalog-card" data-category="apparel" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-cap.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-cap.png" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Cap 01</p>
               <p class="product-card-price">€45,00</p>
             </a>
             <a class="catalog-card" data-category="apparel" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-tshirt.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-tshirt.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM T-Shirt 01</p>
               <p class="product-card-price">€55,00</p>
             </a>
             <a class="catalog-card" data-category="objects" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-bottle.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-bottle.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Bottle 01</p>
               <p class="product-card-price">€35,00</p>
             </a>
             <a class="catalog-card" data-category="accessories" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-tote.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-tote.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Tote 01</p>
               <p class="product-card-price">€40,00</p>
             </a>
             <a class="catalog-card" data-category="stationery" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-notebook.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="images/product-dlm-notebook.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Notebook 01</p>
               <p class="product-card-price">€18,00</p>
             </a>
             <a class="catalog-card" data-category="accessories" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-bandana.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-bandana.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Bandana 01</p>
               <p class="product-card-price">€25,00</p>
             </a>
             <a class="catalog-card" data-category="objects" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-mug.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-mug.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Mug 01</p>
               <p class="product-card-price">€30,00</p>
             </a>
             <a class="catalog-card" data-category="accessories" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-keychain.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-keychain.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Keychain 01</p>
               <p class="product-card-price">€15,00</p>
             </a>
             <a class="catalog-card" data-category="objects" href="product.html">
-              <div class="product-card-photo"><img src="images/product-dlm-candle.jpg" alt="" onerror="this.style.display='none'" /></div>
+              <div class="product-card-photo"><img src="./images/product-dlm-candle.jpeg" alt="" onerror="this.style.display='none'" /></div>
               <p class="product-card-name">DLM Candle 01</p>
               <p class="product-card-price">€35,00</p>
             </a>
           </div>
-          <p class="catalog-empty" hidden>No objects in this category yet.</p>
+          <p class="catalog-empty" hidden data-i18n="objects.empty">No objects in this category yet.</p>
         </div>
       </section>
     </main>
-
     <footer class="site-footer collab-footer">
       <div class="container collab-footer-inner">
         <p class="brand">DE LA MINA LAB</p>
@@ -115,35 +129,34 @@
         </div>
       </div>
     </footer>
-
     <div class="lab-assistant">
       <div class="lab-assistant-panel" id="lab-assistant-panel" hidden>
         <div class="lab-assistant-header">
-          <p>Lab Assistant</p>
+          <p data-i18n="lab.title">Lab Assistant</p>
           <div class="lab-assistant-controls">
             <button type="button" class="lab-assistant-min" aria-label="Minimize">–</button>
             <button type="button" class="lab-assistant-close" aria-label="Close">×</button>
           </div>
         </div>
         <div class="lab-assistant-body">
-          <p class="lab-assistant-greeting">Hello. What would you like to discover today?</p>
+          <p class="lab-assistant-greeting" data-i18n="lab.greeting">Hello. What would you like to discover today?</p>
           <nav class="lab-assistant-menu" aria-label="Lab Assistant shortcuts">
-            <a href="objects.html"><span>Objects</span> <span aria-hidden="true">→</span></a>
-            <a href="artists.html"><span>Artists</span> <span aria-hidden="true">→</span></a>
-            <a href="collaborations.html"><span>Collaborations</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>Become an Artist</span> <span aria-hidden="true">→</span></a>
-            <a href="mailto:hello@delaminalab.com"><span>General Question</span> <span aria-hidden="true">→</span></a>
+            <a href="objects.html"><span data-i18n="lab.objects">Objects</span> <span aria-hidden="true">→</span></a>
+            <a href="artists.html"><span data-i18n="lab.artists">Artists</span> <span aria-hidden="true">→</span></a>
+            <a href="collaborations.html"><span data-i18n="lab.collaborations">Collaborations</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.orders">Orders &amp; Shipping</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.becomeArtist">Become an Artist</span> <span aria-hidden="true">→</span></a>
+            <a href="mailto:hello@delaminalab.com"><span data-i18n="lab.generalQuestion">General Question</span> <span aria-hidden="true">→</span></a>
           </nav>
         </div>
         <form class="lab-assistant-form" action="#" onsubmit="return false;">
           <label class="sr-only" for="lab-assistant-input">Type your message</label>
-          <input id="lab-assistant-input" type="text" placeholder="Type your message" autocomplete="off" />
+          <input id="lab-assistant-input" type="text" data-i18n-placeholder="lab.placeholder" placeholder="Type your message" autocomplete="off" />
           <button type="submit" aria-label="Send"><span aria-hidden="true">▸</span></button>
         </form>
       </div>
       <div class="lab-assistant-launcher">
-        <p class="lab-assistant-hint" id="lab-assistant-hint">Hello. Need help or have a question?</p>
+        <p class="lab-assistant-hint" id="lab-assistant-hint" data-i18n="lab.hint">Hello. Need help or have a question?</p>
         <button type="button" class="lab-assistant-trigger" id="lab-assistant-trigger" aria-expanded="false" aria-controls="lab-assistant-panel" aria-label="Open Lab Assistant">
           <span>LAB<br />ASSISTANT</span>
         </button>
